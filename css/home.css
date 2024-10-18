@@ -110,6 +110,7 @@
 .phrase-slogan .phrase {
     font-size: 4rem;
     color: var(--color-white);
+    line-height: 1;
 }
 
 .phrase-slogan .slogan {
@@ -141,6 +142,15 @@
 
 #modal-register {
     display: none;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: #ffffffbf;
+    backdrop-filter: blur(20px);
+}
+
+#modal-login {
+    /* display: none; */
     position: absolute;
     height: 100vh;
     width: 100%;
@@ -249,6 +259,11 @@
     left: 1.5rem;
 }
 
+.text-login {
+    position: relative;
+    left: .7rem;
+}
+
 .content-form {
     width: 360px;
     position: relative;
@@ -290,6 +305,19 @@
     border-color: #6ac04e7e;
 }
 
+.content-a {
+    position: relative;
+    top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.content-a a {
+    text-decoration: none;
+    font-size: .9rem;
+    color: var(--color-light-blue);
+}
+
 .button-form {
     width: 100%;
     padding: .4rem 0;
@@ -308,6 +336,24 @@
     opacity: 1;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*? MEDIA QUERIES */
 
 @media screen and (max-width: 1920px) {
@@ -322,6 +368,21 @@
 
     .phrase-slogan .slogan {
         width: 55%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+        
+    .psb {
+        width: 90%;
+    }
+
+    .phrase-slogan .phrase {
+        font-size: 4rem;
+    }
+
+    .phrase-slogan .slogan {
+        width: 65%;
     }
 }
 
@@ -408,6 +469,8 @@
 
     .logo-form {
         border-radius: 20px;
+        border-color: var(--color-white);
+        box-shadow: 1px 1px 10px 5px #ebebeb;
     }
 
     .logo-close {
@@ -435,6 +498,10 @@
         left: 1rem;
         width: 100%;
         font-size: .9rem;
+    }
+
+    .text-login {
+        left: .3rem;
     }
 
     .content-form {

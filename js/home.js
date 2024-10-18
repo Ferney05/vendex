@@ -24,8 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalRegister = getElement('modal-register');
     const closeRegister = getElement('close-register');
     const showRegisterButtons = getElement('show-register-buttons');
+    const showWelcomeButton = getElement('show-welcome-button')
 
     addToggleListener(showRegister, modalRegister);
     addToggleListener(showRegisterButtons, modalRegister);
+    addToggleListener(showWelcomeButton, modalRegister)
     addToggleListener(closeRegister, modalRegister);
 });
