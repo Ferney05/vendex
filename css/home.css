@@ -1,0 +1,236 @@
+@import url('fonts-colors.css');
+
+.main-home {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr;
+    background-color: var(--color-light-black);
+}
+
+/*? NAV HOME */
+
+.nav-home {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.menu {
+    display: none;
+}
+
+#modal-buttons {
+    display: none;
+}
+
+.nav-home .logo-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    box-sizing: border-box;
+}
+
+.logo-buttons .logo {
+    display: flex;
+    align-items: center;
+    letter-spacing: 3px;
+}
+
+.logo h1 {
+    background: linear-gradient(to left,  #60bf93, #32b2e4);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 3.2rem;
+    font-weight: bold;
+    margin-top: -.1rem;
+}
+
+.logo-buttons .buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-buttons .buttons > .access {
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: 500;
+    padding: .5rem 1.5rem;
+    border-radius: 20px;
+    border: 1px solid transparent;
+}
+
+.buttons > .access:last-child {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+.buttons > .access:first-child:hover {
+    border-color: #32b2e4;
+}
+
+.buttons > .access:last-child:hover {
+    background-color: transparent;
+    color: var(--color-white);
+    border-color: #32b2e4;
+}
+
+
+/*? WELCOME HOME */
+
+.welcome-home {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.psb {
+    width: 90%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.phrase-slogan .phrase {
+    font-size: 4rem;
+    color: var(--color-white);
+}
+
+.phrase-slogan .slogan {
+    width: 65%;
+    margin: .5rem auto auto auto;
+    font-size: 1rem;
+    color: #adadad;
+}
+
+.psb button {
+    width: 220px;
+    margin: auto;
+    padding: .7rem 0;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--color-light-blue);
+    border: 1px solid var(--color-light-blue);
+    color: var(--color-white);
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.psb button:hover {
+    background-color: #356bab;
+    border-color: #356bab;
+}
+
+
+
+
+
+
+
+
+
+
+/*? MEDIA QUERIES */
+
+@media screen and (max-width: 1920px) {
+        
+    .psb {
+        width: 55%;
+    }
+
+    .phrase-slogan .phrase {
+        font-size: 5rem;
+    }
+
+    .phrase-slogan .slogan {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+        
+    .psb {
+        width: 85%;
+    }
+
+    .phrase-slogan .phrase {
+        font-size: 4rem;
+    }
+
+    .phrase-slogan .slogan {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+        
+    .psb {
+        width: 100%;
+    }
+
+    .phrase-slogan .phrase {
+        font-size: 2rem;
+    }
+
+    .phrase-slogan .slogan {
+        width: 80%;
+    }
+
+    /*? NAV */
+
+    .nav-home .logo-buttons {
+        padding: .5rem 1rem;
+    }
+    
+    .logo-buttons .buttons {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    #modal-buttons {
+        display: block;
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        background-color: #ffffffbf;
+        backdrop-filter: blur(20px);
+    }
+
+    .modal-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    .modal-buttons .access-modal {
+        text-decoration: none;
+        width: 250px;
+        background-color: var(--color-light-black);
+        text-align: center;
+        padding: .8rem;
+        border-radius: 100px;
+        font-weight: bold;
+        color: var(--color-white);
+        cursor: pointer;
+    }
+    
+    .close {
+        position: relative;
+        left: 7.5rem;
+        top: -15rem;
+    }
+}
