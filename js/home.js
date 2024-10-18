@@ -20,14 +20,35 @@ document.addEventListener('DOMContentLoaded', () => {
     addToggleListener(closeX, modalButtons);
 
     // MODAL REGISTER LOGIC
-    const showRegister = getElement('show-register');
     const modalRegister = getElement('modal-register');
+    const modalLogin = getElement('modal-login')
+    const modalChangePassword = getElement('modal-change-password')
+
+    const showRegister = getElement('show-register');
     const closeRegister = getElement('close-register');
+
+    const showLogin = getElement('show-login')
+    const closeLogin = getElement('close-login')
+
+    const showChangePassword = getElement('show-change-password')
+    const closeChangePassword = getElement('close-change-password')
+
     const showRegisterButtons = getElement('show-register-buttons');
+    const showLoginButtons = getElement('show-login-buttons');
+    
     const showWelcomeButton = getElement('show-welcome-button')
 
     addToggleListener(showRegister, modalRegister);
     addToggleListener(showRegisterButtons, modalRegister);
-    addToggleListener(showWelcomeButton, modalRegister)
     addToggleListener(closeRegister, modalRegister);
+
+    addToggleListener(showWelcomeButton, modalRegister)
+
+    addToggleListener(showLogin, modalLogin)
+    addToggleListener(showLoginButtons, modalLogin)
+    addToggleListener(closeLogin, modalLogin)
+
+    addToggleListener(showChangePassword, modalChangePassword)
+    addToggleListener(showChangePassword, modalLogin)
+    addToggleListener(closeChangePassword, modalChangePassword)
 });

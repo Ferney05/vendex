@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendex - Gestión de Inventarios Inteligente</title>
-    <link rel="shortcut icon" href="SVG/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="svg/icon-vendex.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
@@ -146,10 +146,52 @@
                             </div>
 
                             <div class="content-a">
-                                <a href="#">¿Has olvidado la contraseña?</a>
+                                <a href="#" id="show-change-password">¿Has olvidado la contraseña?</a>
                             </div>
                         </div>
 
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL CHANGE PASSWORD -->
+
+        <section id="modal-change-password">
+            <div class="content-logo-form">
+                <div class="logo-form">
+                    <div class="logo-close">
+                        <div class="none-logo">
+                            <div class="logo-icon">
+                                <img src="svg/icon-vendex.svg" alt="Logo de Vendex">
+                                <h1>ENDEX</h1>
+                            </div>
+                        </div>
+
+                        <div class="close-modals">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="close-change-password" width="30" height="35" viewBox="0 0 304 384"><path fill="#ffffff" d="M299 73L179 192l120 119l-30 30l-120-119L30 341L0 311l119-119L0 73l30-30l119 119L269 43z"/></svg>
+                        </div>
+                    </div>
+
+                    <form action="" method="POST" class="form">
+                        <div class="tlt-text-modal">
+                            <h1 class="tlt-form-modal tlt-password">¡Cambiar contraseña!</h1>
+                            <p class="text-form-modal">Por favor, ingresa tu email para verificar tu cuenta. Luego, escribe tu nueva contraseña.</p>
+                        </div>
+
+                        <div class="content-form">
+                            <div class="content-inputs">
+                                <input type="email" name="email" class="input" placeholder="Tu email" required>
+                            </div>
+
+                            <div class="content-inputs">
+                                <input type="password" name="password" class="input" placeholder="Nueva contraseña" required>
+                            </div>
+
+                            <div class="content-inputs">
+                                <input type="submit" name="button-login" class="button-form" value="Cambiar">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
