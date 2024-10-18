@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="menu">
-                    <img src="svg/menu.svg" alt="">
+                    <img src="svg/menu.svg" id="menu-modal" alt="">
                 </div>
             </div>
         </nav>
@@ -33,7 +33,7 @@
                 <div class="close">
                     <img src="svg/close-x.svg" id="close-x" alt="">
                 </div>
-                
+
                 <a href="#" class="access-modal">Ingresar</a>
                 <a href="#" class="access-modal">Regístrate</a>
             </div>
@@ -51,5 +51,6 @@
         </section>
     </main>
 
+    <script src="js/home.js"></script>
 </body>
 </html>
