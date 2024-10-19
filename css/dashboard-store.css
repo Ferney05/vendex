@@ -1,0 +1,117 @@
+@import url('base-logo.css');
+
+.main-store {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+}
+
+.sidebar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    background-color: var(--color-dark-blue-gray);
+    border-right: 1px solid var(--color-slate-gray);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 1fr;
+    user-select: none;
+}
+
+.logo {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.functions-dash {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0 0 0;
+    box-sizing: border-box;
+}
+
+.accordion {
+    width: 210px;
+}
+
+.down-arrow.none {
+    display: none;
+}
+
+.up-arrow {
+    display: none;
+}
+
+.up-arrow.show {
+    display: block;
+}
+
+.accordion-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: .5rem 0;
+}
+
+.accordion-btn span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #eee;
+}
+
+.accordion-content {
+    box-sizing: content-box;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.accordion-content.open {
+    max-height: 500px; 
+}
+
+.accordion-content div {
+    display: flex;
+    flex-direction: column;
+}
+
+.accordion-content div a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: .5rem 0 .5rem 1rem;
+    gap: .3rem;
+}
+
+.accordion-content div a:hover {
+    background-color: #2ab2ede1;
+}
+
+.accordion-content div a p {
+    color: #4f5158;
+    font-size: .9rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.dashboard {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background-color: var(--color-dark-charcoal);
+}
