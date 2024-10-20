@@ -94,11 +94,11 @@
 }
 
 .accordion-content div a:hover {
-    background-color: #2ab2ed;
+    background-color: var(--color-light-green);
 }
 
 .accordion-content div a p {
-    color: #4f5158;
+    color: #5d5d65;
     font-size: .9rem;
 }
 
@@ -149,14 +149,14 @@
 
 .noti-username a span {
     background-color: var(--color-dark-red);
-    padding: .2rem .3rem;
+    padding: .2rem .4rem;
     border-radius: 100px;
-    font-size: .4rem;
+    font-size: .7rem;
     font-weight: 400;
     color: #eee;
     position: absolute;
-    top: 1.8rem;
-    right: 11.2rem;
+    top: 1.5rem;
+    right: 11rem;
 
 }
 
@@ -179,11 +179,6 @@
 .name-down .name {
     color: #eee;
     font-size: .9rem;
-}
-
-.control-dash {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
 }
 
 .modal-dash {
@@ -228,7 +223,7 @@
 .myself .rol {
     font-size: .9rem;
     font-style: oblique;
-    color: #2ab2ed;
+    color: var(--color-light-green);
 }
 
 .options-modal {
@@ -237,10 +232,139 @@
     padding: .5rem;
 }
 
-.options-modal a {
+.options-modal a p {
     font-size: .9rem;
 }
 
-.options-modal a:first-child:hover {
+.options-modal a {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+}
+
+.options-modal a:first-child:hover svg path {
+    fill: var(--color-dark-red);
+}
+
+.options-modal a:first-child:hover p {
     color: var(--color-dark-red);
+}
+
+
+
+
+
+
+
+.control-dash {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.content-dash {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.group-cards {
+    width: 300px;
+    background-color: var(--color-dark-charcoal-blue);
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.padd {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-union {
+    background-color: var(--color-dark-midnight-blue);
+    border: 1px solid #282e3a;
+    border-radius: 10px;
+    padding: 1rem;
+    box-sizing: border-box;
+
+}
+
+.icon-name-slogan {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+.name-slogan .slogan-card {
+    font-weight: 100;
+    font-size: .9rem;
+}
+
+.num-percentage-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.num-percentage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-percentage, .revenue-percentage {
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-percentage {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+}
+
+.num-percentage .num {
+    font-size: 1.5rem;
+}
+
+.product-percentage .product {
+    font-size: 1.5rem;
+}
+
+.product-percentage .product {
+    font-size: 1.5rem;
+}
+
+.num-margen .margen {
+    font-size: .9rem;
+}
+
+.icon-percentage .percentage {
+    font-size: .7rem;
+    color: var(--color-light-green);
+    font-weight: 400;
+}
+
+.btn-see {
+    display: flex;
+    justify-content: end;
+}
+
+.btn-see a {
+    text-decoration: none;
+    font-size: .8rem;
+    display: flex;
+    gap: .2rem;
+    align-items: center;
+}
+
+.btn-see a p {
+    color: var(--color-light-blue);
 }
