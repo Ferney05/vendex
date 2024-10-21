@@ -1,4 +1,5 @@
 @import url('base-logo.css');
+@import url('base-nav-dash.css');
 
 .main-store {
     display: grid;
@@ -123,133 +124,6 @@
     grid-template-rows: 80px 1fr;
 }
 
-.nav-dash {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    box-sizing: border-box;
-    user-select: none;
-}
-
-.noti-username {
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-}
-
-.noti-username a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-.noti-username a span {
-    background-color: var(--color-dark-red);
-    padding: .2rem .4rem;
-    border-radius: 100px;
-    font-size: .7rem;
-    font-weight: 400;
-    color: #eee;
-    position: absolute;
-    top: 1.5rem;
-    right: 11rem;
-
-}
-
-.username {
-    display: flex;
-    align-items: center;
-    gap: .4rem;
-    cursor: pointer;
-}
-
-.name-down {
-    display: flex;
-    align-items: center;
-}
-
-.tlt-dash {
-    color: #eee;
-}
-
-.name-down .name {
-    color: #eee;
-    font-size: .9rem;
-}
-
-.modal-dash {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-    background-color: var(--color-dark-blue-gray);
-    position: absolute;
-    box-sizing: border-box;
-    margin-top: .5rem;
-    width: 120px;
-    right: 2.6rem;
-    border-radius: 10px;
-}
-
-.border-modal {
-    border: 1px solid var(--color-slate-gray);
-    border-radius: 10px;
-}
-
-.pad-modal {
-    box-sizing: border-box;
-}
-
-.modal-dash.open {
-    max-height: 500px; 
-}
-
-.name-logout {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-}
-
-.myself {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    padding: .5rem;
-    border-bottom: 1px solid var(--color-slate-gray);
-}
-
-.myself .rol {
-    font-size: .9rem;
-    font-style: oblique;
-    color: var(--color-light-green);
-}
-
-.options-modal {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    padding: .5rem;
-}
-
-.options-modal a p {
-    font-size: .9rem;
-}
-
-.options-modal a {
-    display: flex;
-    align-items: center;
-    gap: .2rem;
-}
-
-.options-modal a:first-child:hover svg path {
-    fill: var(--color-dark-red);
-}
-
-.options-modal a:first-child:hover p {
-    color: var(--color-dark-red);
-}
-
 
 
 
@@ -261,30 +135,33 @@
     grid-row: 2 / 3;
     padding: 2rem;
     box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 400px 1fr;
 }
 
-.content-dash {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-}
-
-.group-cards {
-    width: 300px;
-    background-color: var(--color-dark-charcoal-blue);
+.grid-one {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
     padding: 1rem;
     box-sizing: border-box;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 }
 
 .padd {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.group-cards {
+    background-color: var(--color-dark-charcoal-blue);
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 10px;
+
 }
 
 .card-union {
@@ -294,6 +171,12 @@
     padding: 1rem;
     box-sizing: border-box;
 
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .icon-name-slogan {
@@ -367,4 +250,62 @@
 
 .btn-see a p {
     color: var(--color-light-blue);
+}
+
+
+
+.grid-two {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.group-cards-auto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--color-dark-charcoal-blue);
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.content-cards-auto {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-stock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 330px;
+}
+
+.bp-stock {
+    display: flex;
+    flex-direction: column;
+}
+
+.bp-stock .available {
+    font-size: .8rem;
+    font-weight: 200;
+}
+
+.low-stock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+}
+
+.low-stock p {
+    font-size: .8rem;
+    color: var(--color-dark-red);
+}
+.news p {
+    font-size: .8rem;
+    font-weight: 200;
 }

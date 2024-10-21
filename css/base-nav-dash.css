@@ -1,0 +1,131 @@
+@import url('fonts-colors.css');
+
+* {
+    color: #eee;
+}
+
+.nav-dash {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    cursor: pointer;
+}
+
+.name-down {
+    display: flex;
+    align-items: center;
+}
+
+.tlt-dash {
+    color: #eee;
+}
+
+.name-down .name {
+    color: #eee;
+    font-size: .9rem;
+}
+
+.modal-dash {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background-color: var(--color-dark-blue-gray);
+    position: absolute;
+    box-sizing: border-box;
+    margin-top: .5rem;
+    width: 120px;
+    right: 2.6rem;
+    border-radius: 10px;
+}
+
+.border-modal {
+    border: 1px solid var(--color-slate-gray);
+    border-radius: 10px;
+}
+
+.pad-modal {
+    box-sizing: border-box;
+}
+
+.modal-dash.open {
+    max-height: 500px; 
+}
+
+.name-logout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+.myself {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding: .5rem;
+    border-bottom: 1px solid var(--color-slate-gray);
+}
+
+.myself .rol {
+    font-size: .9rem;
+    font-style: oblique;
+    color: var(--color-light-green);
+}
+
+.options-modal {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: .5rem;
+}
+
+.options-modal a p {
+    font-size: .9rem;
+}
+
+.options-modal a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: .2rem;
+}
+
+.options-modal a:first-child:hover svg path {
+    fill: var(--color-dark-red);
+}
+
+.options-modal a:first-child:hover p {
+    color: var(--color-dark-red);
+}
+
+
+
+
+.go-dash {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    text-decoration: none;
+}
+
+.go-dash p {
+    font-size: .9rem;
+    color: #eee;
+}
+
+.go-dash:hover svg path {
+    fill: var(--color-light-green);
+}
+
+.go-dash:hover p {
+    color: var(--color-light-green);
+}
