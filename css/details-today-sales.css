@@ -1,0 +1,84 @@
+@import url('base-nav-dash.css');
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 1fr;
+    height: 100vh;
+
+    background-color: var(--color-dark-blue-gray);
+}
+
+.earnings-today {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.earnings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.tlt-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-today-earnings {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background-color: var(--color-light-blue);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.button-function {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background-color: var(--color-light-blue);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.content-table {
+    margin-top: 3rem;
+}
+
+table, th, td {
+    border: 2px solid var(--color-slate-gray);
+    border-collapse: collapse;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th, td {
+    padding: .5rem 0;
+    text-align: center;
+}
+
+td {
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+.tlt-info {
+    width: 50%;
+    margin: auto auto .4rem auto;
+}
+
+.tlt-info h3 {
+    color: #5d6569;
+}

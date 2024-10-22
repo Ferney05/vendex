@@ -124,12 +124,6 @@
     grid-template-rows: 80px 1fr;
 }
 
-
-
-
-
-
-
 .control-dash {
     grid-column: 1 / 2;
     grid-row: 2 / 3;

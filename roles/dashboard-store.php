@@ -27,14 +27,14 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="#">
+                            <a href="store/inventory/add-products.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Agregar productos</p>
                             </a>
 
-                            <a href="#">
-                                <img src="../svg/update.svg" alt="">
-                                <p>Actualizar inventario</p>
+                            <a href="store/inventory/admin-inventory.php">
+                                <img src="../svg/admin.svg" alt="">
+                                <p>Administrar inventario</p>
                             </a>
                         </div>
                     </div>
@@ -49,13 +49,13 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="#">
+                            <a href="store/sales/new-sale.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Nueva venta</p>
                             </a>
 
-                            <a href="#">
-                                <img src="../svg/update.svg" alt="">
+                            <a href="store/sales/sales-made.php">
+                                <img src="../svg/view.svg" alt="">
                                 <p>Ver ventas realizadas</p>
                             </a>
                         </div>
@@ -72,7 +72,7 @@
                     <div class="accordion-content">
                         <div>
                             <a href="#">
-                                <img src="../svg/add.svg" alt="">
+                                <img src="../svg/eyes.svg" alt="">
                                 <p>Ver ganancias de ventas</p>
                             </a>
                         </div>
@@ -106,7 +106,6 @@
                                         <p>Salir</p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
                                     </a>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -114,7 +113,7 @@
                 </div>
             </nav>
 
-            <section class="control-dash">
+            <section class="control-dash" id="hidden-modal">
                 <div class="grid-one">
                     <div class="group-cards">
                         <h3 class="tlt-group">Resumen de ventas del día</h3>
@@ -324,6 +323,5 @@
     </main>
 
     <script src="../js/dashboard-store.js"></script>
-    <script src="../js/graphic.js"></script>
 </body>
 </html>

@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     username.addEventListener('click', () => {
         modalDash.classList.toggle('open')
     })
+
+    getElementID('hidden-modal').addEventListener('click', () => {
+        modalDash.classList.remove('open')
+    })
 })
 
 
