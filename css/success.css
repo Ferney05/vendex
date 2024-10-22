@@ -1,0 +1,39 @@
+@import url('fonts-colors.css');
+
+.success {
+    height: 100vh;
+    background-color: #121318;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success .back {
+    background-color: var(--color-white);
+    width: 500px;
+    padding: 2rem;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 2px 2px 20px 5px #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tlt-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+}
+
+.tlt-icon h2 {
+    font-size: 3rem;
+    color: var(--color-light-green);
+}
+
+.info-text {
+    position: relative;
+    left: .7rem;
+    color: var(--color-light-black);
+}

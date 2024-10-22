@@ -70,7 +70,7 @@
                         </div>
                     </div>
 
-                    <form action="" method="POST" class="form">
+                    <form action="app/users/register.php" method="POST" class="form">
                         <div class="tlt-text-modal">
                             <h1 class="tlt-form-modal">¡Bienvenido!</h1>
                             <p class="text-form-modal">Completa el formulario para registrarte y comenzar a optimizar la gestión de tus inventarios.</p>
@@ -88,14 +88,14 @@
 
                             <div class="content-inputs">
                                 <input type="password" name="password" class="input" placeholder="Contraseña" required>
-                                <select name="rol" id="" class="select" required>
-                                    <option value="" disabled selected>Seleccione</option>
-                                    <option value="">Tienda</option>
+                                <select name="role" id="" class="select" required>
+                                    <option value="" disabled selected>Rol</option>
+                                    <option value="Tienda">Tienda</option>
                                 </select>
                             </div>
 
                             <div class="content-inputs">
-                                <input type="submit" name="button-register" class="button-form" value="Registrarte">
+                                <input type="submit" name="button-register-users" class="button-form" value="Registrarte">
                             </div>
                         </div>
 
@@ -122,7 +122,7 @@
                         </div>
                     </div>
 
-                    <form action="" method="POST" class="form">
+                    <form action="app/users/login.php" method="POST" class="form">
                         <div class="tlt-text-modal">
                             <h1 class="tlt-form-modal">¡Hola!</h1>
                             <p class="text-form-modal text-login">Bienvenido a Vendex, tu plataforma de gestión inteligente de inventarios.</p>
@@ -135,9 +135,10 @@
 
                             <div class="content-inputs">
                                 <input type="password" name="password" class="input" placeholder="Contraseña" required>
-                                <select name="rol" id="" class="select" required>
-                                    <option value="" disabled selected>Seleccione</option>
-                                    <option value="">Tienda</option>
+                                <select name="role" id="" class="select" required>
+                                    <option value="" disabled selected>Rol</option>
+                                    <option value="Tienda">Tienda</option>
+                                    <option value="Restaurante">Restaurante</option>
                                 </select>
                             </div>
 
@@ -199,5 +200,7 @@
     </main>
 
     <script src="js/home.js"></script>
+
+    
 </body>
 </html>
