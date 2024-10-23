@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizar nueva venta - Vendex</title>
     <link rel="stylesheet" href="../../../css/new-sale.css">
+    <link rel="stylesheet" href="../../../css/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <?php
+        include("../../../conexion.php");
+    ?>
 </head>
 <body>
 
@@ -88,11 +96,24 @@
                             <th>Precio de venta</th>
                         </tr>
 
-                        <tr>
-                            <td>Arroz pinillar</td>
-                            <td>2</td>
-                            <td>$4,000</td>
-                        </tr>
+                        <?php
+                            $getData = "SELECT * FROM cart_items";
+                            $resultData = mysqli_query($conexion, $getData);
+
+                            if($resultData -> num_rows > 0){
+                                while ($row = mysqli_fetch_array($resultData)){
+                                    echo "<tr>
+                                            <td>" . $row['product_name'] . "</td>
+                                            <td>" . $row['cart_stock'] . "</td>
+                                            <td>" . $row['sale_price'] . "</td>
+                                          </tr>";
+                                }
+                            } else {
+                                echo "<tr>
+                                        <td colspan='3'>No hay productos listados</td>   
+                                     </tr>";
+                            }
+                        ?>
                     </table>
                 </div>
             </div>
@@ -106,33 +127,55 @@
                         <svg class="close-modal" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 304 384"><path fill="#ffffff" d="M299 73L179 192l120 119l-30 30l-120-119L30 341L0 311l119-119L0 73l30-30l119 119L269 43z"/></svg>
                     </div>
 
-                    <form action="" method="POST" class="form-modal">
+                    <form action="functions/add-product-sale.php" method="POST" class="form-modal">
                         <div class="content-inputs">
                             <div class="label-input">
                                 <label for="name-product">Nombre del producto</label>
-                                <input type="text" name="name-product" class="input-form" placeholder="Nombre del producto" required>
+                                <input type="text" name="name-product" id="name-product" class="input-form" placeholder="Nombre del producto" required>
                             </div>
 
                             <div class="label-input">
-                                <label for="amount">Cantidad</label>
-                                <input type="number" name="amount" class="input-form" placeholder="Cantidad" required>
+                                <label for="cart-stock">Cantidad</label>
+                                <input type="number" name="cart-stock" class="input-form" placeholder="Cantidad" required>
                             </div>
                         </div>
 
                         <div class="content-inputs">
                             <div class="label-input">
                                 <label for="sale-price">Precio de venta</label>
-                                <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" required>
+                                <input type="number" name="sale-price" id="sale-price" class="input-form" placeholder="Precio de venta" required>
                             </div>
 
                             <div class="label-input">
-                                <input type="submit" name="button-create-category" class="btn-form-modal" value="Agregar">
+                                <input type="submit" name="button-add-product-sale" class="btn-form-modal" value="Agregar">
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
+
+        <script>
+            $(document).ready(function(){
+                $('#name-product').autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            url: "functions/autocomplete.php",
+                            type: "POST",
+                            data: { query: request.term },
+                            success: function(data) {
+                                response($.parseJSON(data));
+                            }
+                        });
+                    },
+                    minLength: 3,
+                    select: function(event, ui) {
+                        // Al seleccionar un producto, completa el campo del precio de venta
+                        $('#sale-price').val(ui.item.price); // Completa el campo de precio
+                    }
+                });
+            });
+        </script>
     </main>
 
     <script src="show-modal-add.js"></script>

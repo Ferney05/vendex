@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="../css/dashboard-store.css">
     <link rel="shortcut icon" href="../svg/icon-vendex.svg" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <?php
+        include("../conexion.php");
+
+        session_start();
+
+        if (isset($_SESSION['user_id'])) {
+            $id_user = $_SESSION['user_id']; 
+        } else {
+            header("Location: ../index.php");
+            exit(); 
+        }
+    ?>
 </head>
 <body>
 
@@ -88,7 +101,13 @@
                     <div class="username">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
                         <div class="name-down">
-                            <p class="name">Ferney Bar.</p>
+                            <?php
+                                $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
+                                $result = mysqli_query($conexion, $queryData);
+                                $rowData = mysqli_fetch_assoc($result);
+                                
+                                echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                            ?>
                             <img src="../svg/down-arrow.svg" alt="">
                         </div>
                     </div>
@@ -97,12 +116,18 @@
                         <div class="border-modal">
                             <div class="name-logout">
                                 <div class="myself">
-                                    <p class="name">Ferney Bar.</p>
-                                    <p class="rol">Store</p>
+                                    <?php
+                                        $queryData = "SELECT name, lastname, role FROM users WHERE id = $id_user";
+                                        $result = mysqli_query($conexion, $queryData);
+                                        $rowData = mysqli_fetch_assoc($result);
+                                        
+                                        echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                                        echo "<p class='rol'>" . $rowData['role'] . "</p>"
+                                    ?>
                                 </div>
 
                                 <div class="options-modal">
-                                    <a href="#">
+                                    <a href="../app/users/logout.php">
                                         <p>Salir</p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
                                     </a>

@@ -10,7 +10,7 @@
 
 .success .back {
     background-color: var(--color-white);
-    width: 500px;
+    width: auto;
     padding: 2rem;
     box-sizing: border-box;
     border-radius: 20px;
@@ -20,20 +20,18 @@
     gap: 1rem;
 }
 
-.tlt-icon {
+.success .back .tlt-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .6rem;
 }
 
-.tlt-icon h2 {
-    font-size: 3rem;
+.success .back .tlt-icon h2 {
+    font-size: 2.5rem;
     color: var(--color-light-green);
 }
 
 .info-text {
-    position: relative;
-    left: .7rem;
     color: var(--color-light-black);
 }

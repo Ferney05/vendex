@@ -10,7 +10,7 @@
 
 .warning .back {
     background-color: var(--color-white);
-    width: 550px;
+    width: auto;
     padding: 2rem;
     box-sizing: border-box;
     border-radius: 20px;
@@ -20,20 +20,18 @@
     gap: 1rem;
 }
 
-.tlt-icon {
+.warning .back .tlt-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .6rem;
 }
 
-.tlt-icon h2 {
-    font-size: 3rem;
+.warning .back .tlt-icon h2 {
+    font-size: 2.5rem;
     color: var(--color-dark-red);
 }
 
 .info-text {
-    position: relative;
-    left: 1rem;
     color: var(--color-light-black);
 }

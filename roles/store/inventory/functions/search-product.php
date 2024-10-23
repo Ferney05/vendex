@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar inventario - Vendex</title>
-    <link rel="stylesheet" href="../../../css/admin-inventory.css">
-    <link rel="stylesheet" href="../../../css/base-autocomplete.css">
-    <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
+    <title>Buscando productos - Vendex</title>
+    <link rel="stylesheet" href="../../../../css/admin-inventory.css">
+    <link rel="stylesheet" href="../../../../css/base-autocomplete.css">
+    <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <?php
-        include("../../../conexion.php");
+        include("../../../../conexion.php");
 
         session_start();
 
@@ -29,7 +29,7 @@
 
     <main class="main">
         <nav class="nav-dash">
-            <a href="../../dashboard-store.php" class="go-dash">
+            <a href="../../../dashboard-store.php" class="go-dash">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z"/></svg>
                 <p>Dashboard</p>
             </a>
@@ -45,7 +45,7 @@
                             
                             echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
                         ?>
-                        <img src="../../../svg/down-arrow.svg" alt="">
+                        <img src="../../../../svg/down-arrow.svg" alt="">
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="options-modal">
-                                <a href="../../../app/users/logout.php">
+                                <a href="../../../../app/users/logout.php">
                                     <p>Salir</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
                                 </a>
@@ -78,11 +78,11 @@
         <section class="info-table-product" id="hidden-modal">
             <div class="table-products">
                 <div class="tlt-search-add">
-                    <h2 class="tlt-function">Administrar inventario</h2>
+                    <h2 class="tlt-function">Consulta realizada</h2>
                     
                     <div class="search-add">
-                        <form action="functions/search-product.php" method="POST" class="form-search">
-                            <input type="text" name="search" class="input-search" id="search" placeholder="Buscar por producto..." required>
+                        <form action="" method="POST" class="form-search">
+                            <input type="text" name="search" id="search" class="input-search" placeholder="Buscar por producto..." required>
                             <input type="submit" name="button-search" class="btn-search" value="Buscar">
                         </form>
 
@@ -92,7 +92,7 @@
                                 $('#search').autocomplete({
                                     source: function(request, response) {
                                         $.ajax({
-                                            url: "functions/autocomplete.php", // Archivo PHP que consulta los productos
+                                            url: "autocomplete.php", // Archivo PHP que consulta los productos
                                             type: "POST",
                                             data: { query: request.term }, // Envía lo que el usuario escribe
                                             success: function(data) {
@@ -105,9 +105,9 @@
                             });
                         </script>
                         
-                        <a href="add-products.php" class="add">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
-                            <p>Agregar producto</p>
+                        <a href="../admin-inventory.php" class="add">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
+                            <p>Ver todos los productos</p>
                         </a>
                     </div>
                 </div>
@@ -128,43 +128,49 @@
                         </tr>
 
                         <?php
-                            $getProducts = "SELECT * FROM inventory_products";
-                            $resultProducts = mysqli_query($conexion, $getProducts);
-                            
-                            if($resultProducts -> num_rows > 0){
-                                while($row = mysqli_fetch_array($resultProducts)){
-                                    $id = $row['id'];
-                                    $id_category = $row['id_category'];
+                            if(isset($_POST['button-search'])){
+                                $search = $_POST['search'];
 
-                                    $queryCategory = "SELECT category FROM categories WHERE id = $id_category";
-                                    $resultCat = mysqli_query($conexion, $queryCategory);
-                                    $rowCat = mysqli_fetch_array($resultCat);
-    
+                                $searchTerm = mysqli_real_escape_string($conexion, $search);
+
+                                $getProducts = "SELECT * FROM inventory_products WHERE product_name LIKE '%$searchTerm%'";
+                                $resultProducts = mysqli_query($conexion, $getProducts);
+                                
+                                if($resultProducts -> num_rows > 0){
+                                    while($row = mysqli_fetch_array($resultProducts)){
+                                        $id = $row['id'];
+                                        $id_category = $row['id_category'];
+
+                                        $queryCategory = "SELECT category FROM categories WHERE id = $id_category";
+                                        $resultCat = mysqli_query($conexion, $queryCategory);
+                                        $rowCat = mysqli_fetch_array($resultCat);
+        
+                                        echo "<tr>
+                                                <td>" . ucfirst($row['product_name']) . "</td>
+                                                <td>" . ucfirst($row['product_description']) . "</td>
+                                                <td>" . $rowCat['category'] . "</td>
+                                                <td>$" . number_format($row['purchase_price'], 0) . "</td>
+                                                <td>$" . number_format($row['sale_price'], 0) . "</td>
+                                                <td>" . $row['stock_quantity'] . "</td>
+                                                <td>" . ucfirst($row['supplier']) . "</td>
+                                                <td>" . $row['entry_date'] . "</td>
+                                                <td>" . $row['product_status'] . "</td>
+                                                <td>
+                                                    <a href='delete.php?id=$id'>
+                                                        <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
+                                                    </a>
+        
+                                                    <a href='get-data.php?id=$id'>
+                                                        <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><g fill='none' stroke='#3289d1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path stroke-dasharray='20' stroke-dashoffset='20' d='M3 21h18'><animate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='20;0'/></path><path fill='#3289d1' fill-opacity='0' stroke-dasharray='48' stroke-dashoffset='48' d='M7 17v-4l10 -10l4 4l-10 10h-4'><animate fill='freeze' attributeName='fill-opacity' begin='1.1s' dur='0.15s' values='0;0.3'/><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.2s' dur='0.6s' values='48;0'/></path><path stroke-dasharray='8' stroke-dashoffset='8' d='M14 6l4 4'><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.8s' dur='0.2s' values='8;0'/></path></g></svg>
+                                                    </a>
+                                                </td>
+                                            </tr>";
+                                    }
+                                } else {
                                     echo "<tr>
-                                            <td>" . ucfirst($row['product_name']) . "</td>
-                                            <td>" . ucfirst($row['product_description']) . "</td>
-                                            <td>" . $rowCat['category'] . "</td>
-                                            <td>$" . number_format($row['purchase_price'], 0) . "</td>
-                                            <td>$" . number_format($row['sale_price'], 0) . "</td>
-                                            <td>" . $row['stock_quantity'] . "</td>
-                                            <td>" . ucfirst($row['supplier']) . "</td>
-                                            <td>" . $row['entry_date'] . "</td>
-                                            <td>" . $row['product_status'] . "</td>
-                                            <td>
-                                                <a href='functions/delete.php?id=$id'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
-                                                </a>
-    
-                                                <a href='functions/get-data.php?id=$id'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><g fill='none' stroke='#3289d1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path stroke-dasharray='20' stroke-dashoffset='20' d='M3 21h18'><animate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='20;0'/></path><path fill='#3289d1' fill-opacity='0' stroke-dasharray='48' stroke-dashoffset='48' d='M7 17v-4l10 -10l4 4l-10 10h-4'><animate fill='freeze' attributeName='fill-opacity' begin='1.1s' dur='0.15s' values='0;0.3'/><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.2s' dur='0.6s' values='48;0'/></path><path stroke-dasharray='8' stroke-dashoffset='8' d='M14 6l4 4'><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.8s' dur='0.2s' values='8;0'/></path></g></svg>
-                                                </a>
-                                            </td>
-                                          </tr>";
+                                            <td colspan='10'>No se encontraron productos</td>
+                                        </tr>";
                                 }
-                            } else {
-                                echo "<tr>
-                                        <td colspan='10'>No hay productos</td>
-                                      </tr>";
                             }
                         ?>
                     </table>
@@ -173,6 +179,6 @@
         </section>
     </main>
 
-    <script src="../../../js/base-nav-dash.js"></script>
+    <script src="../../../../js/base-nav-dash.js"></script>
 </body>
 </html>

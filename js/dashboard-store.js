@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
     const getElement = (classs) => document.querySelector(classs)
 
     const username = getElement('.username')

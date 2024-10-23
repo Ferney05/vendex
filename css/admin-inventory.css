@@ -77,11 +77,11 @@
 
 table, th, td {
     border: 2px solid #1f2025;
-    border-collapse: collapse;
 }
 
 table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 th, td {
@@ -94,6 +94,12 @@ td {
     font-weight: 300;
 }
 
-td:nth-child(9) {
-    background-color: var(--color-light-green);
+td:nth-child(10) a {
+    text-decoration: none;
+} 
+
+td:nth-child(10) a:last-child {
+    margin-left: 1rem;
 }
+
+

@@ -91,6 +91,8 @@
                                 <select name="role" id="" class="select" required>
                                     <option value="" disabled selected>Rol</option>
                                     <option value="Tienda">Tienda</option>
+                                    <option value="Restaurante">Restaurante</option>
+                                    <option value="Piscina">Piscina</option>
                                 </select>
                             </div>
 
@@ -139,6 +141,7 @@
                                     <option value="" disabled selected>Rol</option>
                                     <option value="Tienda">Tienda</option>
                                     <option value="Restaurante">Restaurante</option>
+                                    <option value="Piscina">Piscina</option>
                                 </select>
                             </div>
 
@@ -174,7 +177,7 @@
                         </div>
                     </div>
 
-                    <form action="" method="POST" class="form">
+                    <form action="app/users/change-pass.php" method="POST" class="form">
                         <div class="tlt-text-modal">
                             <h1 class="tlt-form-modal tlt-password">¡Cambiar contraseña!</h1>
                             <p class="text-form-modal">Por favor, ingresa tu email para verificar tu cuenta. Luego, escribe tu nueva contraseña.</p>
@@ -186,11 +189,11 @@
                             </div>
 
                             <div class="content-inputs">
-                                <input type="password" name="password" class="input" placeholder="Nueva contraseña" required>
+                                <input type="password" name="new-password" class="input" placeholder="Nueva contraseña" required>
                             </div>
 
                             <div class="content-inputs">
-                                <input type="submit" name="button-login" class="button-form" value="Cambiar">
+                                <input type="submit" name="button-change-pass" class="button-form" value="Cambiar">
                             </div>
                         </div>
                     </form>

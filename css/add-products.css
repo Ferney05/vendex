@@ -109,6 +109,10 @@
     border-radius: 10px;
 }
 
+.select option {
+    color: var(--color-light-black);
+}
+
 .input-form:focus, .select:focus {
     border-color: var(--color-light-blue);
 }

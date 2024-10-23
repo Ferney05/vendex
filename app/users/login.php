@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Role incorrecto - Vendex</title>
+    <title>Datos incorrectos - Vendex</title>
     <link rel="stylesheet" href="../../css/warning.css">
     <link rel="shortcut icon" href="../../svg/icon-vendex.svg" type="image/x-icon">
 </head>

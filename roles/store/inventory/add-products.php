@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="../../../css/add-products.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
+    <?php
+        include("../../../conexion.php");
+
+        session_start();
+
+        if (isset($_SESSION['user_id'])) {
+            $id_user = $_SESSION['user_id']; 
+        } else {
+            header("Location: ../index.php");
+            exit(); 
+        }
+    ?>
 </head>
 <body>
 
@@ -21,7 +33,13 @@
                 <div class="username">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
                     <div class="name-down">
-                        <p class="name">Ferney Bar.</p>
+                        <?php
+                            $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
+                            $result = mysqli_query($conexion, $queryData);
+                            $rowData = mysqli_fetch_assoc($result);
+                            
+                            echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                        ?>
                         <img src="../../../svg/down-arrow.svg" alt="">
                     </div>
                 </div>
@@ -30,16 +48,21 @@
                     <div class="border-modal">
                         <div class="name-logout">
                             <div class="myself">
-                                <p class="name">Ferney Bar.</p>
-                                <p class="rol">Store</p>
+                                <?php
+                                    $queryData = "SELECT name, lastname, role FROM users WHERE id = $id_user";
+                                    $result = mysqli_query($conexion, $queryData);
+                                    $rowData = mysqli_fetch_assoc($result);
+                                    
+                                    echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                                    echo "<p class='rol'>" . $rowData['role'] . "</p>"
+                                ?>
                             </div>
 
                             <div class="options-modal">
-                                <a href="#">
+                                <a href="../app/users/logout.php">
                                     <p>Salir</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
                                 </a>
-                                
                             </div>
                         </div>
                     </div>
@@ -66,7 +89,7 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="" method="POST" class="form">
+                    <form action="functions/adding-products.php" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
@@ -90,6 +113,14 @@
                                     <label for="id-category">Categoría</label>
                                     <select name="id-category" class="select" required>
                                         <option value="" disabled selected>Seleccione</option>
+                                        <?php
+                                            $getCategory = "SELECT * FROM categories";
+                                            $result = mysqli_query($conexion, $getCategory);
+
+                                            while($row = mysqli_fetch_array($result)) {
+                                                echo "<option value=" . $row['id'] . ">" . $row['category'] . " </option>";
+                                            }
+                                        ?>
                                     </select>
                                 </div>
 
@@ -119,6 +150,8 @@
                                     <label for="product-status">Estado del producto</label>
                                     <select name="product-status" class="select" required>
                                         <option value="" disabled selected>Seleccione</option>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Agotado">Agotado</option>
                                     </select>
                                 </div>
                             </div>
@@ -141,10 +174,10 @@
                         <svg class="close-modal" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 304 384"><path fill="#ffffff" d="M299 73L179 192l120 119l-30 30l-120-119L30 341L0 311l119-119L0 73l30-30l119 119L269 43z"/></svg>
                     </div>
 
-                    <form action="" method="POST" class="form-modal">
+                    <form action="functions/create-category.php" method="POST" class="form-modal">
                         <div class="label-input">
                             <label for="name-category" class="label-modal">Nombre de la categoría</label>
-                            <input type="text" class="input-form border-input" placeholder="Categoría" required>
+                            <input type="text" name="name-category" class="input-form border-input" placeholder="Categoría" required>
                         </div>
 
                         <div class="label-input">

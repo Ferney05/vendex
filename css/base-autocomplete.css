@@ -1,0 +1,21 @@
+@import url('fonts-colors.css');
+
+.ui-menu-item {
+    font-size: .9rem;
+}
+
+.ui-menu-item > * {
+    color: #121212;
+}
+
+.ui-autocomplete {
+    border: none;
+    border-radius: 10px;
+}
+
+.ui-state-active {
+    border-radius: 10px !important;
+    border-color: #eee !important;
+    background-color: #3289d1 !important;
+    color: #eee !important;
+}
