@@ -84,7 +84,7 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="#">
+                            <a href="store/earnings/today-earnings.php">
                                 <img src="../svg/eyes.svg" alt="">
                                 <p>Ver ganancias de ventas</p>
                             </a>
@@ -156,10 +156,73 @@
 
                                     <div class="num-percentage-content">
                                         <div class="num-percentage">
-                                            <p class="num">19</p>
+                                            <?php
+                                                $getTotalSale = "SELECT 
+                                                                    CURDATE() AS date_current,
+                                                                    COUNT(*) AS total_sales
+                                                                FROM sales 
+                                                                WHERE sale_date = CURDATE()
+                                                                GROUP BY sale_date";
+
+                                                $resultSales = mysqli_query($conexion, $getTotalSale);
+                                                $row = mysqli_fetch_assoc($resultSales);
+
+                                                echo "<p class='num'>" . ($row ? $row['total_sales'] : 0) . "</p>";
+                                            ?>
+
                                             <div class="icon-percentage">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 48 48"><path fill="none" stroke="#6bc04e" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24.008 12.1V36M12 24l12-12l12 12"/></svg>
-                                                <p class="percentage">1.76%</p>
+                                                <?php
+                                                    //? VENTAS DE HOY
+                                                    $getTotalSaleToday = "SELECT 
+                                                        COUNT(*) AS total_sales,
+                                                        COALESCE(SUM(total_amount), 0) AS total_amount
+                                                        FROM sales 
+                                                        WHERE DATE(sale_date) = CURDATE()";
+
+                                                    $resultSalesToday = mysqli_query($conexion, $getTotalSaleToday);
+                                                    $rowToday = mysqli_fetch_assoc($resultSalesToday);
+                                                    $totalSalesToday = $rowToday['total_sales'] ?? 0;
+
+                                                    //? VENTAS DE AYER
+                                                    $getTotalSaleYesterday = "SELECT 
+                                                        COUNT(*) AS total_sales,
+                                                        COALESCE(SUM(total_amount), 0) AS total_amount
+                                                        FROM sales 
+                                                        WHERE DATE(sale_date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)";
+
+                                                    $resultSalesYesterday = mysqli_query($conexion, $getTotalSaleYesterday);
+                                                    $rowYesterday = mysqli_fetch_assoc($resultSalesYesterday);
+                                                    $totalSalesYesterday = $rowYesterday['total_sales'] ?? 0;
+
+                                                    //? CÁLCULO DE DIFERENCIA Y PORCENTAJE
+                                                    $difference = $totalSalesToday - $totalSalesYesterday;
+                                                    // $percentageChange = 0;
+
+                                                    if ($totalSalesYesterday == 0) {
+                                                        echo "<p class='percentage-neutral'>Sin comparación</p>";
+                                                    } else if ($totalSalesToday == $totalSalesYesterday) {
+                                                        echo "<p class='percentage-neutral'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path fill='#3289d1' d='M5 11v2h14v-2z'/></svg> 0%</p>";
+                                                    } else {
+                                                        // if ($totalSalesYesterday > 0) {
+                                                        //     $percentageChange = round(($difference / $totalSalesYesterday) * 100, 2);
+                                                        // }
+
+                                                        //? DETERMINAR CLASE CSS SEGÚN EL RESULTADO
+                                                        $class = $difference >= 0 ? 'percentage-positive' : 'percentage-negative';
+                                                        $plus = $difference >= 0 ? '+' : '';
+                                                        $arrow = $difference >= 0 ? '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6bc04e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"><animate attributeName="d" begin="0.5s" dur="1.5s" repeatCount="indefinite" values="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5;M12 15h2v-3h2.5l-4.5 -4.5M12 15h-2v-3h-2.5l4.5 -4.5;M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="14;0"/></path></g></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#911919" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5"><animate attributeName="d" begin="0.5s" dur="1.5s" repeatCount="indefinite" values="M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5;M12 4h2v3h2.5l-4.5 4.5M12 4h-2v3h-2.5l4.5 4.5;M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="14;0"/></path></g></svg>';
+                                                        
+
+                                                        //? MOSTRAR RESULTADO
+                                                        echo "<p class='{$class}'>{$arrow} {$plus}{$difference} respecto al día anterior</p>";
+                                                    }
+
+                                                    //? VALIDAR ERRORES DE MYSQLI
+                                                    if (mysqli_error($conexion)) {
+                                                        error_log("Error en consulta de ventas: " . mysqli_error($conexion));
+                                                        echo "<p class='error'>Error al obtener datos de ventas</p>";
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -179,13 +242,100 @@
                                     <div class="num-percentage-content">
                                         <div class="num-percentage">
                                             <div class="num-margen">
-                                                <p class="num">$125,000</p>
-                                                <p class="margen">$54,500</p>
+                                                <?php
+                                                    //? CÁLCULO DE INGRESOS Y MARGEN DEL DÍA
+                                                    $getEarnings = "SELECT 
+                                                                        SUM(sd.unit_price * sd.quantity) AS total_income, 
+                                                                        (SUM(sd.unit_price * sd.quantity) - SUM(ip.purchase_price * sd.quantity)) AS total_margin
+                                                                    FROM sales s
+                                                                    INNER JOIN sale_details sd ON s.id = sd.sale_id
+                                                                    INNER JOIN inventory_products ip ON sd.product_name = ip.product_name
+                                                                    WHERE s.sale_date = CURDATE()";
+
+                                                    $resultEarnings = mysqli_query($conexion, $getEarnings);
+
+                                                    //? VALIDAR SI LA CONSULTA FUE EXITOSA
+                                                    if (!$resultEarnings) {
+                                                        error_log("Error en cálculo de ingresos: " . mysqli_error($conexion));
+                                                        echo "<p class='error'>Error al calcular ingresos</p>";
+                                                    } else {
+                                                        $earnings = mysqli_fetch_assoc($resultEarnings);
+
+                                                        //? FORMATEAR NÚMEROS
+                                                        $totalIncome = number_format($earnings['total_income'], 0);
+                                                        $totalMargin = number_format($earnings['total_margin'], 0);
+
+                                                        //? MOSTRAR RESULTADOS
+                                                        echo "<p class='num'>$" . $totalIncome . "</p>";
+                                                        echo "<p class='margen'>$" . $totalMargin . "</p>";
+                                                    }
+                                                ?>
+
                                             </div>
 
                                             <div class="icon-percentage">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 48 48"><path fill="none" stroke="#6bc04e" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24.008 12.1V36M12 24l12-12l12 12"/></svg>
-                                                <p class="percentage">5.92%</p>
+                                                <?php
+                                                    //? CÁLCULO DE INGRESOS Y MARGEN DEL DÍA
+                                                    $getEarnings = "SELECT 
+                                                        COALESCE(SUM(s.total_amount), 0) AS total_income, 
+                                                        SUM(sd.unit_price * sd.quantity) AS sub1, 
+                                                        SUM(ip.purchase_price * sd.quantity) AS sub2,
+                                                        (SUM(sd.unit_price * sd.quantity) - SUM(ip.purchase_price * sd.quantity)) AS total_margin
+                                                    FROM sales s
+                                                    INNER JOIN sale_details sd ON s.id = sd.sale_id
+                                                    INNER JOIN inventory_products ip ON sd.product_name = ip.product_name
+                                                    WHERE s.sale_date = CURDATE();";
+
+                                                    $resultEarnings = mysqli_query($conexion, $getEarnings);
+                                                    $earnings = mysqli_fetch_assoc($resultEarnings);
+
+                                                    //? FORMATEAR NÚMEROS
+                                                    $totalIncome = number_format($earnings['total_income'], 0);
+                                                    $totalMargin = number_format($earnings['total_margin'], 0);
+
+                                                    //? MOSTRAR RESULTADOS
+                                                    // echo "<p class='num'>Ingresos: $$totalIncome</p>";
+                                                    // echo "<p class='margen'>Margen: $$totalMargin</p>";
+
+                                                    //? VENTAS DE AYER
+                                                    $getTotalSaleYesterday = "SELECT 
+                                                        COALESCE(SUM(sd.unit_price * sd.quantity) - SUM(ip.purchase_price * sd.quantity), 0) AS total_margin_yesterday
+                                                    FROM sales s
+                                                    INNER JOIN sale_details sd ON s.id = sd.sale_id
+                                                    INNER JOIN inventory_products ip ON sd.product_name = ip.product_name
+                                                    WHERE s.sale_date = DATE_SUB(CURDATE(), INTERVAL 1 DAY);";
+
+                                                    $resultSalesYesterday = mysqli_query($conexion, $getTotalSaleYesterday);
+                                                    $rowYesterday = mysqli_fetch_assoc($resultSalesYesterday);
+                                                    $totalMarginYesterday = $rowYesterday['total_margin_yesterday'] ?? 0;
+
+                                                    //? CÁLCULO DEL PORCENTAJE DE GANANCIA
+                                                    $percentageChangeMargin = 0;
+
+                                                    if ($totalMarginYesterday == 0) {
+                                                        echo "<p class='percentage-neutral'>Sin comparación</p>";
+                                                    } else {
+                                                        // Calcular el porcentaje de cambio
+                                                        $differenceMargin = $earnings['total_margin'] - $totalMarginYesterday;
+                                                        $percentageChangeMargin = round(($differenceMargin / $totalMarginYesterday) * 100, 2);
+
+                                                        //? DETERMINAR CLASE CSS SEGÚN EL RESULTADO
+                                                        $class = $percentageChangeMargin >= 0 ? 'percentage-positive' : 'percentage-negative';
+                                                        $arrow = $percentageChangeMargin >= 0 ? 
+                                                            '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6bc04e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"><animate attributeName="d" begin="0.5s" dur="1.5s" repeatCount="indefinite" values="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5;M12 15h2v-3h2.5l-4.5 -4.5M12 15h-2v-3h-2.5l4.5 -4.5;M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="14;0"/></path></g></svg>' : 
+                                                            '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#911919" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5"><animate attributeName="d" begin="0.5s" dur="1.5s" repeatCount="indefinite" values="M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5;M12 4h2v3h2.5l-4.5 4.5M12 4h-2v3h-2.5l4.5 4.5;M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="14;0"/></path></g></svg>';
+
+                                                        //? MOSTRAR RESULTADO
+                                                        echo "<p class='{$class}'>{$arrow} {$percentageChangeMargin}%</p>";
+                                                    }
+
+                                                    //? VALIDAR ERRORES DE MYSQLI
+                                                    if (mysqli_error($conexion)) {
+                                                        error_log("Error en consulta de márgenes: " . mysqli_error($conexion));
+                                                        echo "<p class='error'>Error al obtener datos de márgenes</p>";
+                                                    }
+                                                    ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -205,21 +355,86 @@
                                     <div class="num-percentage-content">
                                         <div class="product-percentage">
                                             <div class="num-margen">
-                                                <p class="product">Colcafé (7 unidades)</p>
+                                                <?php
+                                                    //? CÁLCULO DE INGRESOS Y MARGEN DEL DÍA
+                                                    $getProduct = "SELECT 
+                                                                        sd.product_name, 
+                                                                        SUM(sd.quantity) AS total_quantity
+                                                                    FROM sales s
+                                                                    INNER JOIN sale_details sd ON s.id = sd.sale_id
+                                                                    WHERE s.sale_date = CURDATE()
+                                                                    GROUP BY sd.product_name
+                                                                    ORDER BY total_quantity DESC
+                                                                    LIMIT 1";
+
+                                                    $resultProduct = mysqli_query($conexion, $getProduct);
+
+                                                    $rowProduct = mysqli_fetch_assoc($resultProduct);
+                                                    echo "<p class='product'>" . $rowProduct['product_name'] . "(" . $rowProduct['total_quantity'] . " unidades)</p>";
+                                                ?>
+
                                             </div>
 
                                             <div class="icon-percentage">
-                                                <p class="percentage">4.3% del total de las ventas</p>
+                                                <?php
+                                                    //? CONSULTA DEL TOTAL DE VENTAS DEL DÍA
+                                                    $getTotalSales = "SELECT 
+                                                                        COALESCE(SUM(s.total_amount), 0) AS total_sales
+                                                                    FROM sales s
+                                                                    WHERE s.sale_date = CURDATE()";
+
+                                                    $resultTotalSales = mysqli_query($conexion, $getTotalSales);
+                                                    $totalSalesData = mysqli_fetch_assoc($resultTotalSales);
+                                                    $totalSales = $totalSalesData['total_sales'] ?? 0;
+
+                                                    //? CONSULTA DEL PRODUCTO MÁS VENDIDO
+                                                    $getBestSellingProduct = "SELECT 
+                                                        sd.product_name, 
+                                                        SUM(sd.quantity) AS total_quantity,
+                                                        SUM(sd.unit_price * sd.quantity) AS product_total_sales
+                                                    FROM sales s
+                                                    INNER JOIN sale_details sd ON s.id = sd.sale_id
+                                                    WHERE s.sale_date = CURDATE()
+                                                    GROUP BY sd.product_name
+                                                    ORDER BY total_quantity DESC
+                                                    LIMIT 1;";
+
+                                                    $resultBestSelling = mysqli_query($conexion, $getBestSellingProduct);
+                                                    $bestSellingProduct = mysqli_fetch_assoc($resultBestSelling);
+
+                                                    //? VERIFICAR SI HAY RESULTADOS
+                                                    if ($bestSellingProduct) {
+                                                        $productName = $bestSellingProduct['product_name'];
+                                                        $productQuantity = $bestSellingProduct['total_quantity'];
+                                                        $productTotalSales = $bestSellingProduct['product_total_sales'] ?? 0;
+
+                                                        //? CALCULAR PORCENTAJE DEL PRODUCTO MÁS VENDIDO
+                                                        $percentage = ($totalSales > 0) ? ($productTotalSales / $totalSales) * 100 : 0;
+
+                                                        //? MOSTRAR RESULTADOS
+                                                        echo "<p class='percentage-positive'>" . round($percentage, 2) . "% del total de las ventas del día</p>";
+                                                    } else {
+                                                        echo "<p>No se han registrado ventas hoy.</p>";
+                                                    }
+
+                                                    //? VALIDAR ERRORES DE MYSQLI
+                                                    if (mysqli_error($conexion)) {
+                                                        error_log("Error en consulta de producto más vendido: " . mysqli_error($conexion));
+                                                        echo "<p class='error'>Error al obtener datos del producto más vendido</p>";
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="btn-see">
+                                    <!-- PARA ACTUALIZACIONES -->
+
+                                    <!-- <div class="btn-see">
                                         <a href="#">
                                             <p>Ver top 3 ventas</p>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 1024 1024"><path fill="#3289d1" d="M768 256H353.6a32 32 0 1 1 0-64H800a32 32 0 0 1 32 32v448a32 32 0 0 1-64 0z"/><path fill="#3289d1" d="M777.344 201.344a32 32 0 0 1 45.312 45.312l-544 544a32 32 0 0 1-45.312-45.312z"/></svg>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -241,27 +456,30 @@
                                         </div>
                                     </div>
 
-                                    <div class="product-stock">
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <p class="available">Disponibles: 3</p>
-                                        </div>
+                                    <?php
+                                        $getProduct = "SELECT product_name, stock_quantity FROM inventory_products WHERE stock_quantity < 5";
+                                        $resultProduct = mysqli_query($conexion, $getProduct);
 
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <p class="available">Disponibles: 3</p>
-                                        </div>
+                                        if($resultProduct -> num_rows > 0){
+                                            while ( $rowProduct = mysqli_fetch_assoc($resultProduct)){
+                                                echo "<div class='product-stock'>
+                                                            <div class='bp-stock'>
+                                                                <p class='name-product'>" . ucfirst($rowProduct['product_name']) . "</p>
+                                                                <p class='available'>Disponibles: " . $rowProduct['stock_quantity'] . "</p>
+                                                            </div>
+                                                        </div>";
+                                            }
 
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <p class="available">Disponibles: 3</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="low-stock">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#911919" d="M19.511 17.98L10.604 1.348a.697.697 0 0 0-1.208 0L.49 17.98a.68.68 0 0 0 .005.68c.125.211.352.34.598.34h17.814a.7.7 0 0 0 .598-.34a.68.68 0 0 0 .006-.68M11 17H9v-2h2zm0-3.5H9V7h2z"/></svg>
-                                        <p>Stock muy bajo, reponer pronto</p>
-                                    </div>
+                                            echo "<div class='low-stock'>
+                                                        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='#911919' d='M19.511 17.98L10.604 1.348a.697.697 0 0 0-1.208 0L.49 17.98a.68.68 0 0 0 .005.68c.125.211.352.34.598.34h17.814a.7.7 0 0 0 .598-.34a.68.68 0 0 0 .006-.68M11 17H9v-2h2zm0-3.5H9V7h2z'/></svg>
+                                                        <p>Stock muy bajo, reponer pronto</p>
+                                                    </div>";
+                                        } else {
+                                            echo "<div class='not-products'>
+                                                    <p>No hay productos con bajo stock</p>
+                                                </div>";
+                                        }
+                                    ?>
                                 </div>
                             </div>
 
@@ -275,31 +493,28 @@
                                         </div>
                                     </div>
 
-                                    <div class="product-stock">
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <div class="news">
-                                                <p> 2024-10-20</p>
-                                                <p>Reposición días: 2</p>
-                                            </div>
-                                        </div>
+                                    <?php
+                                        $getProduct = "SELECT product_name, entry_date, DATEDIFF(CURDATE(), entry_date) AS days_gone FROM inventory_products WHERE stock_quantity < 5";
+                                        $resultProduct = mysqli_query($conexion, $getProduct);
 
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <div class="news">
-                                                <p> 2024-10-20</p>
-                                                <p>Reposición días: 2</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <div class="news">
-                                                <p> 2024-10-20</p>
-                                                <p>Reposición días: 2</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        if($resultProduct -> num_rows > 0){
+                                            while ( $rowProduct = mysqli_fetch_assoc($resultProduct)){
+                                                echo "<div class='product-stock'>
+                                                            <div class='bp-stock'>
+                                                                <p class='name-product'>" . ucfirst($rowProduct['product_name']) . "</p>
+                                                                <div class='news'>
+                                                                    <p>" . $rowProduct['entry_date'] . "</p>
+                                                                    <p>Reposición días: " . $rowProduct['days_gone'] . "</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>";
+                                            }
+                                        } else {
+                                            echo "<div class='not-products'>
+                                                    <p>No hay productos con bajo stock</p>
+                                                </div>";
+                                        }
+                                    ?>
                                 </div>
                             </div>
 
@@ -313,31 +528,51 @@
                                         </div>
                                     </div>
 
-                                    <div class="product-stock">
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <div class="news">
-                                                <p>Ventas diarias: 3</p>
-                                                <p>Días restantes: 1</p>
-                                            </div>
-                                        </div>
+                                    <?php
+                                        $getProductData = "SELECT 
+                                                                ip.product_name, 
+                                                                ip.entry_date, 
+                                                                ip.stock_quantity, 
+                                                                DATEDIFF(CURDATE(), ip.entry_date) AS days_in_inventory, 
+                                                                COALESCE(SUM(sd.quantity), 0) AS total_sales 
+                                                            FROM inventory_products ip
+                                                            LEFT JOIN sale_details sd ON ip.product_name = sd.product_name
+                                                            LEFT JOIN sales s ON sd.sale_id = s.id
+                                                            WHERE ip.stock_quantity < 5 
+                                                            AND s.sale_date >= ip.entry_date
+                                                            GROUP BY ip.product_name";
 
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <div class="news">
-                                                <p>Ventas diarias: 3</p>
-                                                <p>Días restantes: 1</p>
-                                            </div>
-                                        </div>
+                                        $resultProductData = mysqli_query($conexion, $getProductData);
 
-                                        <div class="bp-stock">
-                                            <p class="name-product">Arroz pinillar</p>
-                                            <div class="news">
-                                                <p>Ventas diarias: 3</p>
-                                                <p>Días restantes: 1</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        if($resultProductData->num_rows > 0) {
+                                        while ($rowProduct = mysqli_fetch_assoc($resultProductData)) {
+                                        // Calcular el promedio de ventas diarias
+                                        $daysInInventory = $rowProduct['days_in_inventory'];
+                                        $totalSales = $rowProduct['total_sales'];
+                                        $stockQuantity = $rowProduct['stock_quantity'];
+
+                                        $averageDailySales = $daysInInventory > 0 ? $totalSales / $daysInInventory : 0;
+
+                                        // Calcular los días restantes para que se agote
+                                        $daysRemaining = $averageDailySales > 0 ? $stockQuantity / $averageDailySales : "N/A";
+
+                                        // Mostrar la información
+                                        echo "<div class='product-stock'>
+                                                <div class='bp-stock'>
+                                                    <p class='name-product'>" . ucfirst($rowProduct['product_name']) . "</p>
+                                                    <div class='news'>
+                                                        <p>Ventas diarias: " . number_format($averageDailySales, 0) . "</p>
+                                                        <p>Días restantes: " . (is_numeric($daysRemaining) ? round($daysRemaining, 0) : $daysRemaining) . "</p>
+                                                    </div>
+                                                </div>
+                                        </div>";
+                                        }
+                                        } else {
+                                            echo "<div class='not-products'>
+                                                    <p>No hay productos con bajo stock</p>
+                                                </div>";
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>

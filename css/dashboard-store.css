@@ -223,10 +223,34 @@
     font-size: .9rem;
 }
 
-.icon-percentage .percentage {
-    font-size: .7rem;
+.icon-percentage .percentage-positive {
+    font-size: .8rem;
     color: var(--color-light-green);
     font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.icon-percentage .percentage-negative {
+    font-size: .8rem;
+    color: var(--color-dark-red);
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.icon-percentage .percentage-neutral {
+    font-size: .8rem;
+    color: var(--color-light-blue);
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    gap: .3rem;
 }
 
 .btn-see {
@@ -285,21 +309,51 @@
 
 .bp-stock .available {
     font-size: .8rem;
-    font-weight: 200;
+    font-weight: 300;
+}
+
+.not-products {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.not-products p {
+    font-size: .8rem;
+    font-weight: 300;
+    text-align: center;
 }
 
 .low-stock {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: pulseShadow 1.5s infinite alternate;
+    padding: .3rem 0;
     gap: .3rem;
+    border-radius: 10px;
 }
 
 .low-stock p {
     font-size: .8rem;
     color: var(--color-dark-red);
 }
+
+@keyframes pulseShadow {
+    0% {
+        color: var(--color-dark-red); 
+        box-shadow: none;
+    }
+    50% {
+        color: var(--color-dark-red);
+        box-shadow: 0 0 20px 2px var(--color-dark-red); 
+    }
+    100% {
+        color: var(--color-dark-red); 
+        box-shadow: none;
+    }
+}
+
 .news p {
     font-size: .8rem;
-    font-weight: 200;
+    font-weight: 300;
 }

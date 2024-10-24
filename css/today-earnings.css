@@ -106,3 +106,14 @@ td {
     font-size: .9rem;
     font-weight: 300;
 }
+
+.view-details a {
+    text-decoration: none;
+    background-color: #393937;
+    padding: .2rem 1rem;
+    border-radius: 10px;
+}
+
+.view-details a:hover {
+    background-color: var(--color-light-blue);
+}
