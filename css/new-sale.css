@@ -85,14 +85,20 @@
     border-radius: 10px;
 }
 
-.cancel-generate-buttons a:first-child {
+.cancel-generate-buttons a {
     background-color: var(--color-dark-red);
 }
 
-.cancel-generate-buttons a:last-child {
+.btn-generate {
+    outline: none;
     background-color: var(--color-light-green);
+    border: none;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    cursor: pointer;
 }
-
 
 table, th, td {
     border: 2px solid var(--color-slate-gray);

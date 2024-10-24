@@ -6,6 +6,10 @@
     <title>Ventas realizadas - Vendex</title>
     <link rel="stylesheet" href="../../../css/sales-made.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
+
+    <?php
+        include("../../../conexion.php");
+    ?>
 </head>
 <body>
 
@@ -65,11 +69,22 @@
                             <th>Detalles</th>
                         </tr>
 
-                        <tr>
-                            <td>$27,500</td>
-                            <td>2024-10-21</td>
-                            <td>Ver</td>
-                        </tr>
+                        <?php
+                            $querySales = "SELECT * FROM sales ORDER BY id DESC";
+                            $resultSales = mysqli_query($conexion, $querySales);
+
+                            while ($row = mysqli_fetch_assoc($resultSales)){
+                                $id_sale = $row['id'];
+
+                                echo "<tr>
+                                        <td>$" . number_format($row['total_amount'], 0) . "</td>
+                                        <td>" . $row['sale_date'] . "</td>
+                                        <td class='view-details'>
+                                            <a href='functions/invoice-details.php?id=$id_sale'>Ver</a>
+                                        </td>
+                                      </tr>";
+                            }
+                        ?>
                     </table>
                 </div>
             </div>

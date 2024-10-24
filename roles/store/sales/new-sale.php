@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="../../../css/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <?php
         include("../../../conexion.php");
+
+        session_start();
+
+        if (isset($_SESSION['user_id'])) {
+            $id_user = $_SESSION['user_id']; 
+        } else {
+            header("Location: ../index.php");
+            exit(); 
+        }
     ?>
 </head>
 <body>
@@ -29,7 +38,13 @@
                 <div class="username">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
                     <div class="name-down">
-                        <p class="name">Ferney Bar.</p>
+                        <?php
+                            $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
+                            $result = mysqli_query($conexion, $queryData);
+                            $rowData = mysqli_fetch_assoc($result);
+                            
+                            echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                        ?>
                         <img src="../../../svg/down-arrow.svg" alt="">
                     </div>
                 </div>
@@ -38,16 +53,21 @@
                     <div class="border-modal">
                         <div class="name-logout">
                             <div class="myself">
-                                <p class="name">Ferney Bar.</p>
-                                <p class="rol">Store</p>
+                                <?php
+                                    $queryData = "SELECT name, lastname, role FROM users WHERE id = $id_user";
+                                    $result = mysqli_query($conexion, $queryData);
+                                    $rowData = mysqli_fetch_assoc($result);
+                                    
+                                    echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                                    echo "<p class='rol'>" . $rowData['role'] . "</p>"
+                                ?>
                             </div>
 
                             <div class="options-modal">
-                                <a href="#">
+                                <a href="../app/users/logout.php">
                                     <p>Salir</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
                                 </a>
-                                
                             </div>
                         </div>
                     </div>
@@ -77,15 +97,13 @@
                     <div class="tlt-buttons-sale">
                         <h3 class="tlt">Productos listados</h3>
                         <div class="cancel-generate-buttons">
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75l-1.48 1.48L6 9.48l-3.75 3.75l-1.48-1.48L4.52 8L.77 4.25l1.48-1.48L6 6.52l3.75-3.75l1.48 1.48L7.48 8z" fill="#eee"/></svg>
+                            <a href="functions/cancel-sale.php">
                                 <p>Cancelar venta</p>
                             </a>
 
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#eee" stroke-width="2" d="M16 16c0-1.105-3.134-2-7-2s-7 .895-7 2s3.134 2 7 2s7-.895 7-2ZM2 16v4.937C2 22.077 5.134 23 9 23s7-.924 7-2.063V16M9 5c-4.418 0-8 .895-8 2s3.582 2 8 2M1 7v5c0 1.013 3.582 2 8 2M23 4c0-1.105-3.1-2-6.923-2s-6.923.895-6.923 2s3.1 2 6.923 2S23 5.105 23 4Zm-7 12c3.824 0 7-.987 7-2V4M9.154 4v10.166M9 9c0 1.013 3.253 2 7.077 2S23 10.013 23 9"/></svg>
-                                <p>Generar venta</p>
-                            </a>
+                            <form action="functions/generate-sale.php" method="POST" class="form-generate">
+                                <input type="submit" class="btn-generate" value="Generar venta">
+                            </form>
                         </div>
                     </div>
 
@@ -103,9 +121,9 @@
                             if($resultData -> num_rows > 0){
                                 while ($row = mysqli_fetch_array($resultData)){
                                     echo "<tr>
-                                            <td>" . $row['product_name'] . "</td>
+                                            <td>" . ucfirst($row['product_name']) . "</td>
                                             <td>" . $row['cart_stock'] . "</td>
-                                            <td>" . $row['sale_price'] . "</td>
+                                            <td>$" . number_format($row['sale_price'], 0) . "</td>
                                           </tr>";
                                 }
                             } else {
@@ -169,9 +187,10 @@
                         });
                     },
                     minLength: 3,
+                    // Agregamos el evento select para cuando se selecciona un producto
                     select: function(event, ui) {
-                        // Al seleccionar un producto, completa el campo del precio de venta
-                        $('#sale-price').val(ui.item.price); // Completa el campo de precio
+                        // Asumiendo que tienes un input con id="price-product" para el precio
+                        $('#sale-price').val(ui.item.price);
                     }
                 });
             });
