@@ -91,6 +91,50 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="accordion">
+                    <div class="accordion-btn">
+                        <span>Control de créditos</span>
+                        <img src="../svg/down-arrow.svg" class="down-arrow" alt="">
+                        <img src="../svg/up-arrow.svg" class="up-arrow" alt="">
+                    </div>
+
+                    <div class="accordion-content">
+                        <div>
+                            <!-- <a href="store/earnings/today-earnings.php">
+                                <img src="../svg/eyes.svg" alt="">
+                                <p>Ver ganancias de ventas</p>
+                            </a> -->
+
+                            <a href="#" class="premium">
+                                <img src="../svg/secure.svg" alt="">
+                                <p>Versión premium</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-btn">
+                        <span>Reportes generados</span>
+                        <img src="../svg/down-arrow.svg" class="down-arrow" alt="">
+                        <img src="../svg/up-arrow.svg" class="up-arrow" alt="">
+                    </div>
+
+                    <div class="accordion-content">
+                        <div>
+                            <!-- <a href="store/earnings/today-earnings.php">
+                                <img src="../svg/eyes.svg" alt="">
+                                <p>Ver ganancias de ventas</p>
+                            </a> -->
+
+                            <a href="#" class="premium">
+                                <img src="../svg/secure.svg" alt="">
+                                <p>Versión premium</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -321,12 +365,13 @@
 
                                                         //? DETERMINAR CLASE CSS SEGÚN EL RESULTADO
                                                         $class = $percentageChangeMargin >= 0 ? 'percentage-positive' : 'percentage-negative';
+                                                        $info = $percentageChangeMargin >= 0 ? 'superando records' : 'alerta de caída';
                                                         $arrow = $percentageChangeMargin >= 0 ? 
                                                             '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6bc04e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"><animate attributeName="d" begin="0.5s" dur="1.5s" repeatCount="indefinite" values="M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5;M12 15h2v-3h2.5l-4.5 -4.5M12 15h-2v-3h-2.5l4.5 -4.5;M12 15h2v-6h2.5l-4.5 -4.5M12 15h-2v-6h-2.5l4.5 -4.5"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="14;0"/></path></g></svg>' : 
                                                             '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#911919" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5"><animate attributeName="d" begin="0.5s" dur="1.5s" repeatCount="indefinite" values="M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5;M12 4h2v3h2.5l-4.5 4.5M12 4h-2v3h-2.5l4.5 4.5;M12 4h2v6h2.5l-4.5 4.5M12 4h-2v6h-2.5l4.5 4.5"/><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="14;0"/></path></g></svg>';
 
                                                         //? MOSTRAR RESULTADO
-                                                        echo "<p class='{$class}'>{$arrow} {$percentageChangeMargin}%</p>";
+                                                        echo "<p class='{$class}'>{$arrow} {$percentageChangeMargin}% {$info}</p>";
                                                     }
 
                                                     //? VALIDAR ERRORES DE MYSQLI
@@ -369,8 +414,14 @@
 
                                                     $resultProduct = mysqli_query($conexion, $getProduct);
 
-                                                    $rowProduct = mysqli_fetch_assoc($resultProduct);
-                                                    echo "<p class='product'>" . $rowProduct['product_name'] . "(" . $rowProduct['total_quantity'] . " unidades)</p>";
+                                                    if($resultProduct -> num_rows > 0){
+                                                        $rowProduct = mysqli_fetch_assoc($resultProduct);
+                                                        echo "<p class='product'>" . ucfirst($rowProduct['product_name']) . "(" . $rowProduct['total_quantity'] . " unidades)</p>";
+                                                    } else {
+                                                        echo "<div class='not-sales-today'>
+                                                                <p>No se han registrado ventas hoy.</p>
+                                                              </div>";
+                                                    }
                                                 ?>
 
                                             </div>
@@ -413,9 +464,11 @@
 
                                                         //? MOSTRAR RESULTADOS
                                                         echo "<p class='percentage-positive'>" . round($percentage, 2) . "% del total de las ventas del día</p>";
-                                                    } else {
-                                                        echo "<p>No se han registrado ventas hoy.</p>";
-                                                    }
+                                                    } 
+                                                    
+                                                    // else {
+                                                    //     echo "<p>No se han registrado ventas hoy.</p>";
+                                                    // }
 
                                                     //? VALIDAR ERRORES DE MYSQLI
                                                     if (mysqli_error($conexion)) {
