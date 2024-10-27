@@ -147,7 +147,7 @@ tr:nth-child(2):hover {
 }
 
 
-@media (max-width: 1400px) {
+@media screen and (max-width: 1200px) {
     .main {
         height: 100%;
     }

@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="options-modal">
-                                <a href="../app/users/logout.php">
+                                <a href="../../../app/users/logout.php">
                                     <p>Salir</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
                                 </a>
