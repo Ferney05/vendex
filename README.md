@@ -67,7 +67,7 @@ mysql -u root -p vendex < estructura.sql
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'vendex');
+define('DB_NAME', 'vendex a88s');
 ```
 
 ## 📁 Estructura del Proyecto
@@ -89,23 +89,6 @@ vendex/
 ├── conexion.php
 └── index.php
 ```
-
-## 💎 Planes y Licencias
-
-### Plan Básico
-- **Precio**: $350,000 COP/mes
-- **Incluye**:
-  - Funcionalidades base completas
-  - Soporte básico
-  - Actualizaciones de seguridad
-
-### Plan Premium
-- **Precio**: $500,000 COP/mes
-- **Incluye**:
-  - Todo lo del plan básico
-  - Actualizaciones prioritarias
-  - Soporte premium
-  - Funciones avanzadas
 
 ## 🚀 Primeros Pasos
 
