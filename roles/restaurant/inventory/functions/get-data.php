@@ -18,6 +18,15 @@
             header("Location: ../index.php");
             exit(); 
         }
+
+        if (isset($_GET['id'])) {
+            $id_product = $_GET['id']; 
+        }
+
+        $queryProduct = "SELECT * FROM inventory_products WHERE id = $id_product";
+        $result = mysqli_query($conexion, $queryProduct);
+        $row = mysqli_fetch_array($result);
+        $id_category = $row['id_category'];
     ?>
 </head>
 <body>
@@ -70,7 +79,7 @@
             </div>
         </nav>
 
-        <section class="update-recipes-form" id="hidden-modal">
+        <section class="update-products-form" id="hidden-modal">
             <div class="update-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar producto</h2>
@@ -82,32 +91,73 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="update.php" method="POST" class="form">
+                    <form action="update.php?id=<?php echo $id_product ?>" method="POST" class="form">
                         <div class="alls">
-                        <div class="content-labels-inputs">
+                            <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="name-dish">Nombre del plato</label>
-                                    <input type="text" name="name-dish" class="input-form" placeholder="Nombre del plato" required>
+                                    <label for="name-product">Nombre del producto</label>
+                                    <input type="text" name="name-product" class="input-form" placeholder="Nombre del producto" value="<?php echo $row['product_name'] ?>" required>
+                                </div>
+
+                                <div class="label-input">
+                                    <label for="purchase-price">Precio de compra</label>
+                                    <input type="number" name="purchase-price" class="input-form" placeholder="Precio de compra" value="<?php echo $row['purchase_price'] ?>" required>
+                                </div>
+                                
+                                <div class="label-input">
+                                    <label for="product-description">Descripción del producto</label>
+                                    <input type="text" name="product-description" class="input-form" placeholder="Descripción" value="<?php echo $row['product_description'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
+                                <div class="label-input">
+                                    <label for="id-category">Categoría</label>
+                                    <select name="id-category" class="select" required>
+                                        <?php
+                                            $getCategory = "SELECT id, category FROM categories WHERE id = $id_category";
+                                            $result = mysqli_query($conexion, $getCategory);
+                                            $rowCat = mysqli_fetch_array($result);
+
+                                            $selected = ($rowCat['id'] == $id_category) ? 'selected' : '';
+                                            echo "<option value='" . $rowCat['id'] . "' $selected>" . $rowCat['category'] . " </option>";
+                                        ?>
+                                    </select>
+                                </div>
+
                                 <div class="label-input">
                                     <label for="sale-price">Precio de venta</label>
-                                    <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" required>
+                                    <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" value="<?php echo $row['sale_price'] ?>" required>
+                                </div>
+                                
+                                <div class="label-input">
+                                    <label for="entry-date">Fecha de ingreso</label>
+                                    <input type="date" name="entry-date" class="input-form" value="<?php echo $row['entry_date'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="prepared-time">Tiempo de preparación</label>
-                                    <input type="text" name="prepared-time" class="input-form" placeholder="Tiempo de preparación" required>
+                                    <label for="supplier">Proveedor</label>
+                                    <input type="text" name="supplier" class="input-form" placeholder="Proveedor" value="<?php echo $row['supplier'] ?>" required>
+                                </div>
+
+                                <div class="label-input">
+                                    <label for="quantity-stock">Cantidad en stock</label>
+                                    <input type="text" name="quantity-stock" class="input-form" placeholder="Cantidad disponible" value="<?php echo $row['stock_quantity'] ?>" required>
+                                </div>
+                                
+                                <div class="label-input">
+                                    <label for="product-status">Estado del producto</label>
+                                    <select name="product-status" class="select" required>
+                                        <option value="<?php echo $row['product_status'] ?>"><?php echo $row['product_status'] ?></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-update-recipes" class="btn-form" value="Actualizar">
+                            <input type="submit" name="button-update-product" class="btn-form" value="Actualizar">
                         </div>
 
                     </form>
