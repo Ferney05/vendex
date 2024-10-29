@@ -118,7 +118,7 @@
                                     <select name="id-category" class="select" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <?php
-                                            $getCategory = "SELECT * FROM categories";
+                                            $getCategory = "SELECT * FROM categories_restaurant";
                                             $result = mysqli_query($conexion, $getCategory);
 
                                             while($row = mysqli_fetch_array($result)) {

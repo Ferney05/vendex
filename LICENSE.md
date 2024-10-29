@@ -15,7 +15,7 @@ Vendex es un sistema de gestión de inventarios desarrollado y propiedad de Fern
 
 ## 3. Modalidades de Licencia
 
-### 3.1 Licencia Básica
+### 3.1 Licencia Básica para Tienda
 
 **Precio**: 350,000 COP mensual
 
@@ -34,12 +34,44 @@ Vendex es un sistema de gestión de inventarios desarrollado y propiedad de Fern
 - Soporte técnico limitado a horario laboral
 - No incluye características premium futuras
 
-### 3.2 Licencia Premium
+### 3.2 Licencia Básica para Restaurante
+
+**Precio**: 250,000 COP mensual
+
+**Incluye**:
+- Acceso completo al sistema de gestión de inventarios
+- Dashboard intuitivo con análisis de datos
+- Gestión de recetas e ingredientes y stock
+- Análisis de ventas y ganancias
+- Alertas de inventario bajo
+- Control de reposición de ingredientes
+- Soporte técnico básico
+- Sistema de respaldo local con XAMPP
+
+**Limitaciones**:
+- No incluye actualizaciones automáticas del sistema
+- Soporte técnico limitado a horario laboral
+- No incluye características premium futuras
+
+### 3.3 Licencia Premium para Tienda
 
 **Precio**: 500,000 COP mensual
 
 **Incluye todo lo de la licencia básica más**:
-- Actualizaciones automáticas continuas
+- Gestión de actualizaciones en sitio
+- Acceso prioritario a nuevas funcionalidades
+- Soporte técnico prioritario 24/7
+- Capacitación personalizada
+- Mejoras y optimizaciones constantes del sistema
+- Backup automático adicional
+- Reportes avanzados personalizados
+
+### 3.4 Licencia Premium para Restaurante
+
+**Precio**: 350,000 COP mensual
+
+**Incluye todo lo de la licencia básica más**:
+- Gestión de actualizaciones en sitio
 - Acceso prioritario a nuevas funcionalidades
 - Soporte técnico prioritario 24/7
 - Capacitación personalizada
@@ -62,7 +94,6 @@ Vendex es un sistema de gestión de inventarios desarrollado y propiedad de Fern
 
 ### 5.2 Requisitos Técnicos
 - Computadora compatible con XAMPP
-- Conexión a internet para actualizaciones (Premium)
 - Espacio en disco suficiente para base de datos local
 
 ### 5.3 Confidencialidad
