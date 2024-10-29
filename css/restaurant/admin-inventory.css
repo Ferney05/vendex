@@ -103,13 +103,27 @@ td:nth-child(5) a:last-child {
     margin-left: 1rem;
 }
 
-.view-details a {
+
+
+td:nth-child(4) a {
+    text-decoration: none;
+} 
+
+td:nth-child(4) a:last-child {
+    margin-left: 1rem;
+}
+
+.view-details a:last-child {
     text-decoration: none;
     background-color: #393937;
-    padding: .2rem 1rem;
+    padding: .3rem 1rem;
     border-radius: 10px;
 }
 
-.view-details a:hover {
+.view-details a:first-child {
+    text-decoration: none;
     background-color: var(--color-light-blue);
+    padding: .3rem 1rem;
+    border-radius: 10px;
 }
+
