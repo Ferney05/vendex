@@ -128,22 +128,17 @@
                         </tr>
 
                         <?php
-                            $getProducts = "SELECT * FROM inventory_products";
+                            $getProducts = "SELECT * FROM recipes";
                             $resultProducts = mysqli_query($conexion, $getProducts);
                             
                             if($resultProducts -> num_rows > 0){
                                 while($row = mysqli_fetch_array($resultProducts)){
                                     $id = $row['id'];
-                                    $id_category = $row['id_category'];
-
-                                    $queryCategory = "SELECT category FROM categories WHERE id = $id_category";
-                                    $resultCat = mysqli_query($conexion, $queryCategory);
-                                    $rowCat = mysqli_fetch_array($resultCat);
     
                                     echo "<tr>
-                                            <td>" . ucfirst($row['product_name']) . "</td>
-                                            <td>" . ucfirst($row['product_description']) . "</td>
-                                            <td>" . $row['entry_date'] . "</td>
+                                            <td>" . ucfirst($row['name_dish']) . "</td>
+                                            <td>$" . number_format($row['sale_price'], 0) . "</td>
+                                            <td>" . $row['prepared_time'] . "</td>
                                             <td class='view-details'>
                                                 <a href='functions/details-today-sales.php?id='>Ver</a>
                                             </td>
@@ -152,7 +147,7 @@
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
                                                 </a>
     
-                                                <a href='functions/get-data.php'>
+                                                <a href='functions/get-data.php?id=$id'>
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><g fill='none' stroke='#3289d1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path stroke-dasharray='20' stroke-dashoffset='20' d='M3 21h18'><animate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='20;0'/></path><path fill='#3289d1' fill-opacity='0' stroke-dasharray='48' stroke-dashoffset='48' d='M7 17v-4l10 -10l4 4l-10 10h-4'><animate fill='freeze' attributeName='fill-opacity' begin='1.1s' dur='0.15s' values='0;0.3'/><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.2s' dur='0.6s' values='48;0'/></path><path stroke-dasharray='8' stroke-dashoffset='8' d='M14 6l4 4'><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.8s' dur='0.2s' values='8;0'/></path></g></svg>
                                                 </a>
                                             </td>

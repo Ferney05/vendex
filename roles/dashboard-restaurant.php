@@ -45,17 +45,12 @@
                                 <p>Agregar insumos</p>
                             </a>
 
-                            <a href="store/inventory/admin-inventory.php">
+                            <a href="restaurant/inventory/add-recipes.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Agregar recetas</p>
                             </a>
 
-                            <a href="store/inventory/admin-inventory.php">
-                                <img src="../svg/eyes.svg" alt="">
-                                <p>Ver recetas</p>
-                            </a>
-
-                            <a href="store/inventory/admin-inventory.php">
+                            <a href="restaurant/inventory/admin-inventory.php">
                                 <img src="../svg/admin.svg" alt="">
                                 <p>Administrar inventario</p>
                             </a>
@@ -72,17 +67,17 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="store/inventory/add-products.php">
+                            <a href="restaurant/employees/add-employees.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Agregar empleado</p>
                             </a>
 
-                            <a href="store/inventory/admin-inventory.php">
+                            <a href="restaurant/employees/see-employees.php">
                                 <img src="../svg/eyes.svg" alt="">
                                 <p>Lista de empleados</p>
                             </a>
 
-                            <a href="store/inventory/admin-inventory.php">
+                            <a href="restaurant/employees/horary.php">
                                 <img src="../svg/horary.svg" alt="">
                                 <p>Horarios</p>
                             </a>
@@ -99,17 +94,17 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="store/sales/new-sale.php">
+                            <a href="restaurant/sales/new-sale.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Nueva venta</p>
                             </a>
 
-                            <a href="store/sales/sales-made.php">
+                            <a href="restaurant/sales/sales-made.php">
                                 <img src="../svg/eyes.svg" alt="">
                                 <p>Ver ventas realizadas</p>
                             </a>
 
-                            <a href="store/sales/sales-made.php">
+                            <a href="restaurant/sales/sales-employee.php">
                                 <img src="../svg/employee.svg" alt="">
                                 <p>Ventas por empleado</p>
                             </a>
@@ -126,17 +121,17 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="store/earnings/today-earnings.php">
+                            <a href="restaurant/earnings/today-earnings.php">
                                 <img src="../svg/eyes.svg" alt="">
                                 <p>Ver ganancias de ventas</p>
                             </a>
 
-                            <a href="store/earnings/today-earnings.php">
+                            <a href="restaurant/earnings/profitable-dishes.php">
                                 <img src="../svg/dish.svg" alt="">
                                 <p>Platos más rentables</p>
                             </a>
 
-                            <a href="store/earnings/today-earnings.php">
+                            <a href="restaurant/earnings/personal-costs.php">
                                 <img src="../svg/staff.svg" alt="">
                                 <p>Costos del personal</p>
                             </a>
@@ -153,7 +148,7 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="store/earnings/today-earnings.php">
+                            <a href="restaurant/earnings/pending-orders.php">
                                 <img src="../svg/orders.svg" alt="">
                                 <p>Órdenes pendientes</p>
                             </a>
@@ -170,7 +165,7 @@
 
                     <div class="accordion-content">
                         <div>
-                            <!-- <a href="store/earnings/today-earnings.php">
+                            <!-- <a href="restaurant/earnings/today-earnings.php">
                                 <img src="../svg/eyes.svg" alt="">
                                 <p>Ver ganancias de ventas</p>
                             </a> -->

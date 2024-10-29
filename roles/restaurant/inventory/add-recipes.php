@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="functions/adding-products.php" method="POST" class="form">
+                    <form action="functions/adding-recipes.php" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-add-product" class="btn-form" value="Agregar">
+                            <input type="submit" name="button-add-recipe" class="btn-form" value="Agregar">
                         </div>
                     </form>
                 </div>

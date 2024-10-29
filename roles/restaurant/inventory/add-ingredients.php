@@ -89,12 +89,12 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="functions/adding-products.php" method="POST" class="form">
+                    <form action="functions/adding-ingredients.php" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="name-product">Nombre del ingrediente</label>
-                                    <input type="text" name="name-product" class="input-form" placeholder="Nombre del producto" required>
+                                    <label for="name-ingredient">Nombre del ingrediente</label>
+                                    <input type="text" name="name-ingredient" class="input-form" placeholder="Nombre del producto" required>
                                 </div>
 
                                 <div class="label-input">
@@ -106,8 +106,8 @@
                                     <label for="unit">Unidad</label>
                                     <select name="unit" class="select" required>
                                         <option value="" disabled selected>Seleccione</option>
-                                        <option value="">Unidades</option>
-                                        <option value="">Kg</option>
+                                        <option value="Unidades">Unidades</option>
+                                        <option value="Kg">Kg</option>
                                     </select>
                                 </div>
                             </div>
@@ -146,8 +146,8 @@
                                 </div>
                                 
                                 <div class="label-input">
-                                    <label for="product-status">Estado</label>
-                                    <select name="product-status" class="select" required>
+                                    <label for="ingredient-status">Estado</label>
+                                    <select name="ingredient-status" class="select" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <option value="Activo">Activo</option>
                                         <option value="Agotado">Agotado</option>
@@ -155,7 +155,7 @@
                                 </div>
 
                                 <div class="button-submit">
-                                    <input type="submit" name="button-add-product" class="btn-form" value="Agregar">
+                                    <input type="submit" name="button-add-ingredient" class="btn-form" value="Agregar">
                                 </div>
                             </div>
                         </div>

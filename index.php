@@ -137,12 +137,6 @@
 
                             <div class="content-inputs">
                                 <input type="password" name="password" class="input" placeholder="Contraseña" required>
-                                <select name="role" id="" class="select" required>
-                                    <option value="" disabled selected>Rol</option>
-                                    <option value="Tienda">Tienda</option>
-                                    <option value="Restaurante">Restaurante</option>
-                                    <option value="Piscina">Piscina</option>
-                                </select>
                             </div>
 
                             <div class="content-inputs">

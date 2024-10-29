@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar productos - Vendex</title>
+    <title>Actualizar recetas - Vendex</title>
     <link rel="stylesheet" href="../../../../css/update-products.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
@@ -20,20 +20,19 @@
         }
 
         if (isset($_GET['id'])) {
-            $id_product = $_GET['id']; 
+            $id_recipe = $_GET['id']; 
         }
 
-        $queryProduct = "SELECT * FROM inventory_products WHERE id = $id_product";
-        $result = mysqli_query($conexion, $queryProduct);
+        $queryRecipe = "SELECT * FROM recipes WHERE id = $id_recipe";
+        $result = mysqli_query($conexion, $queryRecipe);
         $row = mysqli_fetch_array($result);
-        $id_category = $row['id_category'];
     ?>
 </head>
 <body>
 
     <main class="main">
         <nav class="nav-dash">
-            <a href="../../../dashboard-store.php" class="go-dash">
+            <a href="../../../dashboard-restaurant.php" class="go-dash">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z"/></svg>
                 <p>Dashboard</p>
             </a>
@@ -79,10 +78,10 @@
             </div>
         </nav>
 
-        <section class="update-products-form" id="hidden-modal">
+        <section class="update-recipes-form" id="hidden-modal">
             <div class="update-form">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Actualizar producto</h2>
+                    <h2 class="tlt-function">Actualizar recetas</h2>
                     
                     <a href="../admin-inventory.php" class="button-function">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
@@ -91,73 +90,32 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="update.php?id=<?php echo $id_product ?>" method="POST" class="form">
+                    <form action="update-recipes.php?id=<?php echo $id_recipe ?>" method="POST" class="form">
                         <div class="alls">
-                            <div class="content-labels-inputs">
+                        <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="name-product">Nombre del producto</label>
-                                    <input type="text" name="name-product" class="input-form" placeholder="Nombre del producto" value="<?php echo $row['product_name'] ?>" required>
-                                </div>
-
-                                <div class="label-input">
-                                    <label for="purchase-price">Precio de compra</label>
-                                    <input type="number" name="purchase-price" class="input-form" placeholder="Precio de compra" value="<?php echo $row['purchase_price'] ?>" required>
-                                </div>
-                                
-                                <div class="label-input">
-                                    <label for="product-description">Descripción del producto</label>
-                                    <input type="text" name="product-description" class="input-form" placeholder="Descripción" value="<?php echo $row['product_description'] ?>" required>
+                                    <label for="name-dish">Nombre del plato</label>
+                                    <input type="text" name="name-dish" class="input-form" placeholder="Nombre del plato" value="<?php echo $row['name_dish'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
-                                <div class="label-input">
-                                    <label for="id-category">Categoría</label>
-                                    <select name="id-category" class="select" required>
-                                        <?php
-                                            $getCategory = "SELECT id, category FROM categories WHERE id = $id_category";
-                                            $result = mysqli_query($conexion, $getCategory);
-                                            $rowCat = mysqli_fetch_array($result);
-
-                                            $selected = ($rowCat['id'] == $id_category) ? 'selected' : '';
-                                            echo "<option value='" . $rowCat['id'] . "' $selected>" . $rowCat['category'] . " </option>";
-                                        ?>
-                                    </select>
-                                </div>
-
                                 <div class="label-input">
                                     <label for="sale-price">Precio de venta</label>
                                     <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" value="<?php echo $row['sale_price'] ?>" required>
                                 </div>
-                                
-                                <div class="label-input">
-                                    <label for="entry-date">Fecha de ingreso</label>
-                                    <input type="date" name="entry-date" class="input-form" value="<?php echo $row['entry_date'] ?>" required>
-                                </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="supplier">Proveedor</label>
-                                    <input type="text" name="supplier" class="input-form" placeholder="Proveedor" value="<?php echo $row['supplier'] ?>" required>
-                                </div>
-
-                                <div class="label-input">
-                                    <label for="quantity-stock">Cantidad en stock</label>
-                                    <input type="text" name="quantity-stock" class="input-form" placeholder="Cantidad disponible" value="<?php echo $row['stock_quantity'] ?>" required>
-                                </div>
-                                
-                                <div class="label-input">
-                                    <label for="product-status">Estado del producto</label>
-                                    <select name="product-status" class="select" required>
-                                        <option value="<?php echo $row['product_status'] ?>"><?php echo $row['product_status'] ?></option>
-                                    </select>
+                                    <label for="prepared-time">Tiempo de preparación</label>
+                                    <input type="text" name="prepared-time" class="input-form" placeholder="Tiempo de preparación" value="<?php echo $row['prepared_time'] ?>" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-update-product" class="btn-form" value="Actualizar">
+                            <input type="submit" name="button-update-recipes" class="btn-form" value="Actualizar">
                         </div>
 
                     </form>
