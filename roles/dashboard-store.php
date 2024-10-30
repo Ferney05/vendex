@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Store - Vendex</title>
-    <link rel="stylesheet" href="../css/dashboard-store.css">
+    <link rel="stylesheet" href="../css/store/dashboard.css">
     <link rel="shortcut icon" href="../svg/icon-vendex.svg" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

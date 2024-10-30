@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar inventario - Vendex</title>
-    <link rel="stylesheet" href="../../../css/admin-inventory.css">
-    <link rel="stylesheet" href="../../../css/base-autocomplete.css">
+    <link rel="stylesheet" href="../../../css/store/admin-inventory.css">
+    <link rel="stylesheet" href="../../../css/store/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

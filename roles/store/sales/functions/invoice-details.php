@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizar nueva venta - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/invoice-details.css">
+    <link rel="stylesheet" href="../../../../css/store/invoice-details.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <?php

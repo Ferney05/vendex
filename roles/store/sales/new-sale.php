@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizar nueva venta - Vendex</title>
-    <link rel="stylesheet" href="../../../css/new-sale.css">
-    <link rel="stylesheet" href="../../../css/base-autocomplete.css">
+    <link rel="stylesheet" href="../../../css/store/new-sale.css">
+    <link rel="stylesheet" href="../../../css/store/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
