@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar insumos al inventario - Vendex</title>
     <link rel="stylesheet" href="../../../../css/restaurant/add-ingredients.css">
-    <link rel="stylesheet" href="../../../../css/base-autocomplete.css">
+    <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -100,12 +100,22 @@
                                     <label for="name-ingredient">Nombre del ingrediente</label>
                                     <input type="text" name="name-ingredient" id="name-ingredient" class="input-form" placeholder="Nombre del producto" required>
                                 </div>
+
+                                <div class="label-input">
+                                    <label for="unit">Unidad</label>
+                                    <input type="text" name="unit" id="unit" class="input-form" placeholder="Unidad" required>
+                                </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="taken-stock">Cantidad</label>
                                     <input type="number" name="taken-stock" class="input-form" placeholder="Cantidad que lleva" required>
+                                </div>
+                                
+                                <div class="label-input">
+                                    <label for="cost-ingredient">Costo</label>
+                                    <input type="number" name="cost-ingredient" id="cost" class="input-form" placeholder="Costo" required>
                                 </div>
                             </div>
 
@@ -131,7 +141,11 @@
                                 }
                             });
                         },
-                        minLength: 3 // Comienza a buscar desde el segundo carácter
+                        minLength: 3, // Comienza a buscar desde el segundo carácter
+                        select: function(event, ui) {
+                            $('#unit').val(ui.item.unity);
+                            $('#cost').val(ui.item.price);
+                        }
                     });
                 });
             </script>

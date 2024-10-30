@@ -24,9 +24,11 @@
         if(isset($_POST['button-add-ingredient-dish'])) {
             $id_dish = $_GET['id'];
             $name_ingredient = $_POST['name-ingredient'];
+            $unity = $_POST['unit'];
             $taken_stock = $_POST['taken-stock'];
+            $cost = $_POST['cost-ingredient'];
 
-            $insertData = "INSERT INTO ingredients_of_dish VALUES(null, $id_dish, '$name_ingredient', '$taken_stock')";
+            $insertData = "INSERT INTO ingredients_of_dish VALUES(null, $id_dish, '$name_ingredient', '$taken_stock', '$unity', $cost)";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){

@@ -106,8 +106,18 @@
                                     <label for="unit">Unidad</label>
                                     <select name="unit" class="select" required>
                                         <option value="" disabled selected>Seleccione</option>
-                                        <option value="Unidades">Unidades</option>
-                                        <option value="Kg">Kg</option>
+                                        <option value="g">Gramos</option>
+                                        <option value="kg">Kilogramos</option>
+                                        <option value="lb">Libras</option>
+                                        <option value="oz">Onzas</option>
+                                        <option value="ml">Mililitros</option>
+                                        <option value="l">Litros</option>
+                                        <option value="taza">Taza</option>
+                                        <option value="cucharada">Cucharada</option>
+                                        <option value="cucharadita">Cucharadita</option>
+                                        <option value="unidad">Unidad</option>
+                                        <option value="docena">Docena</option>
+                                        <option value="paquete">Paquete</option>
                                     </select>
                                 </div>
                             </div>

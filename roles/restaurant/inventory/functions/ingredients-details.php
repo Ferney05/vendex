@@ -100,6 +100,8 @@
                         <tr>
                             <th>Ingrediente</th>
                             <th>Unidades</th>
+                            <th>Unidad</th>
+                            <th>Costo</th>
                         </tr>
 
                         <?php
@@ -111,11 +113,13 @@
                                     echo "<tr>
                                             <td>" . ucfirst($row['name_ingredient']) . "</td>
                                             <td>" . $row['stock_taken'] . "</td>
+                                            <td>" . $row['unit'] . "</td>
+                                            <td>$" . number_format($row['cost'], 0) . "</td>
                                           </tr>";
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='2'>No hay ingredientes agregados</td>
+                                        <td colspan='4'>No hay ingredientes agregados</td>
                                      </tr>";
                             }
                         ?>
