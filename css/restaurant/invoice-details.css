@@ -9,14 +9,14 @@
     background-color: var(--color-dark-blue-gray);
 }
 
-.earnings-today {
+.sect-details {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     padding: 2rem;
     box-sizing: border-box;
 }
 
-.earnings-content {
+.view-details {
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -28,7 +28,7 @@
     justify-content: space-between;
 }
 
-.btn-today-earnings {
+.btn-details {
     display: flex;
     align-items: center;
     gap: .3rem;

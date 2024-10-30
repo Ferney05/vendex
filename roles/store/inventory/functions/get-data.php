@@ -115,7 +115,7 @@
                                     <label for="id-category">Categoría</label>
                                     <select name="id-category" class="select" required>
                                         <?php
-                                            $getCategory = "SELECT id, category FROM categories WHERE id = $id_category";
+                                            $getCategory = "SELECT id, category FROM categories_store WHERE id = $id_category";
                                             $result = mysqli_query($conexion, $getCategory);
                                             $rowCat = mysqli_fetch_array($result);
 

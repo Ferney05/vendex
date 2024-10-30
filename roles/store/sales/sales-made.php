@@ -93,15 +93,21 @@
                             $querySales = "SELECT * FROM sales ORDER BY id DESC";
                             $resultSales = mysqli_query($conexion, $querySales);
 
-                            while ($row = mysqli_fetch_assoc($resultSales)){
-                                $id_sale = $row['id'];
+                            if($resultSales -> num_rows > 0) {
+                                while ($row = mysqli_fetch_assoc($resultSales)){
+                                    $id_sale = $row['id'];
 
+                                    echo "<tr>
+                                            <td>$" . number_format($row['total_amount'], 0) . "</td>
+                                            <td>" . $row['sale_date'] . "</td>
+                                            <td class='view-details'>
+                                                <a href='functions/invoice-details.php?id=$id_sale'>Ver</a>
+                                            </td>
+                                        </tr>";
+                                }
+                            } else {
                                 echo "<tr>
-                                        <td>$" . number_format($row['total_amount'], 0) . "</td>
-                                        <td>" . $row['sale_date'] . "</td>
-                                        <td class='view-details'>
-                                            <a href='functions/invoice-details.php?id=$id_sale'>Ver</a>
-                                        </td>
+                                        <td colspan='3'>No hay ventas realizadas aún.</td>
                                       </tr>";
                             }
                         ?>

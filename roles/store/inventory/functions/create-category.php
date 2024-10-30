@@ -17,7 +17,7 @@
         if(isset($_POST['button-create-category'])){
             $name_category = $_POST['name-category'];
 
-            $insertCategory = "INSERT INTO categories VALUES(null, '$name_category')";
+            $insertCategory = "INSERT INTO categories_store VALUES(null, '$name_category')";
             $execute = mysqli_query($conexion, $insertCategory);
 
             if($execute){

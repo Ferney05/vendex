@@ -141,7 +141,7 @@
                                         $id = $row['id'];
                                         $id_category = $row['id_category'];
 
-                                        $queryCategory = "SELECT category FROM categories WHERE id = $id_category";
+                                        $queryCategory = "SELECT category FROM categories_store WHERE id = $id_category";
                                         $resultCat = mysqli_query($conexion, $queryCategory);
                                         $rowCat = mysqli_fetch_array($resultCat);
         

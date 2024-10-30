@@ -1,5 +1,5 @@
-@import url('base-logo.css');
-@import url('base-nav-dash.css');
+@import url('../base-logo.css');
+@import url('../base-nav-dash.css');
 
 .main-store {
     display: grid;
