@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar insumos al inventario - Vendex</title>
+    <title>Agregar empleados - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/add-employees.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="functions/adding-ingredients.php" method="POST" class="form">
+                    <form action="functions/adding-employees.php" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
@@ -126,7 +126,7 @@
 
                                 <div class="label-input">
                                     <label for="document-number">Número de documento</label>
-                                    <input type="number" name="document-number" class="input-form" placeholder="Número de documento" required>
+                                    <input type="text" name="document-number" class="input-form" placeholder="Número de documento" maxlength="10" required>
                                 </div>
 
                                 <div class="label-input">
@@ -136,7 +136,7 @@
 
                                 <div class="label-input">
                                     <label for="emergency-phone">Télefono de emergencia</label>
-                                    <input type="text" name="emergency-phone" class="input-form" placeholder="Télefono de emergencia" required>
+                                    <input type="tel" name="emergency-phone" class="input-form" placeholder="Télefono de emergencia" pattern="[0-9]{10,10}" required>
                                 </div>
                             </div>
 
@@ -147,8 +147,8 @@
                                 </div>
 
                                 <div class="label-input">
-                                    <label for="tel">Télefono</label>
-                                    <input type="number" name="tel" class="input-form" placeholder="Teléfono del empleado" required>
+                                    <label for="phone">Télefono</label>
+                                    <input type="tel" name="phone" class="input-form" placeholder="Teléfono del empleado" pattern="[0-9]{10,10}" required>
                                 </div>
 
                                 <div class="label-input">

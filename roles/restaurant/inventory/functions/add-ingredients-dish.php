@@ -118,10 +118,10 @@
                                     <input type="number" name="cost-ingredient" id="cost" class="input-form" placeholder="Costo" required>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="button-submit">
-                                <input type="submit" name="button-add-ingredient-dish" class="btn-form" value="Agregar">
-                            </div>
+                        <div class="button-submit">
+                            <input type="submit" name="button-add-ingredient-dish" class="btn-form" value="Agregar">
                         </div>
                     </form>
                 </div>

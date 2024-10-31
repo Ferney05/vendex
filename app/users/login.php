@@ -31,7 +31,6 @@
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = mysqli_real_escape_string($conexion, $_POST['email']);
             $password = mysqli_real_escape_string($conexion, $_POST['password']); 
-            $role = $_POST['role'];
 
             $queryData = "SELECT * FROM users WHERE email = ?";
             $stmt = mysqli_prepare($conexion, $queryData);
