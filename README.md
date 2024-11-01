@@ -77,11 +77,24 @@ vendex/
 ├── app/
 │   ├── users/  
 ├── css/
+│   ├── restaurant/
+│   ├── store/
 ├── js/
 ├── roles/
 │   ├── store/
+│   │   ├── earnings/
+│   │   ├── inventory/
+│   │   ├── sales/
 │   ├── pool/
+│   │   ├──
+│   │   ├──
+│   │   ├──
 │   ├── restaurant/
+│   │   ├── employees/
+│   │   ├── inventory/
+│   │   ├── sales/
+│   │   ├── earnings/
+│   │   ├── kitchen-controls/
 │   ├── dashboard-store.php
 │   ├── dashboard-pool.php
 │   └── dashboard-restaurant.php

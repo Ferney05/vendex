@@ -1,0 +1,154 @@
+@import url('../base-nav-dash.css');
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px ;
+    height: 100vh;
+
+    background-color: var(--color-dark-blue-gray);
+}
+
+.new-sale-products {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.new-sale {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.tlt-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-see {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-new-sale {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background-color: var(--color-light-blue);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.button-function {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background-color: var(--color-light-blue);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.content-table {
+    margin-top: 3rem;
+}
+
+.tlt-buttons-sale {
+    width: 50%;
+    margin: auto auto 1rem auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cancel-generate-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.cancel-generate-buttons a {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.cancel-generate-buttons a:first-child {
+    background-color: var(--color-dark-red);
+}
+
+.cancel-generate-buttons a:last-child {
+    background-color: var(--color-light-green);
+}
+
+
+table, th, td {
+    border: 2px solid var(--color-slate-gray);
+    border-collapse: collapse;
+}
+
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th, td {
+    padding: .5rem 0;
+    text-align: center;
+}
+
+td {
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+.view-details a {
+    text-decoration: none;
+    background-color: #393937;
+    padding: .2rem 1rem;
+    border-radius: 10px;
+}
+
+.view-details a:hover {
+    background-color: var(--color-light-blue);
+}
+
+tr:nth-child(2) {
+    animation: highlightRow 4s infinite;
+    transition: all 0.3s ease;
+}
+
+tr:nth-child(2):hover {
+    animation-play-state: paused;
+}
+
+@keyframes highlightRow {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #6ac04e93;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .main {
+        height: 100%;
+    }
+}

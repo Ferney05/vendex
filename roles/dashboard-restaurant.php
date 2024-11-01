@@ -94,7 +94,7 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="restaurant/sales/new-sale.php">
+                            <a href="restaurant/sales/new-sales.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Nueva venta</p>
                             </a>
