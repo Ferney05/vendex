@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar recetas al inventario - Vendex</title>
-    <link rel="stylesheet" href="../../../css/restaurant/add-ingredients.css">
+    <title>Ganancias del día de hoy - Vendex</title>
+    <link rel="stylesheet" href="../../../css/restaurant/today-earnings.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <?php
@@ -15,7 +15,7 @@
         if (isset($_SESSION['user_id'])) {
             $id_user = $_SESSION['user_id']; 
         } else {
-            header("Location: ../index.php");
+            header("Location: ../../../index.php");
             exit(); 
         }
     ?>
@@ -70,48 +70,54 @@
             </div>
         </nav>
 
-        <section class="add-products-form" id="hidden-modal">
-            <div class="add-form">
+        <section class="earnings-today" id="hidden-modal">
+            <div class="earn-content">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Agregar recetas</h2>
-                    
-                    <div class="create-update">
-                        <a href="admin-inventory.php" class="button-function">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
-                            <p>Administrar inventario de recetas</p>
-                        </a>
+                    <h2 class="tlt-function">Ganancias del día de hoy</h2>
+                    <div class="date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6zm7 6q-.425 0-.712-.288T11 13t.288-.712T12 12t.713.288T13 13t-.288.713T12 14m-4 0q-.425 0-.712-.288T7 13t.288-.712T8 12t.713.288T9 13t-.288.713T8 14m8 0q-.425 0-.712-.288T15 13t.288-.712T16 12t.713.288T17 13t-.288.713T16 14m-4 4q-.425 0-.712-.288T11 17t.288-.712T12 16t.713.288T13 17t-.288.713T12 18m-4 0q-.425 0-.712-.288T7 17t.288-.712T8 16t.713.288T9 17t-.288.713T8 18m8 0q-.425 0-.712-.288T15 17t.288-.712T16 16t.713.288T17 17t-.288.713T16 18"/></svg>
+                        <?php
+                            echo "<p>" . date('Y-m-d') . "</p>";
+                        ?>
                     </div>
                 </div>
 
-                <div class="content-form">
-                    <form action="functions/adding-recipes.php" method="POST" class="form">
-                        <div class="alls">
-                            <div class="content-labels-inputs">
-                                <div class="label-input">
-                                    <label for="name-dish">Nombre del plato</label>
-                                    <input type="text" name="name-dish" class="input-form" placeholder="Nombre del plato" required>
-                                </div>
-                            </div>
+                <div class="content-table">
+                    <table>
+                        <tr>
+                            <th>Número de ventas</th>
+                            <th>Fecha de venta</th>
+                            <th>Total</th>
+                            <th>Detalles</th>
+                        </tr>
 
-                            <div class="content-labels-inputs">
-                                <div class="label-input">
-                                    <label for="sale-price">Precio de venta</label>
-                                    <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" required>
-                                </div>
-                            </div>
+                        <?php
+                            $getEarnings = "SELECT id, COUNT(*) AS total_sales, SUM(total_amount) AS total_earnings, sale_date
+                                            FROM order_sales 
+                                            WHERE sale_date = CURDATE()
+                                            GROUP BY sale_date";
+                                            
+                            $resultEarnings = mysqli_query($conexion, $getEarnings);
 
-                            <div class="content-labels-inputs">
-                                <div class="label-input">
-                                    <label for="prepared-time">Tiempo de preparación</label>
-                                    <input type="text" name="prepared-time" class="input-form" placeholder="Tiempo de preparación" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="button-submit">
-                            <input type="submit" name="button-add-recipe" class="btn-form" value="Agregar">
-                        </div>
-                    </form>
+                            if($resultEarnings -> num_rows > 0) {
+                                while($row = mysqli_fetch_assoc($resultEarnings)){
+                                    $id_sale_total = $row['id'];
+                                    echo "<tr>
+                                            <td>" . $row['total_sales'] . "</td>
+                                            <td>" . $row['sale_date'] . "</td>
+                                            <td>$" . number_format($row['total_earnings'], 0) . "</td>
+                                            <td class='view-details'>
+                                                <a href='functions/details-today-sales.php?id=$id_sale_total'>Ver</a>
+                                            </td>
+                                          </tr>";
+                                }
+                            } else {
+                                echo "<tr>
+                                        <td colspan='4'>No se han registrado ganancias para el día de hoy.</td>
+                                      </tr>";
+                            }
+                        ?>
+                    </table>
                 </div>
             </div>
         </section>

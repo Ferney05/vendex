@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles de ingredientes - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/invoice-details.css">
+    <title>Dellates de las ventas de hoy - Vendex</title>
+    <link rel="stylesheet" href="../../../../css/store/details-today-sales.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <?php
@@ -15,13 +15,13 @@
         if (isset($_SESSION['user_id'])) {
             $id_user = $_SESSION['user_id']; 
         } else {
-            header("Location: ../index.php");
+            header("Location: ../../../../index.php");
             exit(); 
         }
 
 
         if(isset($_GET['id'])){
-            $id_dish = $_GET['id'];
+            $id_sale = $_GET['id'];
         }
     ?>
 </head>
@@ -72,55 +72,57 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </nav>
 
-        <section class="sect-details" id="hidden-modal">
-            <div class="view-details">
+        <section class="earnings-today" id="hidden-modal">
+            <div class="earnings-content">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Detalles de los ingredientes</h2>
+                    <h2 class="tlt-function">Detalles de las ventas de hoy</h2>
                     
-                    <a href="../admin-inventory.php" class="btn-details">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
-                        <p>Administrar inventario de recetas</p>
+                    <a href="../today-earnings.php" class="btn-today-earnings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
+                        <p>Ver ganancias</p>
                     </a>
                 </div>
 
                 <div class="content-table">
                     <div class="tlt-info">
                         <?php
-                            $queryDish = "SELECT name_dish FROM recipes WHERE id = $id_dish";
-                            $resultDish = mysqli_query($conexion, $queryDish);
-                            $rowDish = mysqli_fetch_array($resultDish);
-
-                            echo "<h3>Ingredientes del plato '" . ucfirst($rowDish['name_dish']) . "'</h3>";
+                            echo "<h3>Pedidos vendidos hoy " . date('Y-m-d') . "</h3>";
                         ?>
                     </div>
 
                     <table>
                         <tr>
-                            <th>Ingrediente</th>
-                            <th>Unidades</th>
-                            <th>Unidad</th>
-                            <th>Costo</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio de venta</th>
+                            <th>Subtotal</th>
                         </tr>
 
                         <?php
-                            $queryDetails = "SELECT * FROM ingredients_of_dish WHERE id_dish = $id_dish";
+                            $queryDetails = "SELECT os.id, os.sale_date, osd.order_name, osd.quantity, osd.unit_price, osd.subtotal
+                                            FROM order_sales os
+                                            INNER JOIN order_sales_details osd ON os.id = osd.sale_id
+                                            WHERE os.sale_date = CURDATE()
+                                            ORDER BY os.id DESC";
+
                             $resultDetails = mysqli_query($conexion, $queryDetails);
 
                             if($resultDetails -> num_rows > 0) {
                                 while ($row = mysqli_fetch_assoc($resultDetails)){
                                     echo "<tr>
-                                            <td>" . ucfirst($row['name_ingredient']) . "</td>
-                                            <td>" . $row['stock_taken'] . "</td>
-                                            <td>" . $row['unit'] . "</td>
-                                            <td>$" . number_format($row['cost'], 0) . "</td>
+                                            <td>" . ucfirst($row['order_name']) . "</td>
+                                            <td>" . $row['quantity'] . "</td>
+                                            <td>$" . number_format($row['unit_price'], 0) . "</td>
+                                            <td>$" . number_format($row['subtotal'], 0) . "</td>
                                           </tr>";
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='4'>No hay ingredientes agregados</td>
-                                     </tr>";
+                                        <td colspan='4'>No se encontraron detalles de productos.</td>
+                                      </tr>";
                             }
                         ?>
                     </table>
@@ -129,6 +131,7 @@
         </section>
     </main>
 
+    <script src="show-modal-add.js"></script>
     <script src="../../../../js/base-nav-dash.js"></script>
 
 </body>

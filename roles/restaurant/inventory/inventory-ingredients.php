@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar inventario de recetas - Vendex</title>
+    <title>Administrar inventario de ingredientes - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/admin-inventory.css">
     <link rel="stylesheet" href="../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
@@ -78,21 +78,21 @@
         <section class="info-table-product" id="hidden-modal">
             <div class="table-products">
                 <div class="tlt-search-add">
-                    <h2 class="tlt-function">Administrar inventario de recetas</h2>
+                    <h2 class="tlt-function">Administrar inventario de ingredientes</h2>
                     
                     <div class="search-add">
-                        <form action="functions/search-dish.php" method="POST" class="form-search">
-                            <input type="text" name="search" class="input-search" id="search-recipe" placeholder="Buscar por plato..." required>
+                        <form action="functions/search-ingredients.php" method="POST" class="form-search">
+                            <input type="text" name="search" class="input-search" id="search-ingredient" placeholder="Buscar por ingrediente..." required>
                             <input type="submit" name="button-search" class="btn-search" value="Buscar">
                         </form>
 
                         <script>
                             $(document).ready(function(){
                                 // Inicia el autocompletado usando jQuery UI
-                                $('#search-recipe').autocomplete({
+                                $('#search-ingredient').autocomplete({
                                     source: function(request, response) {
                                         $.ajax({
-                                            url: "functions/autocomplete-recipes.php", // Archivo PHP que consulta los productos
+                                            url: "functions/autocomplete-ingredients.php", // Archivo PHP que consulta los productos
                                             type: "POST",
                                             data: { query: request.term }, // Envía lo que el usuario escribe
                                             success: function(data) {
@@ -105,9 +105,9 @@
                             });
                         </script>
                         
-                        <a href="add-recipes.php" class="add">
+                        <a href="add-ingredients.php" class="add">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
-                            <p>Agregar receta</p>
+                            <p>Agregar ingredientes</p>
                         </a>
                     </div>
                 </div>
@@ -115,35 +115,32 @@
                 <div class="content-table">
                     <table>
                         <tr>
-                            <th>Nombre del plato</th>
-                            <th>Precio de venta</th>
-                            <th>Tiempo de preparación</th>
-                            <th>Ingredientes</th>
+                            <th>Nombre del ingrediente</th>
+                            <th>Stock disponible</th>
+                            <th>Unidad de medida</th>
+                            <th>Stock mínimo</th>
                             <th>Acciones</th>
                         </tr>
 
                         <?php
-                            $getProducts = "SELECT * FROM recipes";
-                            $resultProducts = mysqli_query($conexion, $getProducts);
+                            $getIngredient = "SELECT * FROM ingredients";
+                            $resultIngredient = mysqli_query($conexion, $getIngredient);
                             
-                            if($resultProducts -> num_rows > 0){
-                                while($row = mysqli_fetch_array($resultProducts)){
+                            if($resultIngredient -> num_rows > 0){
+                                while($row = mysqli_fetch_array($resultIngredient)){
                                     $id = $row['id'];
     
                                     echo "<tr>
-                                            <td>" . ucfirst($row['name_dish']) . "</td>
-                                            <td>$" . number_format($row['sale_price'], 0) . "</td>
-                                            <td>" . $row['prepared_time'] . "</td>
-                                            <td class='view-details'>
-                                                <a href='functions/add-ingredients-dish.php?id=$id'>Agregar</a>
-                                                <a href='functions/ingredients-details.php?id=$id'>Ver</a>
-                                            </td>
+                                            <td>" . ucfirst($row['name_ingredient']) . "</td>
+                                            <td>" . $row['quantity_stock'] . "</td>
+                                            <td>" . $row['unit'] . "</td>
+                                            <td>" . $row['minimum_stock'] . "</td>
                                             <td>
-                                                <a href='functions/delete.php?id=$id'>
+                                                <a href='functions/delete-ingredient.php?id=$id'>
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
                                                 </a>
     
-                                                <a href='functions/get-data.php?id=$id'>
+                                                <a href='functions/get-data-ingredients.php?id=$id'>
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><g fill='none' stroke='#3289d1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path stroke-dasharray='20' stroke-dashoffset='20' d='M3 21h18'><animate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='20;0'/></path><path fill='#3289d1' fill-opacity='0' stroke-dasharray='48' stroke-dashoffset='48' d='M7 17v-4l10 -10l4 4l-10 10h-4'><animate fill='freeze' attributeName='fill-opacity' begin='1.1s' dur='0.15s' values='0;0.3'/><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.2s' dur='0.6s' values='48;0'/></path><path stroke-dasharray='8' stroke-dashoffset='8' d='M14 6l4 4'><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.8s' dur='0.2s' values='8;0'/></path></g></svg>
                                                 </a>
                                             </td>
@@ -151,7 +148,7 @@
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='10'>No hay productos</td>
+                                        <td colspan='10'>No hay ingredientes.</td>
                                       </tr>";
                             }
                         ?>

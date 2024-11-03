@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realizar nueva venta - Vendex</title>
+    <title>Dellates de las ventas de hoy - Vendex</title>
     <link rel="stylesheet" href="../../../../css/store/details-today-sales.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 

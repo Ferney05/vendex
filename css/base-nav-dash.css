@@ -129,3 +129,10 @@
 .go-dash:hover p {
     color: var(--color-light-green);
 }
+
+
+/*  */
+
+select > * {
+    color: var(--color-light-black);
+}

@@ -52,7 +52,12 @@
 
                             <a href="restaurant/inventory/admin-inventory.php">
                                 <img src="../svg/admin.svg" alt="">
-                                <p>Administrar inventario</p>
+                                <p>Inventario de recetas</p>
+                            </a>
+
+                            <a href="restaurant/inventory/inventory-ingredients.php">
+                                <img src="../svg/admin.svg" alt="">
+                                <p>Inventario de ingredientes</p>
                             </a>
                         </div>
                     </div>
