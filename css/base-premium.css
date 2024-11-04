@@ -1,0 +1,24 @@
+
+.premium {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #ffffff00; /* Color de fondo semi-transparente */
+    backdrop-filter: blur(8px); /* Asegúrate de que el desenfoque no sea demasiado fuerte */
+    z-index: 1; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content div {
+    display: flex;
+    gap: .4rem;
+    align-items: center;
+}

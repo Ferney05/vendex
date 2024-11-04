@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar insumos al inventario - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/add-ingredients.css">
+    <title>Actualizar costos del personal - Vendex</title>
+    <link rel="stylesheet" href="../../../../css/restaurant/add-personnel-costs.css">
     <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
@@ -24,16 +24,20 @@
             exit(); 
         }
 
-        if(isset($_GET['id'])){
-            $id_dish = $_GET['id'];
+        if (isset($_GET['id'])) {
+            $id_staff = $_GET['id']; 
         }
+
+        $queryStaff = "SELECT * FROM staff_costs WHERE id = $id_staff";
+        $result = mysqli_query($conexion, $queryStaff);
+        $row = mysqli_fetch_array($result);
     ?>
 </head>
 <body>
 
     <main class="main">
         <nav class="nav-dash">
-            <a href="../../../dashboard-restaurant.php" class="go-dash">
+            <a href="../../../../dashboard-restaurant.php" class="go-dash">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z"/></svg>
                 <p>Dashboard</p>
             </a>
@@ -79,79 +83,77 @@
             </div>
         </nav>
 
-        <section class="add-products-form" id="hidden-modal">
+        <section class="add-personnel-form" id="hidden-modal">
             <div class="add-form">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Agregar ingredientes al plato</h2>
-                    
-                    <div class="create-update">
-                        <a href="../inventory-ingredients.php" class="button-function">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
-                            <p>Administrar inventario de ingredientes</p>
-                        </a>
-                    </div>
+                    <h2 class="tlt-function">Actualizar costos del personal</h2>
+                    <a href="../personnel-costs.php" class="button-function">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
+                        <p>Ver costos del personal</p>
+                    </a>
                 </div>
 
                 <div class="content-form">
-                    <form action="adding-ingredients-dish.php?id=<?php echo $id_dish ?>" method="POST" class="form">
+                    <form action="update.php?id=<?php echo $id_staff ?>" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="name-ingredient">Nombre del ingrediente</label>
-                                    <input type="text" name="name-ingredient" id="name-ingredient" class="input-form" placeholder="Nombre del producto" required>
+                                    <label for="employee">Empleado</label>
+                                    <input type="text" name="employee" class="input-form" id="employee" placeholder="Nombre del empleado" value="<?php echo $row['employee'] ?>" required>
                                 </div>
-
+                                
                                 <div class="label-input">
-                                    <label for="unit">Unidad</label>
-                                    <input type="text" name="unit" id="unit" class="input-form" placeholder="Unidad" required>
+                                    <label for="hours">Horas</label>
+                                    <input type="number" name="hours" class="input-form" placeholder="Horas laboradas" value="<?php echo $row['hours_worked'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="taken-stock">Cantidad</label>
-                                    <input type="number" name="taken-stock" class="input-form" placeholder="Cantidad que lleva" required>
+                                    <label for="employee-position">Cargo</label>
+                                    <input type="text" name="employee-position" id="position" class="input-form" placeholder="Cargo del empleado" value="<?php echo $row['employee_position'] ?>" required>
                                 </div>
-                                
+
+                                <script>
+                                    $(document).ready(function(){
+                                        $('#employee').autocomplete({
+                                            source: function(request, response) {
+                                                $.ajax({
+                                                    url: "autocomplete.php",
+                                                    type: "POST",
+                                                    data: { query: request.term },
+                                                    success: function(data) {
+                                                        response($.parseJSON(data));
+                                                    }
+                                                });
+                                            },
+                                            minLength: 3,
+                                            select: function(event, ui) {
+                                                $('#position').val(ui.item.post);
+                                            }
+                                        });
+                                    });
+                                </script> 
+
                                 <div class="label-input">
-                                    <label for="cost-ingredient">Costo</label>
-                                    <input type="number" name="cost-ingredient" id="cost" class="input-form" placeholder="Costo" required>
+                                    <label for="hourly-pay">Pago por hora</label>
+                                    <input type="number" name="hourly-pay" class="input-form" placeholder="Pago por hora" value="<?php echo $row['hourly_pay'] ?>" required>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-add-ingredient-dish" class="btn-form" value="Agregar">
+                            <input type="submit" name="button-update-costs" class="btn-form" value="Actualizar">
                         </div>
                     </form>
                 </div>
             </div>
-
-            <script>
-                $(document).ready(function(){
-                    // Inicia el autocompletado usando jQuery UI
-                    $('#name-ingredient').autocomplete({
-                        source: function(request, response) {
-                            $.ajax({
-                                url: "autocomplete.php", // Archivo PHP que consulta los productos
-                                type: "POST",
-                                data: { query: request.term }, // Envía lo que el usuario escribe
-                                success: function(data) {
-                                    response($.parseJSON(data)); // Convierte los datos en formato JSON
-                                }
-                            });
-                        },
-                        minLength: 3, // Comienza a buscar desde el segundo carácter
-                        select: function(event, ui) {
-                            $('#unit').val(ui.item.unity);
-                            $('#cost').val(ui.item.price);
-                        }
-                    });
-                });
-            </script>
         </section>
     </main>
 
+    <script src="../show-category.js"></script>
     <script src="../../../../js/base-nav-dash.js"></script>
+
 </body>
 </html>

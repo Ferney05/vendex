@@ -136,7 +136,7 @@
                                 <p>Platos más rentables</p>
                             </a>
 
-                            <a href="restaurant/earnings/personal-costs.php">
+                            <a href="restaurant/earnings/personnel-costs.php">
                                 <img src="../svg/staff.svg" alt="">
                                 <p>Costos del personal</p>
                             </a>
