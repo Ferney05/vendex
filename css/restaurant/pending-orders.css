@@ -1,0 +1,77 @@
+@import url('../base-nav-dash.css');
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 1fr;
+    height: 100vh;
+
+    background-color: var(--color-dark-blue-gray);
+}
+
+.pending-orders {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.orders-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.tlt-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-function {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background-color: var(--color-light-blue);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.content-table {
+    margin-top: 3rem;
+}
+
+table, th, td {
+    border: 2px solid var(--color-slate-gray);
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: .5rem 0;
+    text-align: center;
+}
+
+td {
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+td:nth-child(9) a {
+    text-decoration: none;
+} 
+
+td:nth-child(9) a:last-child {
+    margin-left: 1rem;
+}
+
+/* td span {
+    background-color: #4f76af;
+    padding: .3rem 1rem;
+    border-radius: 20px;
+} */
