@@ -152,13 +152,17 @@ function generarVenta($conexion) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         if (generarVenta($conexion)) {
-            header("Location: ../new-sales.php?success=true");
+            // Si la venta se genera correctamente, redirigimos con un mensaje de éxito
+            header("Location: ../new-sales.php?message=Venta generada&message_type=success");
         } else {
-            header("Location: ../new-sales.php?error=unknown");
+            // Si hay un error desconocido, redirigimos con un mensaje de error
+            header("Location: ../new-sales.php?message=Error desconocido&message_type=error");
         }
     } catch (Exception $e) {
-        header("Location: ../new-sales.php?error=" . urlencode($e->getMessage()));
+        // Si ocurre una excepción, redirigimos con el mensaje de error correspondiente
+        header("Location: ../new-sales.php?message=" . urlencode($e->getMessage()) . "&message_type=error");
     }
     exit;
 }
+
 ?>

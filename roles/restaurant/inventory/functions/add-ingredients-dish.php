@@ -20,7 +20,7 @@
         if (isset($_SESSION['user_id'])) {
             $id_user = $_SESSION['user_id']; 
         } else {
-            header("Location: ../index.php");
+            header("Location: ../../../../index.php");
             exit(); 
         }
 

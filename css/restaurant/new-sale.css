@@ -247,3 +247,16 @@ td {
     cursor: pointer;
     outline: none;
 }
+
+
+
+
+.success {
+    color: var(--color-light-green);
+    font-size: .9rem;
+}
+
+.error {
+    color: var(--color-dark-red);
+    font-size: .9rem;
+}

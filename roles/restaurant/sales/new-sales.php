@@ -20,7 +20,7 @@
         if (isset($_SESSION['user_id'])) {
             $id_user = $_SESSION['user_id']; 
         } else {
-            header("Location: ../index.php");
+            header("Location: ../../../index.php");
             exit(); 
         }
     ?>
@@ -100,7 +100,16 @@
 
                 <div class="content-table">
                     <div class="tlt-buttons-sale">
-                        <h3 class="tlt">Pedidos listados</h3>
+                        <div class="list-message">
+                            <h3 class="tlt">Pedidos listados</h3>
+                            <?php
+                                $message = isset($_GET['message']) ? $_GET['message'] : '';
+                                $message_type = isset($_GET['message_type']) ? $_GET['message_type'] : '';
+
+                                echo "<p class='" . $message_type . "'>" . $message . "</p>";
+                            ?>
+                        </div>
+
                         <div class="cancel-generate-buttons">
                             <a href="functions/cancel-sale.php">
                                 <p>Cancelar venta</p>
