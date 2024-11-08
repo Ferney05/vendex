@@ -74,10 +74,18 @@
             <div class="orders-content">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Ordenes pendientes</h2>
-                    <a href="add-orders.php" class="button-function">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
-                        <p>Agregar ordenes</p>
-                    </a>
+
+                    <div class="content-buttons">
+                        <a href="create-orders.php" class="button-function">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
+                            <p>Crear orden</p>
+                        </a>
+
+                        <a href="add-orders-details.php" class="button-function">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
+                            <p>Agregar platos a la orden</p>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="content-table">
@@ -85,12 +93,10 @@
                         <tr>
                             <th>Número de orden</th>
                             <th>Cliente</th>
-                            <th>Platillo</th>
-                            <th>Cantidad</th>
-                            <th>Personalización</th>
+                            <th>Fecha</th>
                             <th>Estado</th>
                             <th>Tipo de servicio</th>
-                            <th>Tiempo estimado</th>
+                            <th>Detalles</th>
                             <th>Acciones</th>
                         </tr>
 
@@ -100,17 +106,38 @@
 
                             if($resultOrders -> num_rows > 0) {
                                 while($row = mysqli_fetch_assoc($resultOrders)){
+                                    $order_number = $row['order_number'];
                                     $id = $row['id'];
+                                    $order_date = $row['order_date'];
+                                    $date = new DateTime($order_date);
+                                    $formatted_date = $date->format('Y-m-d \a \l\a\s h:i A');
+
+                                    // Agregar clase para estado
+                                    $status_class = '';
+                                    switch ($row['order_status']) {
+                                        case 'En espera':
+                                            $status_class = 'pending';
+                                            break;
+                                        case 'En preparación':
+                                            $status_class = 'preparing';
+                                            break;
+                                        case 'Lista':
+                                            $status_class = 'ready';
+                                            break;
+                                        default:
+                                            $status_class = 'default';
+                                            break;
+                                    }
 
                                     echo "<tr>
-                                            <td>" . $row['order_number'] . "</td>
+                                            <td>#ORD-" . $row['order_number'] . "</td>
                                             <td>" . ucwords($row['customer']) . "</td>
-                                            <td>" . $row['saucer'] . "</td>
-                                            <td>" . $row['quantity'] . "</td>
-                                            <td>" . ucfirst($row['personalization']) . "</td>
-                                            <td><span>" . $row['order_status'] . "</span></td>
+                                            <td>" . $formatted_date . "</td>
+                                            <td><span class='" . $status_class . "'>" . $row['order_status'] . "</span></td>
                                             <td>" . $row['type_service'] . "</td>
-                                            <td>" . $row['estimated_time'] . "</td>
+                                            <td class='view-details'>
+                                                <a href='details.php?order_number=$order_number'>Ver</a>
+                                            </td>
                                             <td>
                                                 <a href='functions/delete.php?id=$id'>
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
@@ -124,7 +151,7 @@
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='6'>No hay datos registrados para el personal.</td>
+                                        <td colspan='6'>No hay ordenes pendientes.</td>
                                       </tr>";
                             }
                         ?>

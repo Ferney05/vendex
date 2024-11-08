@@ -78,7 +78,7 @@
         <section class="add-orders-form" id="hidden-modal">
             <div class="add-form">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Agregar ordenes</h2>
+                    <h2 class="tlt-function">Agregar platos a la orden</h2>
                     
                     <div class="create-update">
                         <a href="pending-orders.php" class="button-function">
@@ -89,19 +89,39 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="functions/adding-orders.php" method="POST" class="form">
+                    <form action="functions/adding-dish-order.php" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="order-number">Número de orden</label>
-                                    <input type="number" name="order-number" class="input-form" placeholder="Número de orden" required>
-                                </div>
-                                
-                                <div class="label-input">
-                                    <label for="customer">Cliente</label>
-                                    <input type="text" name="customer" class="input-form" placeholder="Cliente" required>
+                                    <input type="number" name="order-number" class="input-form" id="order-number" placeholder="Número de orden" required>
                                 </div>
 
+                                <script>
+                                    $(document).ready(function(){
+                                        $('#order-number').autocomplete({
+                                            source: function(request, response) {
+                                                $.ajax({
+                                                    url: "functions/autocomplete-order-number.php",
+                                                    type: "POST",
+                                                    data: { query: request.term },
+                                                    success: function(data) {
+                                                        response($.parseJSON(data));
+                                                    }
+                                                });
+                                            },
+                                            minLength: 1
+                                        });
+                                    });
+                                </script> 
+
+                                <div class="label-input">
+                                    <label for="estimated-time">Tiempo estimado en minutos</label>
+                                    <input type="number" name="estimated-time" class="input-form" placeholder="Tiempo estimado" required>
+                                </div>
+                            </div>
+
+                            <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="saucer">Platillo</label>
                                     <input type="text" name="saucer" class="input-form" id="saucer" placeholder="Platillo" required>
@@ -124,6 +144,11 @@
                                         });
                                     });
                                 </script> 
+
+                                <div class="label-input">
+                                    <label for="personalization">Personalización</label>
+                                    <input type="text" name="personalization" class="input-form" placeholder="Personalización" required>
+                                </div>
                             </div>
 
                             <div class="content-labels-inputs">
@@ -132,40 +157,8 @@
                                     <input type="number" name="quantity" class="input-form" placeholder="Cantidad" required>
                                 </div>
 
-                                <div class="label-input">
-                                    <label for="personalization">Personalización</label>
-                                    <input type="text" name="personalization" class="input-form" placeholder="Personalización" required>
-                                </div>
-
-                                <div class="label-input">
-                                    <label for="status">Estado</label>
-                                    <select name="status" id="" class="select" required>
-                                        <option value="" disabled selected>Seleccione</option>
-                                        <option value="En espera">En espera</option>
-                                        <option value="En preparación">En preparación</option>
-                                        <option value="Lista">Lista</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="content-labels-inputs">
-                                <div class="label-input">
-                                    <label for="type-service">Tipo de servicio</label>
-                                    <select name="type-service" id="" class="select" required>
-                                        <option value="" disabled selected>Seleccione</option>
-                                        <option value="Comer en el lugar">Comer en el lugar</option>
-                                        <option value="Para llevar">Para llevar</option>
-                                        <option value="A domicilio">A domicilio</option>
-                                    </select>
-                                </div>
-
-                                <div class="label-input">
-                                    <label for="estimated-time">Tiempo estimado</label>
-                                    <input type="text" name="estimated-time" class="input-form" placeholder="Tiempo estimado" required>
-                                </div>
-
                                 <div class="button-submit">
-                                    <input type="submit" name="button-add-orders" class="btn-form" value="Agregar">
+                                    <input type="submit" name="button-add-dish" class="btn-form" value="Agregar">
                                 </div>
                             </div>
                         </div>
