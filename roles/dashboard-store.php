@@ -101,20 +101,16 @@
 
                     <div class="accordion-content">
                         <div>
-                            <!-- <a href="store/earnings/today-earnings.php">
+                            <a href="store/credits/see-credits.php">
                                 <img src="../svg/eyes.svg" alt="">
-                                <p>Ver ganancias de ventas</p>
-                            </a> -->
-
-                            <a href="#" class="premium">
-                                <img src="../svg/secure.svg" alt="">
-                                <p>Versión premium</p>
+                                <p>Ver créditos</p>
                             </a>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="accordion">
+                <!-- <div class="accordion">
                     <div class="accordion-btn">
                         <span>Reportes generados</span>
                         <img src="../svg/down-arrow.svg" class="down-arrow" alt="">
@@ -123,10 +119,10 @@
 
                     <div class="accordion-content">
                         <div>
-                            <!-- <a href="store/earnings/today-earnings.php">
+                            <a href="store/earnings/today-earnings.php">
                                 <img src="../svg/eyes.svg" alt="">
                                 <p>Ver ganancias de ventas</p>
-                            </a> -->
+                            </a> 
 
                             <a href="#" class="premium">
                                 <img src="../svg/secure.svg" alt="">
@@ -134,7 +130,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
 

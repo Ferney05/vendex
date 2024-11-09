@@ -6,8 +6,8 @@
         $id_order = $_GET['id'];
     }
 
-    $deleteRecipe = "DELETE FROM pending_orders WHERE id = $id_order";
-    $executeDeleteRecipe = mysqli_query($conexion, $deleteRecipe);
+    $deleteOrder = "DELETE FROM pending_orders WHERE id = $id_order";
+    $executeDeleteOrder = mysqli_query($conexion, $deleteOrder);
 
     header("Location: ../pending-orders.php");
     exit();

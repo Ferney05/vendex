@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de créditos - Vendex</title>
+    <link rel="stylesheet" href="../../../css/store/credits.css">
+    <link rel="stylesheet" href="../../../css/base-premium.css">
+    <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
+
+    <?php
+        include("../../../conexion.php");
+
+        session_start();
+
+        if (isset($_SESSION['user_id'])) {
+            $id_user = $_SESSION['user_id']; 
+        } else {
+            header("Location: ../../../index.php");
+            exit(); 
+        }
+    ?>
+</head>
+<body>
+
+    <main class="main">
+        <nav class="nav-dash">
+            <a href="../../dashboard-store.php" class="go-dash">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z"/></svg>
+                <p>Dashboard</p>
+            </a>
+
+            <div class="user-modal">
+                <div class="username">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
+                    <div class="name-down">
+                        <?php
+                            $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
+                            $result = mysqli_query($conexion, $queryData);
+                            $rowData = mysqli_fetch_assoc($result);
+                            
+                            echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                        ?>
+                        <img src="../../../svg/down-arrow.svg" alt="">
+                    </div>
+                </div>
+
+                <div class="modal-dash">
+                    <div class="border-modal">
+                        <div class="name-logout">
+                            <div class="myself">
+                                <?php
+                                    $queryData = "SELECT name, lastname, role FROM users WHERE id = $id_user";
+                                    $result = mysqli_query($conexion, $queryData);
+                                    $rowData = mysqli_fetch_assoc($result);
+                                    
+                                    echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
+                                    echo "<p class='rol'>" . $rowData['role'] . "</p>"
+                                ?>
+                            </div>
+
+                            <div class="options-modal">
+                                <a href="../../../app/users/logout.php">
+                                    <p>Salir</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#eee" d="M16 18H6V8h3v4.77L15.98 6L18 8.03L11.15 15H16z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="sect-credits" id="hidden-modal">
+            <div class="credits">
+                <div class="tlt-button">
+                    <h2 class="tlt-function">Control de créditos</h2>
+                    
+                    <div class="content-buttons">
+                        <a href="create-credits.php" class="btn-new-sale">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
+                            <p>Crear crédito</p>
+                        </a>
+
+                        <a href="fertilizers.php" class="btn-new-sale">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12.005 22.003c-5.523 0-10-4.477-10-10s4.477-10 10-10s10 4.477 10 10s-4.477 10-10 10m-3.5-8v2h2.5v2h2v-2h1a2.5 2.5 0 1 0 0-5h-4a.5.5 0 1 1 0-1h5.5v-2h-2.5v-2h-2v2h-1a2.5 2.5 0 1 0 0 5h4a.5.5 0 0 1 0 1z"/></svg>
+                            <p>Abonar</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="content-table">
+                    <table>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Fecha de creación</th>
+                            <th>Fecha de vencimiento</th>
+                            <th>Saldo total</th>
+                            <th>Abonos realizados</th>
+                            <th>Saldo actual</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+
+                        <?php
+                            $queryCredits = "SELECT * FROM credits";
+                            $resultCredits = mysqli_query($conexion, $queryCredits);
+
+                            if($resultCredits -> num_rows > 0) {
+                                while ($row = mysqli_fetch_assoc($resultCredits)){
+                                    $id = $row['id'];
+                                    $current_balance = $row['amount_borrowed'] - $row['fertilizers'];
+
+                                    $status_class = '';
+                                    switch ($row['credit_status']) {
+                                        case 'Pendiente':
+                                            $status_class = 'pending';
+                                            break;
+                                        case 'Pagado':
+                                            $status_class = 'paid';
+                                            break;
+                                        case 'Vencido':
+                                            $status_class = 'defeated';
+                                            break;
+                                        default:
+                                            $status_class = 'default';
+                                            break;
+                                    }
+
+                                    echo "<tr>
+                                            <td>" . $row['customer'] . "</td>
+                                            <td>" . $row['creation_date'] . "</td>
+                                            <td>" . $row['expiration_date'] . "</td>
+                                            <td>$" . number_format($row['amount_borrowed'], 0) . "</td>
+                                            <td>$" . number_format($row['fertilizers'], 0) . "</td>
+                                            <td>$" . number_format($current_balance, 0) . "</td>
+                                            <td><span class='" . $status_class . "'>" . $row['credit_status'] . "</span></td>
+                                            <td>
+                                                <a href='functions/delete.php?id=$id'>
+                                                    <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
+                                                </a>
+    
+                                                <a href='functions/get-data.php?id=$id'>
+                                                    <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><g fill='none' stroke='#3289d1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path stroke-dasharray='20' stroke-dashoffset='20' d='M3 21h18'><animate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='20;0'/></path><path fill='#3289d1' fill-opacity='0' stroke-dasharray='48' stroke-dashoffset='48' d='M7 17v-4l10 -10l4 4l-10 10h-4'><animate fill='freeze' attributeName='fill-opacity' begin='1.1s' dur='0.15s' values='0;0.3'/><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.2s' dur='0.6s' values='48;0'/></path><path stroke-dasharray='8' stroke-dashoffset='8' d='M14 6l4 4'><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.8s' dur='0.2s' values='8;0'/></path></g></svg>
+                                                </a>
+                                            </td>
+                                        </tr>";
+                                }
+                            } else {
+                                echo "<tr>
+                                        <td colspan='8'>No hay créditos creados aún.</td>
+                                      </tr>";
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="premium">
+            <div class="content">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#eee" d="M12 13a1.49 1.49 0 0 0-1 2.61V17a1 1 0 0 0 2 0v-1.39A1.49 1.49 0 0 0 12 13m5-4V7A5 5 0 0 0 7 7v2a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-7a3 3 0 0 0-3-3M9 7a3 3 0 0 1 6 0v2H9Zm9 12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1Z"/></svg>
+                    <p>Solo disponible para la versión premium.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="show-modal-add.js"></script>
+    <script src="../../../js/base-nav-dash.js"></script>
+
+</body>
+</html>

@@ -105,17 +105,6 @@
     font-size: .9rem;
 }
 
-.accordion-content div .premium {
-    display: flex;
-    align-items: center;
-    background-color: #181e2a;
-    border: 2px solid var(--color-slate-gray);
-    pointer-events: none;
-}
-
-.accordion-content div .premium p {
-    font-size: .9rem;
-}
 
 
 
