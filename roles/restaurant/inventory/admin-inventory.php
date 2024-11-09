@@ -151,7 +151,7 @@
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='10'>No hay productos</td>
+                                        <td colspan='10'>No hay recetas aún.</td>
                                       </tr>";
                             }
                         ?>

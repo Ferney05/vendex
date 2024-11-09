@@ -151,7 +151,7 @@
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='6'>No hay ordenes pendientes.</td>
+                                        <td colspan='7'>No hay ordenes pendientes.</td>
                                       </tr>";
                             }
                         ?>

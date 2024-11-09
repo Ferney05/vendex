@@ -113,7 +113,7 @@
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='3'>No hay ventas realizadas aún.</td>
+                                        <td colspan='4'>No hay ventas realizadas aún.</td>
                                       </tr>";
                             }
                         ?>

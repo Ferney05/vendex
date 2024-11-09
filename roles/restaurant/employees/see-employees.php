@@ -161,7 +161,7 @@
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='10'>No hay productos</td>
+                                        <td colspan='10'>No hay empleados aún.</td>
                                       </tr>";
                             }
                         ?>

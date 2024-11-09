@@ -138,16 +138,22 @@
 
     overflow-y: scroll;
     overflow-x: hidden;
+    height: 860px;
+}
+
+.scroll-dash {
+    background-color: transparent;
+    overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
-    width: 0;
+    width: 1px;
 }
 
 .grid-one {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    padding: 1rem;
+    padding: 1rem 0;
     box-sizing: border-box;
 }
 
