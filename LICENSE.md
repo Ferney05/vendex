@@ -17,7 +17,7 @@ Vendex es un sistema de gestión de inventarios desarrollado y propiedad de Fern
 
 ### 3.1 Licencia Básica para Tienda
 
-**Precio**: 350,000 COP mensual
+**Precio**: 300,000 COP mensual
 
 **Incluye**:
 - Acceso completo al sistema de gestión de inventarios
@@ -55,7 +55,7 @@ Vendex es un sistema de gestión de inventarios desarrollado y propiedad de Fern
 
 ### 3.3 Licencia Premium para Tienda
 
-**Precio**: 500,000 COP mensual
+**Precio**: 450,000 COP mensual
 
 **Incluye todo lo de la licencia básica más**:
 - Gestión de actualizaciones en sitio
