@@ -38,7 +38,17 @@
     display: flex;
     align-items: center;
     gap: .3rem;
-    background-color: var(--color-light-blue);
+     background: linear-gradient(
+        90deg,
+        #04BEFA,
+        #647adb,
+        #7b66d0,
+        #9554c9,
+        #04BEFA
+    );
+    background-size: 200%; 
+    animation: gradient-move 5s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
     padding: .5rem 1rem;
     border-radius: 10px;
     cursor: pointer;
@@ -49,11 +59,30 @@
     display: flex;
     align-items: center;
     gap: .3rem;
-    background-color: var(--color-light-blue);
+     background: linear-gradient(
+        90deg,
+        #04BEFA,
+        #647adb,
+        #7b66d0,
+        #9554c9,
+        #04BEFA
+    );
+    background-size: 200%; 
+    animation: gradient-move 5s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
     padding: .5rem 1rem;
     border-radius: 10px;
     font-size: .9rem;
     text-decoration: none;
+}
+
+@keyframes gradient-move {
+    from {
+        background-position: 0% 50%;
+    }
+    to {
+        background-position: 200% 50%;
+    }
 }
 
 .content-form {
@@ -114,11 +143,11 @@
 }
 
 .input-form:focus, .select:focus {
-    border-color: var(--color-light-blue);
+    border-color: var(--color-blue-stone);
 }
 
 .input-form:valid, .select:valid {
-    border-color: var(--color-light-green);
+    border-color: var(--color-dark-sky-blue);
 }
 
 .button-submit {
@@ -134,7 +163,17 @@
     padding: .5rem 0;
     border-radius: 10px;
     font-size: 1rem;
-    background-color: var(--color-light-blue);
+    background: linear-gradient(
+        90deg,
+        #04BEFA,
+        #647adb,
+        #7b66d0,
+        #9554c9,
+        #04BEFA
+    );
+    background-size: 200%; 
+    animation: gradient-move 5s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
 }
 
@@ -148,7 +187,7 @@
     position: absolute;
     height: 100vh;
     width: 100%;
-    background-color: #ffffffbf;
+    background-color: #ffffff00;
     backdrop-filter: blur(20px);
 }
 
@@ -192,7 +231,7 @@
 
 .tlt-close h2 {
     font-size: 3rem;
-    color: var(--color-light-green);
+    color: var(--color-blue-stone);
 }
 
 .label-input .label-modal {
@@ -204,17 +243,27 @@
 }
 
 .border-input:valid {
-    border-color: var(--color-light-green) !important;
+    border-color: var(--color-sky-blue) !important;
 }
 
 .btn-form-modal {
     margin-top: .5rem;
     border: none;
-    background-color: var(--color-light-green);
     color: var(--color-white);
     padding: .4rem;
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
     outline: none;
+    background: linear-gradient(
+        90deg,
+        #04BEFA,
+        #647adb,
+        #7b66d0,
+        #9554c9,
+        #04BEFA
+    );
+    background-size: 200%; 
+    animation: gradient-move 5s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
 }

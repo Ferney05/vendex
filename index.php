@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendex - Gestión de Inventarios Inteligente</title>
-    <link rel="shortcut icon" href="svg/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="svg/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
@@ -13,8 +13,7 @@
         <nav class="nav-home">
             <div class="logo-buttons">
                 <div class="logo">
-                    <img src="svg/icon-vendex.svg" alt="Logo de Vendex">
-                    <h1>ENDEX</h1>
+                    <img src="svg/vendex.png" class="vendex" alt="Logo de Vendex">
                 </div>
 
                 <div class="buttons">
@@ -59,9 +58,8 @@
                 <div class="logo-form">
                     <div class="logo-close">
                         <div class="none-logo">
-                            <div class="logo-icon">
-                                <img src="svg/icon-vendex.svg" alt="Logo de Vendex">
-                                <h1>ENDEX</h1>
+                            <div class="icono">
+                                <img src="svg/icono-vendex.png" class="icono-vendex" alt="Logo de Vendex">
                             </div>
                         </div>
 
@@ -113,9 +111,8 @@
                 <div class="logo-form">
                     <div class="logo-close">
                         <div class="none-logo">
-                            <div class="logo-icon">
-                                <img src="svg/icon-vendex.svg" alt="Logo de Vendex">
-                                <h1>ENDEX</h1>
+                            <div class="icono">
+                                <img src="svg/icono-vendex.png" class="icono-vendex" alt="Logo de Vendex">
                             </div>
                         </div>
 
@@ -160,9 +157,8 @@
                 <div class="logo-form">
                     <div class="logo-close">
                         <div class="none-logo">
-                            <div class="logo-icon">
-                                <img src="svg/icon-vendex.svg" alt="Logo de Vendex">
-                                <h1>ENDEX</h1>
+                            <div class="icono">
+                                <img src="svg/icono-vendex.png" class="icono-vendex" alt="Logo de Vendex">
                             </div>
                         </div>
 

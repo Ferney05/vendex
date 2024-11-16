@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar productos al inventario - Vendex</title>
     <link rel="stylesheet" href="../../../css/store/add-products.css">
-    <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
     <?php
         include("../../../conexion.php");
@@ -31,7 +31,7 @@
 
             <div class="user-modal">
                 <div class="username">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512"><path fill="#04BEFA" d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208s208-93.31 208-208S370.69 48 256 48m2 96a72 72 0 1 1-72 72a72 72 0 0 1 72-72m-2 288a175.55 175.55 0 0 1-129.18-56.6C135.66 329.62 215.06 320 256 320s120.34 9.62 129.18 55.39A175.52 175.52 0 0 1 256 432"/></svg>
                     <div class="name-down">
                         <?php
                             $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";

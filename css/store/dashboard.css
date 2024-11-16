@@ -29,6 +29,11 @@
     grid-row: 1 / 2;
 }
 
+.logo .vendex {
+    width: 220px;
+    user-select: none;
+}
+
 .functions-dash {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
@@ -97,7 +102,7 @@
 }
 
 .accordion-content div a:hover {
-    background-color: var(--color-light-green);
+    background-color: var(--color-sky-blue);
 }
 
 .accordion-content div a p {

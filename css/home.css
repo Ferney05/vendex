@@ -37,24 +37,9 @@
     box-sizing: border-box;
 }
 
-.logo-buttons .logo {
-    display: flex;
-    align-items: center;
-    letter-spacing: 3px;
-}
-
-.logo h1 {
-    background: linear-gradient(200deg, var(--color-light-green), var(--color-light-blue), var(--color-light-green)); 
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 3.2rem;
-    letter-spacing: 3px;
-    font-weight: 500;
-    margin-top: -.1rem;
-    background-size: 300%;
-    background-position: 0% 50%; 
-    animation: moveGradient 4s ease-in-out infinite;
+.logo .vendex {
+    width: 250px;
+    user-select: none;
 }
 
 .logo-buttons .buttons {
@@ -127,16 +112,16 @@
     padding: .7rem 0;
     border-radius: 10px;
     cursor: pointer;
-    background-color: var(--color-light-blue);
-    border: 1px solid var(--color-light-blue);
+    background-color: var(--color-sky-blue);
+    border: 1px solid var(--color-sky-blue);
     color: var(--color-white);
     font-weight: 400;
     font-size: 1rem;
 }
 
 .psb button:hover {
-    background-color: #356bab;
-    border-color: #356bab;
+    background-color: #07b2f5;
+    border-color: #07b2f5;
 }
 
 /*? MODALS */
@@ -146,7 +131,7 @@
     position: absolute;
     height: 100vh;
     width: 100%;
-    background-color: #ffffffbf;
+    background-color: #ffffff00;
     backdrop-filter: blur(20px);
 }
 
@@ -155,7 +140,7 @@
     position: absolute;
     height: 100vh;
     width: 100%;
-    background-color: #ffffffbf;
+    background-color: #ffffff00;
     backdrop-filter: blur(20px);
 }
 
@@ -164,7 +149,7 @@
     position: absolute;
     height: 100vh;
     width: 100%;
-    background-color: #ffffffbf;
+    background-color: #ffffff00;
     backdrop-filter: blur(20px);
 }
 
@@ -198,34 +183,9 @@
     box-sizing: border-box;
 }
 
-.logo-icon {
-    display: flex;
-}
-
-.logo-icon h1 {
-    background: linear-gradient(200deg, var(--color-light-green), var(--color-light-blue), var(--color-light-green)); 
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 3.2rem;
-    letter-spacing: 3px;
-    font-weight: 500;
-    margin-top: -.1rem;
-    background-size: 300%;
-    background-position: 0% 50%; 
-    animation: moveGradient 4s ease-in-out infinite;
-}
-
-@keyframes moveGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;  
-    }
+.icono .icono-vendex {
+    width: 80px;
+    user-select: none;
 }
 
 .close-modals svg {
@@ -259,7 +219,11 @@
 .tlt-form-modal {
     font-size: 4rem;
     text-align: center;
-    color: #6ac04ed7;
+    /* CSS para el degradado de texto */
+    background: linear-gradient(190deg, #04BEFA, #647adb, #9554c9, #04BEFA);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
 }
 
 .text-form-modal {
@@ -316,7 +280,7 @@
 }
 
 .input:valid, .select:valid {
-    border-color: #6ac04e7e;
+    border-color: var(--color-blue-stone);
 }
 
 .content-a {
@@ -340,7 +304,7 @@
     width: 100%;
     padding: .4rem 0;
     border-radius: 10px;
-    background-color: var(--color-light-green);
+    background-color: var(--color-blue-stone);
     color: var(--color-white);
     font-weight: 500;
     font-size: 1rem;

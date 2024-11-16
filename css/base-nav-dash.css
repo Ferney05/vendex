@@ -79,7 +79,7 @@
 .myself .rol {
     font-size: .9rem;
     font-style: oblique;
-    color: var(--color-light-green);
+    color: var(--color-sky-blue);
 }
 
 .options-modal {
@@ -123,11 +123,11 @@
 }
 
 .go-dash:hover svg path {
-    fill: var(--color-light-green);
+    fill: var(--color-sky-blue);
 }
 
 .go-dash:hover p {
-    color: var(--color-light-green);
+    color: var(--color-sky-blue);
 }
 
 
