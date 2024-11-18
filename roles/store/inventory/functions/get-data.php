@@ -84,7 +84,7 @@
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar producto</h2>
                     
-                    <a href="../admin-inventory.php" class="button-function">
+                    <a href="../admin-inventory.php" class="button-function bg-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
                         <p>Administrar inventario</p>
                     </a>
@@ -96,24 +96,24 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="name-product">Nombre del producto</label>
-                                    <input type="text" name="name-product" class="input-form" placeholder="Nombre del producto" value="<?php echo $row['product_name'] ?>" required>
+                                    <input type="text" name="name-product" class="input-form b-col-fcs-val" placeholder="Nombre del producto" value="<?php echo $row['product_name'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="purchase-price">Precio de compra</label>
-                                    <input type="number" name="purchase-price" class="input-form" placeholder="Precio de compra" value="<?php echo $row['purchase_price'] ?>" required>
+                                    <input type="number" name="purchase-price" class="input-form b-col-fcs-val" placeholder="Precio de compra" value="<?php echo $row['purchase_price'] ?>" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="product-description">Descripción del producto</label>
-                                    <input type="text" name="product-description" class="input-form" placeholder="Descripción" value="<?php echo $row['product_description'] ?>" required>
+                                    <input type="text" name="product-description" class="input-form b-col-fcs-val" placeholder="Descripción" value="<?php echo $row['product_description'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="id-category">Categoría</label>
-                                    <select name="id-category" class="select" required>
+                                    <select name="id-category" class="select b-col-fcs-val" required>
                                         <?php
                                             $getCategory = "SELECT id, category FROM categories_store WHERE id = $id_category";
                                             $result = mysqli_query($conexion, $getCategory);
@@ -127,29 +127,29 @@
 
                                 <div class="label-input">
                                     <label for="sale-price">Precio de venta</label>
-                                    <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" value="<?php echo $row['sale_price'] ?>" required>
+                                    <input type="number" name="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" value="<?php echo $row['sale_price'] ?>" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="entry-date">Fecha de ingreso</label>
-                                    <input type="date" name="entry-date" class="input-form" value="<?php echo $row['entry_date'] ?>" required>
+                                    <input type="date" name="entry-date" class="input-form b-col-fcs-val" value="<?php echo $row['entry_date'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="supplier">Proveedor</label>
-                                    <input type="text" name="supplier" class="input-form" placeholder="Proveedor" value="<?php echo $row['supplier'] ?>" required>
+                                    <input type="text" name="supplier" class="input-form b-col-fcs-val" placeholder="Proveedor" value="<?php echo $row['supplier'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="quantity-stock">Cantidad en stock</label>
-                                    <input type="text" name="quantity-stock" class="input-form" placeholder="Cantidad disponible" value="<?php echo $row['stock_quantity'] ?>" required>
+                                    <input type="text" name="quantity-stock" class="input-form b-col-fcs-val" placeholder="Cantidad disponible" value="<?php echo $row['stock_quantity'] ?>" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="product-status">Estado del producto</label>
-                                    <select name="product-status" class="select" required>
+                                    <select name="product-status" class="select b-col-fcs-val" required>
                                         <option value="<?php echo $row['product_status'] ?>"><?php echo $row['product_status'] ?></option>
                                     </select>
                                 </div>
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-update-product" class="btn-form" value="Actualizar">
+                            <input type="submit" name="button-update-product" class="btn-form bg-btn" value="Actualizar">
                         </div>
 
                     </form>

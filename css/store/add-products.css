@@ -38,17 +38,6 @@
     display: flex;
     align-items: center;
     gap: .3rem;
-     background: linear-gradient(
-        90deg,
-        #04BEFA,
-        #647adb,
-        #7b66d0,
-        #9554c9,
-        #04BEFA
-    );
-    background-size: 200%; 
-    animation: gradient-move 5s infinite;
-    transition: transform 0.2s, box-shadow 0.2s;
     padding: .5rem 1rem;
     border-radius: 10px;
     cursor: pointer;
@@ -59,30 +48,10 @@
     display: flex;
     align-items: center;
     gap: .3rem;
-     background: linear-gradient(
-        90deg,
-        #04BEFA,
-        #647adb,
-        #7b66d0,
-        #9554c9,
-        #04BEFA
-    );
-    background-size: 200%; 
-    animation: gradient-move 5s infinite;
-    transition: transform 0.2s, box-shadow 0.2s;
     padding: .5rem 1rem;
     border-radius: 10px;
     font-size: .9rem;
     text-decoration: none;
-}
-
-@keyframes gradient-move {
-    from {
-        background-position: 0% 50%;
-    }
-    to {
-        background-position: 200% 50%;
-    }
 }
 
 .content-form {
@@ -142,14 +111,6 @@
     color: var(--color-light-black);
 }
 
-.input-form:focus, .select:focus {
-    border-color: var(--color-blue-stone);
-}
-
-.input-form:valid, .select:valid {
-    border-color: var(--color-dark-sky-blue);
-}
-
 .button-submit {
     display: flex;
     margin-top: 1rem;
@@ -163,17 +124,6 @@
     padding: .5rem 0;
     border-radius: 10px;
     font-size: 1rem;
-    background: linear-gradient(
-        90deg,
-        #04BEFA,
-        #647adb,
-        #7b66d0,
-        #9554c9,
-        #04BEFA
-    );
-    background-size: 200%; 
-    animation: gradient-move 5s infinite;
-    transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
 }
 
@@ -242,10 +192,6 @@
     border: 2px solid #dfdfdf !important;
 }
 
-.border-input:valid {
-    border-color: var(--color-sky-blue) !important;
-}
-
 .btn-form-modal {
     margin-top: .5rem;
     border: none;
@@ -255,15 +201,4 @@
     font-size: 1rem;
     cursor: pointer;
     outline: none;
-    background: linear-gradient(
-        90deg,
-        #04BEFA,
-        #647adb,
-        #7b66d0,
-        #9554c9,
-        #04BEFA
-    );
-    background-size: 200%; 
-    animation: gradient-move 5s infinite;
-    transition: transform 0.2s, box-shadow 0.2s;
 }

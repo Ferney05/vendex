@@ -1,4 +1,4 @@
-@import url('base-logo.css');
+@import url('fonts-colors.css');
 
 .main-home {
     height: 100vh;
@@ -63,13 +63,13 @@
 }
 
 .buttons > .access:first-child:hover {
-    border-color: #32b2e4;
+    border-color: var(--color-sky-blue);
 }
 
 .buttons > .access:last-child:hover {
     background-color: transparent;
     color: var(--color-white);
-    border-color: #32b2e4;
+    border-color: var(--color-sky-blue);
 }
 
 
@@ -219,10 +219,7 @@
 .tlt-form-modal {
     font-size: 4rem;
     text-align: center;
-    /* CSS para el degradado de texto */
-    background: linear-gradient(190deg, #04BEFA, #647adb, #9554c9, #04BEFA);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: var(--color-blue-stone);
     font-weight: bold;
 }
 
@@ -275,14 +272,6 @@
     border-radius: 10px;
 }
 
-.input:focus, .select:focus {
-    border-color: #3289d179;
-}
-
-.input:valid, .select:valid {
-    border-color: var(--color-blue-stone);
-}
-
 .content-a {
     position: relative;
     top: .5rem;
@@ -293,7 +282,7 @@
 .content-a a {
     text-decoration: none;
     font-size: .9rem;
-    color: var(--color-light-blue);
+    color: var(--color-sky-blue);
 }
 
 .content-a a:hover {

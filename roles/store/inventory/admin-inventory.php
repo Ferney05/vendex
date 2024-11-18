@@ -82,8 +82,8 @@
                     
                     <div class="search-add">
                         <form action="functions/search-product.php" method="POST" class="form-search">
-                            <input type="text" name="search" class="input-search" id="search" placeholder="Buscar por producto..." required>
-                            <input type="submit" name="button-search" class="btn-search" value="Buscar">
+                            <input type="text" name="search" class="input-search b-col-fcs-val" id="search" placeholder="Buscar por producto..." required>
+                            <input type="submit" name="button-search" class="btn-search bg-btn" value="Buscar">
                         </form>
 
                         <script>
@@ -105,7 +105,7 @@
                             });
                         </script>
                         
-                        <a href="add-products.php" class="add">
+                        <a href="add-products.php" class="add bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
                             <p>Agregar producto</p>
                         </a>

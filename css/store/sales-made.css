@@ -38,18 +38,6 @@
     display: flex;
     align-items: center;
     gap: .3rem;
-    background-color: var(--color-light-blue);
-    padding: .5rem 1rem;
-    border-radius: 10px;
-    font-size: .9rem;
-    text-decoration: none;
-}
-
-.button-function {
-    display: flex;
-    align-items: center;
-    gap: .3rem;
-    background-color: var(--color-light-blue);
     padding: .5rem 1rem;
     border-radius: 10px;
     font-size: .9rem;
@@ -139,7 +127,7 @@ tr:nth-child(2):hover {
         background-color: transparent;
     }
     50% {
-        background-color: #6ac04e93;
+        background-color: var(--color-blue-stone);
     }
     100% {
         background-color: transparent;

@@ -76,16 +76,16 @@
 
                         <div class="content-form">
                             <div class="content-inputs">
-                                <input type="text" name="name" class="input" placeholder="Tu nombre" required>
-                                <input type="text" name="lastname" class="input" placeholder="Tu apellido" required>
+                                <input type="text" name="name" class="input b-sky-val b-col-fcs" placeholder="Tu nombre" required>
+                                <input type="text" name="lastname" class="input b-sky-val b-col-fcs" placeholder="Tu apellido" required>
                             </div>
 
                             <div class="content-inputs">
-                                <input type="email" name="email" class="input" placeholder="Tu email" required>
+                                <input type="email" name="email" class="input b-sky-val b-col-fcs" placeholder="Tu email" required>
                             </div>
 
                             <div class="content-inputs">
-                                <input type="password" name="password" class="input" placeholder="Contraseña" required>
+                                <input type="password" name="password" class="input b-sky-val b-col-fcs" placeholder="Contraseña" required>
                                 <select name="role" id="" class="select" required>
                                     <option value="" disabled selected>Rol</option>
                                     <option value="Tienda">Tienda</option>
@@ -129,11 +129,11 @@
 
                         <div class="content-form">
                             <div class="content-inputs">
-                                <input type="email" name="email" class="input" placeholder="Tu email" required>
+                                <input type="email" name="email" class="input b-sky-val b-col-fcs" placeholder="Tu email" required>
                             </div>
 
                             <div class="content-inputs">
-                                <input type="password" name="password" class="input" placeholder="Contraseña" required>
+                                <input type="password" name="password" class="input b-sky-val b-col-fcs" placeholder="Contraseña" required>
                             </div>
 
                             <div class="content-inputs">
@@ -175,11 +175,11 @@
 
                         <div class="content-form">
                             <div class="content-inputs">
-                                <input type="email" name="email" class="input" placeholder="Tu email" required>
+                                <input type="email" name="email" class="input b-sky-val b-col-fcs" placeholder="Tu email" required>
                             </div>
 
                             <div class="content-inputs">
-                                <input type="password" name="new-password" class="input" placeholder="Nueva contraseña" required>
+                                <input type="password" name="new-password" class="input b-sky-val b-col-fcs" placeholder="Nueva contraseña" required>
                             </div>
 
                             <div class="content-inputs">

@@ -34,22 +34,10 @@
     gap: 1.5rem;
 }
 
-.button-create-category {
-    display: flex;
-    align-items: center;
-    gap: .3rem;
-    background-color: var(--color-light-blue);
-    padding: .5rem 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: .9rem;
-}
-
 .button-function {
     display: flex;
     align-items: center;
     gap: .3rem;
-    background-color: var(--color-light-blue);
     padding: .5rem 1rem;
     border-radius: 10px;
     font-size: .9rem;
@@ -113,14 +101,6 @@
     color: var(--color-light-black);
 }
 
-.input-form:focus, .select:focus {
-    border-color: var(--color-light-blue);
-}
-
-.input-form:valid, .select:valid {
-    border-color: var(--color-light-green);
-}
-
 .button-submit {
     display: flex;
     margin-top: 1rem;
@@ -134,7 +114,6 @@
     padding: .5rem 0;
     border-radius: 10px;
     font-size: 1rem;
-    background-color: var(--color-light-blue);
     cursor: pointer;
 }
 

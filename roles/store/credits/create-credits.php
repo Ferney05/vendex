@@ -76,7 +76,7 @@
                     <h2 class="tlt-function">Crear crédito</h2>
                     
                     <div class="create-update">
-                        <a href="see-credits.php" class="button-function">
+                        <a href="see-credits.php" class="button-function bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
                             <p>Ver créditos</p>
                         </a>
@@ -89,17 +89,17 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="customer">Cliente</label>
-                                    <input type="text" name="customer" class="input-form" placeholder="Cliente" required>
+                                    <input type="text" name="customer" class="input-form b-sky-val b-col-fcs-val" placeholder="Cliente" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="creation-date">Fecha de creación</label>
-                                    <input type="date" name="creation-date" class="input-form" required>
+                                    <input type="date" name="creation-date" class="input-form b-sky-val b-col-fcs-val" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="status">Estado</label>
-                                    <select name="status" class="select" required>
+                                    <select name="status" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <option value="Pendiente">Pendiente</option>
                                         <option value="Pagado">Pagado</option>
@@ -111,16 +111,16 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="amount-borrowed">Monto prestado</label>
-                                    <input type="number" name="amount-borrowed" class="input-form" placeholder="Monto prestado" required>
+                                    <input type="number" name="amount-borrowed" class="input-form b-col-fcs-val" placeholder="Monto prestado" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="expiration-date">Fecha de vencimiento</label>
-                                    <input type="date" name="expiration-date" class="input-form" required>
+                                    <input type="date" name="expiration-date" class="input-form b-col-fcs-val" required>
                                 </div>
 
                                 <div class="button-submit">
-                                    <input type="submit" name="button-create-credit" class="btn-form" value="Crear">
+                                    <input type="submit" name="button-create-credit" class="btn-form bg-btn" value="Crear">
                                 </div>
                             </div>
                         </div>

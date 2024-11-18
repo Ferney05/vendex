@@ -76,12 +76,12 @@
                     <h2 class="tlt-function">Agregar producto</h2>
                     
                     <div class="create-update">
-                        <div class="button-create-category">
+                        <div class="button-create-category bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M2 20V4h8l2 2h10v14zm12-4h2v-2h2v-2h-2v-2h-2v2h-2v2h2z"/></svg>
                             <p>Crear categoría</p>
                         </div>
 
-                        <a href="admin-inventory.php" class="button-function">
+                        <a href="admin-inventory.php" class="button-function bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
                             <p>Administrar inventario</p>
                         </a>
@@ -94,24 +94,24 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="name-product">Nombre del producto</label>
-                                    <input type="text" name="name-product" class="input-form" placeholder="Nombre del producto" required>
+                                    <input type="text" name="name-product" class="input-form b-col-fcs-val" placeholder="Nombre del producto" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="purchase-price">Precio de compra</label>
-                                    <input type="number" name="purchase-price" class="input-form" placeholder="Precio de compra" required>
+                                    <input type="number" name="purchase-price" class="input-form b-col-fcs-val" placeholder="Precio de compra" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="product-description">Descripción del producto</label>
-                                    <input type="text" name="product-description" class="input-form" placeholder="Descripción" required>
+                                    <input type="text" name="product-description" class="input-form b-col-fcs-val" placeholder="Descripción" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="id-category">Categoría</label>
-                                    <select name="id-category" class="select" required>
+                                    <select name="id-category" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <?php
                                             $getCategory = "SELECT * FROM categories_store";
@@ -126,29 +126,29 @@
 
                                 <div class="label-input">
                                     <label for="sale-price">Precio de venta</label>
-                                    <input type="number" name="sale-price" class="input-form" placeholder="Precio de venta" required>
+                                    <input type="number" name="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="entry-date">Fecha de ingreso</label>
-                                    <input type="date" name="entry-date" class="input-form" required>
+                                    <input type="date" name="entry-date" class="input-form b-col-fcs-val" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="supplier">Proveedor</label>
-                                    <input type="text" name="supplier" class="input-form" placeholder="Proveedor" required>
+                                    <input type="text" name="supplier" class="input-form b-col-fcs-val" placeholder="Proveedor" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="quantity-stock">Cantidad en stock</label>
-                                    <input type="text" name="quantity-stock" class="input-form" placeholder="Cantidad disponible" required>
+                                    <input type="text" name="quantity-stock" class="input-form b-col-fcs-val" placeholder="Cantidad disponible" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="product-status">Estado del producto</label>
-                                    <select name="product-status" class="select" required>
+                                    <select name="product-status" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <option value="Activo">Activo</option>
                                         <option value="Agotado">Agotado</option>
@@ -158,7 +158,7 @@
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-add-product" class="btn-form" value="Agregar">
+                            <input type="submit" name="button-add-product" class="btn-form bg-btn" value="Agregar">
                         </div>
 
                     </form>
@@ -177,11 +177,11 @@
                     <form action="functions/create-category.php" method="POST" class="form-modal">
                         <div class="label-input">
                             <label for="name-category" class="label-modal">Nombre de la categoría</label>
-                            <input type="text" name="name-category" class="input-form border-input" placeholder="Categoría" required>
+                            <input type="text" name="name-category" class="input-form border-input b-col-fcs-val" placeholder="Categoría" required>
                         </div>
 
                         <div class="label-input">
-                            <input type="submit" name="button-create-category" class="btn-form-modal" value="Crear">
+                            <input type="submit" name="button-create-category" class="btn-form-modal bg-btn" value="Crear">
                         </div>
                     </form>
                 </div>

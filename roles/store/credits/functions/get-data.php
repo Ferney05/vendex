@@ -89,7 +89,7 @@
                     <h2 class="tlt-function">Actualizar créditos</h2>
                     
                     <div class="create-update">
-                        <a href="../see-credits.php" class="button-function">
+                        <a href="../see-credits.php" class="button-function bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
                             <p>Ver créditos</p>
                         </a>
@@ -102,17 +102,17 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="customer">Cliente</label>
-                                    <input type="text" name="customer" class="input-form" placeholder="Cliente" value="<?php echo $row['customer'] ?>" required>
+                                    <input type="text" name="customer" class="input-form b-col-fcs-val" placeholder="Cliente" value="<?php echo $row['customer'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="creation-date">Fecha de creación</label>
-                                    <input type="date" name="creation-date" class="input-form" value="<?php echo $row['creation_date'] ?>" required>
+                                    <input type="date" name="creation-date" class="input-form b-col-fcs-val" value="<?php echo $row['creation_date'] ?>" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="status">Estado</label>
-                                    <select name="status" class="select" required>
+                                    <select name="status" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <?php
                                             if($row['credit_status'] == 'Pendiente') {
@@ -136,16 +136,16 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="amount-borrowed">Monto prestado</label>
-                                    <input type="number" name="amount-borrowed" class="input-form" placeholder="Monto prestado" value="<?php echo $row['amount_borrowed'] ?>" required>
+                                    <input type="number" name="amount-borrowed" class="input-form b-col-fcs-val" placeholder="Monto prestado" value="<?php echo $row['amount_borrowed'] ?>" required>
                                 </div>
                                 
                                 <div class="label-input">
                                     <label for="expiration-date">Fecha de vencimiento</label>
-                                    <input type="date" name="expiration-date" class="input-form" value="<?php echo $row['expiration_date'] ?>" required>
+                                    <input type="date" name="expiration-date" class="input-form b-col-fcs-val" value="<?php echo $row['expiration_date'] ?>" required>
                                 </div>
 
                                 <div class="button-submit">
-                                    <input type="submit" name="button-update-credit" class="btn-form" value="Actualizar">
+                                    <input type="submit" name="button-update-credit" class="btn-form bg-btn" value="Actualizar">
                                 </div>
                             </div>
                         </div>

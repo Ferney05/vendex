@@ -5,6 +5,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
 
+@import url('base-btn-bd.css');
+
 :root {
     --font-montserrat: 'Montserrat', sans-serif;
     --font-playwrite: "Playwrite DE Grund";
@@ -18,8 +20,13 @@
     --color-light-yellow: #d18f43;
 
     --color-sky-blue: #04BEFA;
+    
     --color-dark-sky-blue: #04b9f7;
+    --color-transparent-sky-blue: #04baf780;
+
     --color-blue-stone: #647adb;
+    --color-transparent-blue-stone: #647adb80;
+    
     --color-amethyst: #7b66d0;
     --color-purple-pizzazz: #9554c9;
 

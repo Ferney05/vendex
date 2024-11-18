@@ -109,14 +109,6 @@
     border-radius: 10px;
 }
 
-.input-form:focus, .select:focus {
-    border-color: var(--color-light-blue);
-}
-
-.input-form:valid, .select:valid {
-    border-color: var(--color-light-green);
-}
-
 .button-submit {
     display: flex;
     margin-top: 1rem;
