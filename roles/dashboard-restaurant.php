@@ -567,15 +567,19 @@
 
                                                             //? CÁLCULO DEL PORCENTAJE DE GANANCIA
                                                             $percentageChangeMargin = 0;
+                                                            
                                                             $differenceIncome = $earnings['total_income'] - $totalIncomeYesterday;
 
-                                                            if ($differenceIncome == 0) {
-                                                                echo "<p class='percentage-neutral'>Sin comparación</p>";
-                                                                // echo "<p class='percentage-neutral'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path fill='#3289d1' d='M5 11v2h14v-2z'/></svg> 0%</p>";
+                                                            if ($totalIncomeYesterday != 0) {
+                                                                $percentageChangeMargin = round(($differenceIncome / $totalIncomeYesterday) * 100, 2);
                                                             } else {
-                                                                // Calcular el porcentaje de cambio
-                                                                // $percentageChangeMargin = round(($differenceIncome / $totalIncomeYesterday) * 100, 2);
+                                                                $percentageChangeMargin = 0; 
+                                                            }
 
+                                                            if ($percentageChangeMargin == 0) {
+                                                                echo "<p class='percentage-neutral'>Sin comparación</p>";
+                                                            } else {
+ 
                                                                 //? DETERMINAR CLASE CSS SEGÚN EL RESULTADO
                                                                 $class = $percentageChangeMargin >= 0 ? 'percentage-positive' : 'percentage-negative';
                                                                 $info = $percentageChangeMargin >= 0 ? 'subiendo' : 'bajo';
