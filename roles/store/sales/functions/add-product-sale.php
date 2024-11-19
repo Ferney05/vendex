@@ -25,7 +25,7 @@
             $rowProducts = mysqli_fetch_array($resultProducts);
 
             if($cart_stock < $rowProducts['stock_quantity']) {
-                $insertData = "INSERT INTO cart_items VALUES(null, '$product_name', '$cart_stock', '$sale_price')";
+                $insertData = "INSERT INTO cart_store VALUES(null, '$product_name', '$cart_stock', '$sale_price')";
                 $execute = mysqli_query($conexion, $insertData);
 
                 if($execute){

@@ -36,7 +36,7 @@
 
             <div class="user-modal">
                 <div class="username">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
+                    <img src="../../../../svg/people.svg" alt="">
                     <div class="name-down">
                         <?php
                             $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
@@ -79,7 +79,7 @@
                 <div class="tlt-button">
                     <h2 class="tlt-function">Detalles de los ingredientes</h2>
                     
-                    <a href="../admin-inventory.php" class="btn-details">
+                    <a href="../admin-inventory.php" class="btn-details bg-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
                         <p>Administrar inventario de recetas</p>
                     </a>

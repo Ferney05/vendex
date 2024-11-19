@@ -39,7 +39,7 @@
 
             <div class="user-modal">
                 <div class="username">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
+                    <img src="../../../../svg/people.svg" alt="">
                     <div class="name-down">
                         <?php
                             $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
@@ -83,7 +83,7 @@
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar recetas</h2>
                     
-                    <a href="../admin-inventory.php" class="button-function">
+                    <a href="../admin-inventory.php" class="button-function bg-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
                         <p>Administrar inventario</p>
                     </a>
@@ -95,12 +95,12 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="name-employee">Nombre completo</label>
-                                    <input type="text" name="name-employee" class="input-form" placeholder="Nombre del empleado" value="<?php echo $row['name_employee'] ?>" required>
+                                    <input type="text" name="name-employee" class="input-form b-col-fcs-val" placeholder="Nombre del empleado" value="<?php echo $row['name_employee'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="document-type">Tipo de documento</label>
-                                    <select name="document-type" class="select" required>
+                                    <select name="document-type" class="select b-col-fcs-val" required>
                                         <option value="" disabled>Seleccione</option>
                                         <?php
                                             if ($row['document_type'] == "CC") {
@@ -116,7 +116,7 @@
 
                                 <div class="label-input">
                                     <label for="employee-position">Cargo</label>
-                                    <select name="employee-position" class="select" required>
+                                    <select name="employee-position" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <?php
                                             if ($row['employee_position'] == "Administrador") {
@@ -146,46 +146,46 @@
 
                                 <div class="label-input">
                                     <label for="emergency-contact">Contacto de emergencia</label>
-                                    <input type="text" name="emergency-contact" class="input-form" placeholder="Persona de contacto" value="<?php echo $row['emergency_contact'] ?>" required>
+                                    <input type="text" name="emergency-contact" class="input-form b-col-fcs-val" placeholder="Persona de contacto" value="<?php echo $row['emergency_contact'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="email">Correo</label>
-                                    <input type="email" name="email" class="input-form" placeholder="Correo del empleado" value="<?php echo $row['email'] ?>" required>
+                                    <input type="email" name="email" class="input-form b-col-fcs-val" placeholder="Correo del empleado" value="<?php echo $row['email'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="document-number">Número de documento</label>
-                                    <input type="text" name="document-number" class="input-form" placeholder="Número de documento" maxlength="10" value="<?php echo $row['document_number'] ?>" required>
+                                    <input type="text" name="document-number" class="input-form b-col-fcs-val" placeholder="Número de documento" maxlength="10" value="<?php echo $row['document_number'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="entry-date">Fecha de ingreso</label>
-                                    <input type="date" name="entry-date" class="input-form" placeholder="Fecha de ingreso" value="<?php echo $row['entry_date'] ?>" required>
+                                    <input type="date" name="entry-date" class="input-form b-col-fcs-val" placeholder="Fecha de ingreso" value="<?php echo $row['entry_date'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="emergency-phone">Télefono de emergencia</label>
-                                    <input type="tel" name="emergency-phone" class="input-form" placeholder="Télefono de emergencia" pattern="[0-9]{10,10}" value="<?php echo $row['emergency_phone'] ?>" required>
+                                    <input type="tel" name="emergency-phone" class="input-form b-col-fcs-val" placeholder="Télefono de emergencia" pattern="[0-9]{10,10}" value="<?php echo $row['emergency_phone'] ?>" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="address">Dirección</label>
-                                    <input type="text" name="address" class="input-form" placeholder="Dirreción de residencia" value="<?php echo $row['address'] ?>" required>
+                                    <input type="text" name="address" class="input-form b-col-fcs-val" placeholder="Dirreción de residencia" value="<?php echo $row['address'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="phone">Télefono</label>
-                                    <input type="tel" name="phone" class="input-form" placeholder="Teléfono del empleado" pattern="[0-9]{10,10}" value="<?php echo $row['phone'] ?>" required>
+                                    <input type="tel" name="phone" class="input-form b-col-fcs-val" placeholder="Teléfono del empleado" pattern="[0-9]{10,10}" value="<?php echo $row['phone'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="type-contract">Tipo de contrato</label>
-                                    <select name="type-contract" class="select" required>
+                                    <select name="type-contract" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <?php
                                             if ($row['type_contract'] == "Tiempo completo") {
@@ -206,7 +206,7 @@
                                 </div>
 
                                 <div class="button-submit">
-                                    <input type="submit" name="button-update-employee" class="btn-form" value="Agregar">
+                                    <input type="submit" name="button-update-employee" class="btn-form bg-btn" value="Agregar">
                                 </div>
                             </div>
                         </div>

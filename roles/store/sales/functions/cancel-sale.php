@@ -1,7 +1,7 @@
 <?php
     include('../../../../conexion.php');
 
-    $query = "TRUNCATE TABLE cart_items";
+    $query = "TRUNCATE TABLE cart_store";
     $stmt = mysqli_query($conexion, $query);
     header("Location: ../new-sale.php");
 ?>

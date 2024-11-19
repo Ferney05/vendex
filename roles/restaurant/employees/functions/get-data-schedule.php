@@ -39,7 +39,7 @@
 
             <div class="user-modal">
                 <div class="username">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
+                    <img src="../../../../svg/people.svg" alt="">
                     <div class="name-down">
                         <?php
                             $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
@@ -83,7 +83,7 @@
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar horarios</h2>
                     
-                    <a href="../horary.php" class="button-function">
+                    <a href="../horary.php" class="button-function bg-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill="#eee" d="M4.497 2a2.5 2.5 0 0 0-2.5 2.5v7a2.5 2.5 0 0 0 2.5 2.5h7a2.5 2.5 0 0 0 2.5-2.5v-7a2.5 2.5 0 0 0-2.5-2.5zM7.5 4a.5.5 0 0 1 .5.5V8h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5"/></svg>
                         <p>Horario</p>
                     </a>
@@ -95,7 +95,7 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="name-employee">Empleado</label>
-                                    <input type="text" name="name-employee" class="input-form" placeholder="Nombre del empleado" value="<?php echo $row['name_employee'] ?>" required>
+                                    <input type="text" name="name-employee" class="input-form b-col-fcs-val" placeholder="Nombre del empleado" value="<?php echo $row['name_employee'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
@@ -120,30 +120,30 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="entry-time">Hora de entrada</label>
-                                    <input type="time" name="entry-time" class="input-form" value="<?php echo $row['entry_time'] ?>" required>
+                                    <input type="time" name="entry-time" class="input-form b-col-fcs-val" value="<?php echo $row['entry_time'] ?>" required>
                                 </div>
 
                                 <div class="label-input">
                                     <label for="start-break">Hora de inicio del descanso</label>
-                                    <input type="time" name="start-break" class="input-form" value="<?php echo $row['start_break'] ?>" required>
+                                    <input type="time" name="start-break" class="input-form b-col-fcs-val" value="<?php echo $row['start_break'] ?>" required>
                                 </div>   
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="departure-time">Hora de salida</label>
-                                    <input type="time" name="departure-time" class="input-form" value="<?php echo $row['departure_time'] ?>" required>
+                                    <input type="time" name="departure-time" class="input-form b-col-fcs-val" value="<?php echo $row['departure_time'] ?>" required>
                                 </div>  
 
                                 <div class="label-input">
                                     <label for="end-rest">Hora de fin del descanso</label>
-                                    <input type="time" name="end-rest" class="input-form" value="<?php echo $row['end_break'] ?>" required>
+                                    <input type="time" name="end-rest" class="input-form b-col-fcs-val" value="<?php echo $row['end_break'] ?>" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-update-schedule" class="btn-form" value="Actualizar">
+                            <input type="submit" name="button-update-schedule" class="btn-form bg-btn" value="Actualizar">
                         </div>
                     </form>
                 </div>

@@ -115,7 +115,7 @@
                         </tr>
 
                         <?php
-                            $getData = "SELECT * FROM cart_items";
+                            $getData = "SELECT * FROM cart_store";
                             $resultData = mysqli_query($conexion, $getData);
 
                             if($resultData -> num_rows > 0){

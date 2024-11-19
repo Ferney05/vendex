@@ -106,7 +106,7 @@
 }
 
 .accordion-content div a:hover {
-    background-color: var(--color-light-green);
+    background-color: var(--color-sky-blue);
 }
 
 .accordion-content div a p {

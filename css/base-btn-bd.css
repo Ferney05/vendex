@@ -1,31 +1,3 @@
-
-:root {
-    --color-light-black: #121212;
-    --color-light-blue: #3289d1;
-    --color-light-green: #6bc04e;
-    --color-dark-green: #4CAF50;
-    --color-light-yellow: #d18f43;
-
-    --color-sky-blue: #04BEFA;
-    --color-dark-sky-blue: #04b9f7;
-    --color-blue-stone: #647adb;
-    --color-transparent-blue-stone: #647adb61;
-    --color-amethyst: #7b66d0;
-    --color-purple-pizzazz: #9554c9;
-
-    --color-dark-blue-gray: #161922;
-    --color-dark-charcoal: #121318;
-    --color-slate-gray: #1e212b;
-    --color-dark-charcoal-blue: #212433;
-    --color-dark-midnight-blue: #181e2a;
-    --color-dark-red: #911919;
-
-    --color-white: #ffffff;
-    --color-white-transparente:#ffffffaf;
-    --color-semi-transparente: #53535380;
-}
-
-
 .bg-btn {
      background: linear-gradient(
         90deg,
@@ -50,9 +22,9 @@
 }
 
 .b-col-fcs-val:focus {
-    border-color: var(--color-transparent-blue-stone) !important;
+    border-color: #647adb61 !important;
 }
 
 .b-col-fcs-val:valid {
-    border-color: var(--color-transparent-sky-blue) !important;
+    border-color: #04baf780 !important;
 }

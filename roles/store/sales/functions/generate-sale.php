@@ -7,7 +7,7 @@
         try {
             // 1. Obtenemos el total y los detalles del carrito
             $query_items = "SELECT product_name, cart_stock, sale_price, (cart_stock * sale_price) as subtotal 
-                        FROM cart_items";
+                        FROM cart_store";
             $result_items = mysqli_query($conexion, $query_items);
             
             if (!$result_items) {
@@ -15,7 +15,7 @@
             }
 
             // 2. Calculamos el total de la venta
-            $query_total = "SELECT SUM(cart_stock * sale_price) as total FROM cart_items";
+            $query_total = "SELECT SUM(cart_stock * sale_price) as total FROM cart_store";
             $result_total = mysqli_query($conexion, $query_total);
             $row_total = mysqli_fetch_assoc($result_total);
             $total_sale = $row_total['total'];
@@ -47,7 +47,7 @@
 
             // 5. Actualizamos el inventario
             $query_update_inventory = "UPDATE inventory_products ip
-                                    INNER JOIN cart_items ci ON ip.product_name = ci.product_name
+                                    INNER JOIN cart_store ci ON ip.product_name = ci.product_name
                                     SET ip.stock_quantity = ip.stock_quantity - ci.cart_stock";
             
             if (!mysqli_query($conexion, $query_update_inventory)) {
@@ -55,7 +55,7 @@
             }
 
             // 6. Limpiamos el carrito
-            $query_clear = "TRUNCATE TABLE cart_items";
+            $query_clear = "TRUNCATE TABLE cart_store";
             if (!mysqli_query($conexion, $query_clear)) {
                 throw new Exception("Error al limpiar el carrito");
             }

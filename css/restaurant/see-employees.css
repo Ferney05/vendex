@@ -49,16 +49,11 @@
     border-bottom-left-radius: 10px;
 }
 
-.input-search:focus {
-    border-color: var(--color-light-blue);
-}
-
 .btn-search {
     width: 80px;
     height: auto;
     padding: .45rem 0;
-    border: 2px solid var(--color-light-blue);
-    background-color: var(--color-light-blue);
+    border: 2px solid transparent;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     cursor: pointer;
@@ -68,7 +63,6 @@
     display: flex;
     align-items: center;
     gap: .3rem;
-    background-color: var(--color-light-blue);
     padding: .5rem 1rem;
     border-radius: 10px;
     font-size: .9rem;

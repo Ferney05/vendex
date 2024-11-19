@@ -36,7 +36,7 @@
 
             <div class="user-modal">
                 <div class="username">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#6bc04e" d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2M6.023 15.416C7.491 17.606 9.695 19 12.16 19s4.669-1.393 6.136-3.584A8.97 8.97 0 0 0 12.16 13a8.97 8.97 0 0 0-6.137 2.416M12 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6"/></svg>
+                    <img src="../../../svg/people.svg" alt="">
                     <div class="name-down">
                         <?php
                             $queryData = "SELECT name, lastname FROM users WHERE id = $id_user";
@@ -81,7 +81,7 @@
                     <h2 class="tlt-function">Agregar platos a la orden</h2>
                     
                     <div class="create-update">
-                        <a href="pending-orders.php" class="button-function">
+                        <a href="pending-orders.php" class="button-function bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
                             <p>Ver ordenes pendientes</p>
                         </a>
@@ -94,7 +94,7 @@
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="order-number">Número de orden</label>
-                                    <input type="number" name="order-number" class="input-form" id="order-number" placeholder="Número de orden" required>
+                                    <input type="number" name="order-number" class="input-form b-col-fcs-val" id="order-number" placeholder="Número de orden" required>
                                 </div>
 
                                 <script>
@@ -117,14 +117,14 @@
 
                                 <div class="label-input">
                                     <label for="estimated-time">Tiempo estimado en minutos</label>
-                                    <input type="number" name="estimated-time" class="input-form" placeholder="Tiempo estimado" required>
+                                    <input type="number" name="estimated-time" class="input-form b-col-fcs-val" placeholder="Tiempo estimado" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="saucer">Platillo</label>
-                                    <input type="text" name="saucer" class="input-form" id="saucer" placeholder="Platillo" required>
+                                    <input type="text" name="saucer" class="input-form b-col-fcs-val" id="saucer" placeholder="Platillo" required>
                                 </div>
 
                                 <script>
@@ -147,18 +147,18 @@
 
                                 <div class="label-input">
                                     <label for="personalization">Personalización</label>
-                                    <input type="text" name="personalization" class="input-form" placeholder="Personalización" required>
+                                    <input type="text" name="personalization" class="input-form b-col-fcs-val" placeholder="Personalización" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="quantity">Cantidad</label>
-                                    <input type="number" name="quantity" class="input-form" placeholder="Cantidad" required>
+                                    <input type="number" name="quantity" class="input-form b-col-fcs-val" placeholder="Cantidad" required>
                                 </div>
 
                                 <div class="button-submit">
-                                    <input type="submit" name="button-add-dish" class="btn-form" value="Agregar">
+                                    <input type="submit" name="button-add-dish" class="btn-form bg-btn" value="Agregar">
                                 </div>
                             </div>
                         </div>
