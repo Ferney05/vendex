@@ -96,7 +96,7 @@
                                     <label for="status">Estado</label>
                                     <select name="status" id="" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
-                                        <option value="En espera">En espera</option>
+                                        <option value="Pendiente">Pendiente</option>
                                         <option value="En preparación">En preparación</option>
                                         <option value="Lista">Lista</option>
                                     </select>

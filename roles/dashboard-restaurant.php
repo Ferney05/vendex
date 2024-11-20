@@ -263,10 +263,10 @@
                                                                     INNER JOIN 
                                                                         pending_order_details AS pod ON po.order_number = pod.order_id 
                                                                     WHERE 
-                                                                        po.order_status = 'En espera'
+                                                                        po.order_status = 'Pendiente'
                                                                     GROUP BY 
                                                                         po.order_number, po.order_status, po.customer
-                                                                    LIMIT 6";
+                                                                    LIMIT 3";
 
                                                         $resultOrders = mysqli_query($conexion, $getOrders);
 
@@ -634,7 +634,10 @@
                                                             if($resultOrder -> num_rows > 0){
                                                                 $rowOrder = mysqli_fetch_assoc($resultOrder);
                                                                 if($rowOrder['total_quantity'] > 1){
-                                                                    echo "<p class='product'>" . ucfirst($rowOrder['order_name']) . " (" . $rowOrder['total_quantity'] . " unidades)</p>";
+                                                                    echo "<p class='pdt-quantity'>
+                                                                            <p class='product'>" . ucfirst($rowOrder['order_name']) . "</p>    
+                                                                            <p class='qtt'>" . $rowOrder['total_quantity'] . " unidades</p>
+                                                                        </p>";
                                                                 } else {
                                                                     echo "<p class='product'>" . ucfirst($rowOrder['order_name']) . " (" . $rowOrder['total_quantity'] . " unidad)</p>";
                                                                 }

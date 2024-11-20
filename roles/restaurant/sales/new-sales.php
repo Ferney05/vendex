@@ -81,11 +81,6 @@
                     <h2 class="tlt-function">Nueva venta</h2>
                     
                     <div class="add-see">
-                        <div class="button-add-recipe-sale bg-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
-                            <p>Agregar pedido a la venta</p>
-                        </div>
-
                         <a href="sales-made.php" class="button-function bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path fill="#eee" d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1c117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48m-16.79 192.47l51.55-59a16 16 0 0 1 24.1 21.06l-51.55 59a16 16 0 1 1-24.1-21.06m-38.86 90.85a16 16 0 0 1-22.62 0l-47.95-48a16 16 0 1 1 22.64-22.62l48 48a16 16 0 0 1-.07 22.62m176.8-128.79l-111.88 128a16 16 0 0 1-11.51 5.47h-.54a16 16 0 0 1-11.32-4.69l-47.94-48a16 16 0 1 1 22.64-22.62l29.8 29.83a8 8 0 0 0 11.68-.39l95-108.66a16 16 0 0 1 24.1 21.06Z"/></svg>    
                             <p>Ver ventas realizadas</p>
@@ -169,69 +164,8 @@
                 </div>
             </div>
         </section>
-
-        <section class="modal-add-recipe">
-            <div class="flex-modal">
-                <div class="tlt-form">
-                    <div class="tlt-close">
-                        <h2 class="tlt">Agregar pedido a la venta</h2>
-                        <svg class="close-modal" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 304 384"><path fill="#ffffff" d="M299 73L179 192l120 119l-30 30l-120-119L30 341L0 311l119-119L0 73l30-30l119 119L269 43z"/></svg>
-                    </div>
-
-                    <form action="functions/add-order-sale.php" method="POST" class="form-modal">
-                        <div class="content-inputs">
-                            <div class="label-input">
-                                <label for="name-recipe">Nombre del pedido</label>
-                                <input type="text" name="name-recipe" id="name-recipe" class="input-form b-col-fcs-val" placeholder="Nombre del pedido" required>
-                            </div>
-
-                            <div class="label-input">
-                                <label for="cart-stock">Cantidad</label>
-                                <input type="number" name="cart-stock" class="input-form b-col-fcs-val" placeholder="Cantidad" required>
-                            </div>
-                        </div>
-
-                        <div class="content-inputs">
-                            <div class="label-input">
-                                <label for="sale-price">Precio de venta</label>
-                                <input type="number" name="sale-price" id="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" required>
-                            </div>
-
-                            <div class="label-input">
-                                <input type="submit" name="button-add-recipe-sale" class="btn-form-modal bg-btn" value="Agregar">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <script>
-            $(document).ready(function(){
-                $('#name-recipe').autocomplete({
-                    source: function(request, response) {
-                        $.ajax({
-                            url: "functions/autocomplete.php",
-                            type: "POST",
-                            data: { query: request.term },
-                            success: function(data) {
-                                response($.parseJSON(data));
-                            }
-                        });
-                    },
-                    minLength: 3,
-                    // Agregamos el evento select para cuando se selecciona un producto
-                    select: function(event, ui) {
-                        // Asumiendo que tienes un input con id="price-product" para el precio
-                        $('#sale-price').val(ui.item.price);
-                    }
-                });
-            });
-        </script>
     </main>
 
-    <script src="show-modal-add.js"></script>
     <script src="../../../js/base-nav-dash.js"></script>
-
 </body>
 </html>

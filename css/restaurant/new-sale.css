@@ -34,16 +34,6 @@
     gap: 1.5rem;
 }
 
-.button-add-recipe-sale {
-    display: flex;
-    align-items: center;
-    gap: .3rem;
-    padding: .5rem 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: .9rem;
-}
-
 .button-function {
     display: flex;
     align-items: center;

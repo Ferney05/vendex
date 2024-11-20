@@ -20,7 +20,7 @@
             $date = $_POST['date'];
             $type_service = $_POST['type-service'];
 
-            $insertData = "INSERT INTO pending_orders VALUES(null, $order_number, '$customer', '$date', '$status', '$type_service')";
+            $insertData = "INSERT INTO pending_orders VALUES(null, $order_number, '$customer', '$date', '$status', '$type_service', '0')";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){

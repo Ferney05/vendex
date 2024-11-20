@@ -110,16 +110,16 @@
                                     <select name="status" id="" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
                                         <?php
-                                            if($row['order_status'] == 'En espera') {
-                                                echo "<option value='En espera' selected>En espera</option>";
+                                            if($row['order_status'] == 'Pendiente') {
+                                                echo "<option value='Pendiente' selected>Pendiente</option>";
                                                 echo "<option value='En preparación'>En preparación</option>";
                                                 echo "<option value='Lista'>Lista</option>";
                                             } else if($row['order_status'] == 'En preparación') {
-                                                echo "<option value='En espera'>En espera</option>";
+                                                echo "<option value='Pendiente'>Pendiente</option>";
                                                 echo "<option value='En preparación' selected>En preparación</option>";
                                                 echo "<option value='Lista'>Lista</option>";
                                             } else if($row['order_status'] == 'Lista') {
-                                                echo "<option value='En espera'>En espera</option>";
+                                                echo "<option value='Pendiente'>Pendiente</option>";
                                                 echo "<option value='En preparación'>En preparación</option>";
                                                 echo "<option value='Lista' selected>Lista</option>";
                                             }
