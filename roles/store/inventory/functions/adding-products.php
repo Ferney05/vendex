@@ -24,7 +24,7 @@
             $entry_date = $_POST['entry-date'];
             $product_status = $_POST['product-status'];
 
-            $insertData = "INSERT INTO inventory_products VALUES(null, '$id_category', '$name_product', '$supplier', '$purchase_price', '$sale_price', '$quantity_stock', '$product_description', '$entry_date', '$product_status')";
+            $insertData = "INSERT INTO inventory_products VALUES(null, $id_category, '$name_product', '$supplier', '$purchase_price', '$sale_price', '$quantity_stock', '$product_description', '$entry_date', '$product_status')";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){
