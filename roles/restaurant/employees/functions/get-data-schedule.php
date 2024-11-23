@@ -26,7 +26,7 @@
         $querySchedule = "SELECT * FROM schedule WHERE id = $id_schedule";
         $result = mysqli_query($conexion, $querySchedule);
         $row = mysqli_fetch_array($result);
-    ?>
+    ?> 
 </head>
 <body>
 
@@ -78,8 +78,8 @@
             </div>
         </nav>
 
-        <section class="update-recipes-form" id="hidden-modal">
-            <div class="update-form">
+        <section class="design-form" id="hidden-modal">
+            <div class="content-all-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar horarios</h2>
                     

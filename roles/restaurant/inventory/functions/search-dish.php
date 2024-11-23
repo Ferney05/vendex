@@ -105,7 +105,7 @@
                             });
                         </script>
                         
-                        <a href="../admin-inventory.php" class="add bg-btn">
+                        <a href="../recipe-inventory.php" class="add bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
                             <p>Ver todos los platos</p>
                         </a>
@@ -142,11 +142,11 @@
                                                 <a href='ingredients-details.php?id=$id'>Ver</a>
                                             </td>
                                             <td>
-                                                <a href='delete.php?id=$id'>
+                                                <a href='delete-recipe.php?id=$id'>
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path fill='#911919' d='M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm2 2v10h12V10zm3 2h2v6H9zm4 0h2v6h-2zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5zm2-1v1h6V4z'/></svg>
                                                 </a>
     
-                                                <a href='get-data.php?id=$id'>
+                                                <a href='get-data-recipe.php?id=$id'>
                                                     <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><g fill='none' stroke='#3289d1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path stroke-dasharray='20' stroke-dashoffset='20' d='M3 21h18'><animate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='20;0'/></path><path fill='#3289d1' fill-opacity='0' stroke-dasharray='48' stroke-dashoffset='48' d='M7 17v-4l10 -10l4 4l-10 10h-4'><animate fill='freeze' attributeName='fill-opacity' begin='1.1s' dur='0.15s' values='0;0.3'/><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.2s' dur='0.6s' values='48;0'/></path><path stroke-dasharray='8' stroke-dashoffset='8' d='M14 6l4 4'><animate fill='freeze' attributeName='stroke-dashoffset' begin='0.8s' dur='0.2s' values='8;0'/></path></g></svg>
                                                 </a>
                                             </td>

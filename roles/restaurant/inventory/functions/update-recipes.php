@@ -29,7 +29,7 @@
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){
-                header("Refresh: 3; url= ../admin-inventory.php");
+                header("Refresh: 3; url= ../recipe-inventory.php");
 
                 echo "<div class='success'>
                         <div class='back'>

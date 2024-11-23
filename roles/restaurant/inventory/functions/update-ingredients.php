@@ -35,7 +35,7 @@
             $execute = mysqli_query($conexion, $updateData);
 
             if($execute){
-                header("Refresh: 3; url=../inventory-ingredients.php");
+                header("Refresh: 3; url=../ingredient-inventory.php");
 
                 echo "<div class='success'>
                         <div class='back'>

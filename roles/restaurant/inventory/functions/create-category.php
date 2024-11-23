@@ -21,7 +21,7 @@
             $execute = mysqli_query($conexion, $insertCategory);
 
             if($execute){
-                header("Refresh: 3; url= ../add-ingredients.php");
+                header("Refresh: 3; url= add-ingredients.php");
 
                 echo "<div class='success'>
                         <div class='back'>

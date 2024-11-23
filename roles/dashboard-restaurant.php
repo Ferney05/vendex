@@ -39,7 +39,7 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="restaurant/inventory/add-ingredients.php">
+                            <!-- <a href="restaurant/inventory/add-ingredients.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Agregar insumos</p>
                             </a>
@@ -47,16 +47,21 @@
                             <a href="restaurant/inventory/add-recipes.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Agregar recetas</p>
-                            </a>
+                            </a> -->
 
-                            <a href="restaurant/inventory/admin-inventory.php">
+                            <a href="restaurant/inventory/recipe-inventory.php">
                                 <img src="../svg/admin.svg" alt="">
                                 <p>Inventario de recetas</p>
                             </a>
 
-                            <a href="restaurant/inventory/inventory-ingredients.php">
+                            <a href="restaurant/inventory/ingredient-inventory.php">
                                 <img src="../svg/admin.svg" alt="">
                                 <p>Inventario de ingredientes</p>
+                            </a>
+
+                            <a href="restaurant/inventory/beverage-inventory.php">
+                                <img src="../svg/admin.svg" alt="">
+                                <p>Inventario de bebidas</p>
                             </a>
                         </div>
                     </div>
@@ -71,10 +76,10 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="restaurant/employees/add-employees.php">
+                            <!-- <a href="restaurant/employees/add-employees.php">
                                 <img src="../svg/add.svg" alt="">
                                 <p>Agregar empleado</p>
-                            </a>
+                            </a> -->
 
                             <a href="restaurant/employees/see-employees.php">
                                 <img src="../svg/eyes.svg" alt="">

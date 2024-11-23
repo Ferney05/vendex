@@ -31,7 +31,7 @@
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){
-                header("Refresh: 3; url= ../add-employees.php");
+                header("Refresh: 3; url= add-employees.php");
 
                 echo "<div class='success'>
                         <div class='back'>

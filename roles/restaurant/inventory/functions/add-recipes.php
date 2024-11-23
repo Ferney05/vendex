@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar recetas - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/update-recipe.css">
+    <title>Agregar recetas al inventario - Vendex</title>
+    <link rel="stylesheet" href="../../../../css/restaurant/add-ingredients.css">
     <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
 
     <?php
@@ -18,14 +18,6 @@
             header("Location: ../../../../index.php");
             exit(); 
         }
-
-        if (isset($_GET['id'])) {
-            $id_recipe = $_GET['id']; 
-        }
-
-        $queryRecipe = "SELECT * FROM recipes WHERE id = $id_recipe";
-        $result = mysqli_query($conexion, $queryRecipe);
-        $row = mysqli_fetch_array($result);
     ?>
 </head>
 <body>
@@ -78,53 +70,53 @@
             </div>
         </nav>
 
-        <section class="update-recipes-form" id="hidden-modal">
-            <div class="update-form">
+        <section class="add-products-form" id="hidden-modal">
+            <div class="add-form">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Actualizar recetas</h2>
+                    <h2 class="tlt-function">Agregar recetas</h2>
                     
-                    <a href="../admin-inventory.php" class="button-function bg-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
-                        <p>Administrar inventario</p>
-                    </a>
+                    <div class="create-update">
+                        <a href="../recipe-inventory.php" class="button-function bg-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08"/></svg>
+                            <p>Administrar inventario de recetas</p>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="content-form">
-                    <form action="update-recipes.php?id=<?php echo $id_recipe ?>" method="POST" class="form">
+                    <form action="adding-recipes.php" method="POST" class="form">
                         <div class="alls">
-                        <div class="content-labels-inputs">
+                            <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="name-dish">Nombre del plato</label>
-                                    <input type="text" name="name-dish" class="input-form b-col-fcs-val" placeholder="Nombre del plato" value="<?php echo $row['name_dish'] ?>" required>
+                                    <input type="text" name="name-dish" class="input-form b-col-fcs-val" placeholder="Nombre del plato" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="sale-price">Precio de venta</label>
-                                    <input type="number" name="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" value="<?php echo $row['sale_price'] ?>" required>
+                                    <input type="number" name="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" required>
                                 </div>
                             </div>
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="prepared-time">Tiempo de preparación</label>
-                                    <input type="text" name="prepared-time" class="input-form b-col-fcs-val" placeholder="Tiempo de preparación" value="<?php echo $row['prepared_time'] ?>" required>
+                                    <input type="text" name="prepared-time" class="input-form b-col-fcs-val" placeholder="Tiempo de preparación" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-update-recipes" class="btn-form bg-btn" value="Actualizar">
+                            <input type="submit" name="button-add-recipe" class="btn-form bg-btn" value="Agregar">
                         </div>
-
                     </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="../show-category.js"></script>
     <script src="../../../../js/base-nav-dash.js"></script>
 
 </body>

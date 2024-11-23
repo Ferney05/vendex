@@ -81,31 +81,7 @@
                     <h2 class="tlt-function">Lista de empleados</h2>
                     
                     <div class="search-add">
-                        <!-- <form action="functions/search-dish.php" method="POST" class="form-search">
-                            <input type="text" name="search" class="input-search" id="search-recipe" placeholder="Buscar por empleado..." required>
-                            <input type="submit" name="button-search" class="btn-search" value="Buscar">
-                        </form>
-
-                        <script>
-                            $(document).ready(function(){
-                                // Inicia el autocompletado usando jQuery UI
-                                $('#search-recipe').autocomplete({
-                                    source: function(request, response) {
-                                        $.ajax({
-                                            url: "functions/autocomplete-employee.php", // Archivo PHP que consulta los productos
-                                            type: "POST",
-                                            data: { query: request.term }, // Envía lo que el usuario escribe
-                                            success: function(data) {
-                                                response($.parseJSON(data)); // Convierte los datos en formato JSON
-                                            }
-                                        });
-                                    },
-                                    minLength: 3 // Comienza a buscar desde el segundo carácter
-                                });
-                            });
-                        </script> -->
-                        
-                        <a href="add-employees.php" class="add bg-btn">
+                        <a href="functions/add-employees.php" class="add bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
                             <p>Agregar empleados</p>
                         </a>

@@ -12,7 +12,7 @@
     $deleteIngredients = "DELETE FROM ingredients_of_dish WHERE id_dish = $id_dish";
     $executeDeleteIngredients = mysqli_query($conexion, $deleteIngredients);
 
-    header("Location: ../admin-inventory.php");
+    header("Location: ../recipe-inventory.php");
     exit();
 
 ?>
