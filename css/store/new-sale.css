@@ -221,3 +221,14 @@ td {
     cursor: pointer;
     outline: none;
 }
+
+
+@media (max-width: 1400px){
+    .tlt-buttons-sale {
+        width: 70%;
+    }
+
+    table {
+        width: 70%;
+    }
+}

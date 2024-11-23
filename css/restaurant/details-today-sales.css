@@ -9,14 +9,14 @@
     background-color: var(--color-dark-blue-gray);
 }
 
-.personnel-costs {
+.earnings-today {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     padding: 2rem;
     box-sizing: border-box;
 }
 
-.personnel-content {
+.earnings-content {
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -26,6 +26,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.btn-today-earnings {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    text-decoration: none;
 }
 
 .button-function {
@@ -48,7 +58,7 @@ table, th, td {
 }
 
 table {
-    width: 60%;
+    width: 50%;
     margin: auto;
 }
 
@@ -62,18 +72,21 @@ td {
     font-weight: 300;
 }
 
-td:nth-child(6) a {
-    text-decoration: none;
-} 
-
-td:nth-child(6) a:last-child {
-    margin-left: 1rem;
+.tlt-info {
+    width: 50%;
+    margin: auto auto .4rem auto;
 }
 
-
+.tlt-info h3 {
+    color: #5d6569;
+}
 
 @media (max-width: 1400px){
+    .tlt-info {
+        width: 70%;
+    }
+
     table {
-        width: 80%;
+        width: 70%;
     }
 }

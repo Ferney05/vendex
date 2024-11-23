@@ -602,10 +602,26 @@
         gap: 1rem;
     }
 
+    .content-two-three {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
     .grid-one {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
         padding: 0;
+    }
+
+    .grid-two {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        padding: 0;
+    }
+
+    .grid-three {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
     }
 
     .card-union {
@@ -619,12 +635,6 @@
 
     .group-cards, .group-cards-auto {
         width: 100%;
-    }
-    
-    .grid-two {
-        grid-column: 1 / 1;
-        grid-row: 2 / 3;
-        padding: 0;
     }
 
     .product-stock {

@@ -248,3 +248,17 @@ td {
     color: var(--color-dark-red);
     font-size: .9rem;
 }
+
+
+
+
+@media (max-width: 1400px){
+    
+    .tlt-buttons-sale {
+        width: 70%;
+    }
+
+    table {
+        width: 70%;
+    }
+}

@@ -150,3 +150,9 @@ tr:nth-child(2):hover {
         height: 100%;
     }
 }
+
+@media (max-width: 1400px){
+    table {
+        width: 70%;
+    }
+}

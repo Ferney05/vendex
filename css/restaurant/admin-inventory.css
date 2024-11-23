@@ -122,3 +122,8 @@ td:nth-child(4) a:last-child {
     background-color: var(--color-slate-gray);
 }
 
+@media (max-width: 1400px){
+    table {
+        width: 90%;
+    }
+}

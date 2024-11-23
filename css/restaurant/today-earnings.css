@@ -95,3 +95,10 @@ td {
 .view-details a:hover {
     background-color: var(--color-sky-blue);
 }
+
+
+@media (max-width: 1400px){
+    table {
+        width: 70%;
+    }
+}

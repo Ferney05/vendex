@@ -80,3 +80,14 @@ td {
 .tlt-info h3 {
     color: #5d6569;
 }
+
+
+@media (max-width: 1400px){
+    .tlt-info {
+        width: 70%;
+    }
+
+    table {
+        width: 70%;
+    }
+}
