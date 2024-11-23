@@ -101,7 +101,7 @@
                         </tr>
 
                         <?php
-                            $getOrders = "SELECT * FROM pending_orders";
+                            $getOrders = "SELECT * FROM pending_orders ORDER BY order_number DESC";
                             $resultOrders = mysqli_query($conexion, $getOrders);
 
                             if($resultOrders -> num_rows > 0) {

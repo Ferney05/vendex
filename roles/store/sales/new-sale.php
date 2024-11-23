@@ -95,7 +95,15 @@
 
                 <div class="content-table">
                     <div class="tlt-buttons-sale">
-                        <h3 class="tlt">Productos listados</h3>
+                        <div class="list-message">
+                            <h3 class="tlt">Pedidos listados</h3>
+                            <?php
+                                $message = isset($_GET['message']) ? $_GET['message'] : '';
+                                $message_type = isset($_GET['message_type']) ? $_GET['message_type'] : '';
+
+                                echo "<p class='" . $message_type . "'>" . $message . "</p>";
+                            ?>
+                        </div>
                         <div class="cancel-generate-buttons">
                             <a href="functions/cancel-sale.php">
                                 <p>Cancelar venta</p>

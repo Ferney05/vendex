@@ -32,7 +32,7 @@
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){
-                header("Refresh: 3; url=add-ingredients-dish.php");
+                header("Refresh: 3; url=../admin-inventory.php");
 
                 echo "<div class='success'>
                         <div class='back'>
@@ -45,7 +45,7 @@
                         </div>
                       </div>";
                     
-                exit;
+                exit();
             }
         }
     ?>

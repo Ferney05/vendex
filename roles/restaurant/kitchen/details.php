@@ -46,7 +46,7 @@
                             
                             echo "<p class='name'>" . $rowData['name'] . ' ' . substr($rowData['lastname'], 0, 3) . ".</p>";
                         ?>
-                        <img src="../../../../svg/down-arrow.svg" alt="">
+                        <img src="../../../svg/down-arrow.svg" alt="">
                     </div>
                 </div>
 
