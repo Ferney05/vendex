@@ -113,7 +113,6 @@ CREATE TABLE `credits` (
 
 LOCK TABLES `credits` WRITE;
 /*!40000 ALTER TABLE `credits` DISABLE KEYS */;
-INSERT INTO `credits` VALUES (1,'Ferney Barbosa',50000,'2024-11-19','2024-11-20',12000,'Pendiente');
 /*!40000 ALTER TABLE `credits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +177,7 @@ CREATE TABLE `ingredients` (
 
 LOCK TABLES `ingredients` WRITE;
 /*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
-INSERT INTO `ingredients` VALUES (1,1,'Papas',90,1500,10,'Activo','kg','2024-11-19'),(2,1,'Salchicha',90,2000,10,'Activo','unidad','2024-11-19');
+INSERT INTO `ingredients` VALUES (1,1,'Papas',78,1500,10,'Activo','kg','2024-11-19'),(2,1,'Salchicha',82,2000,10,'Activo','unidad','2024-11-19');
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,9 +227,7 @@ CREATE TABLE `inventory_products` (
   `product_description` varchar(500) NOT NULL,
   `entry_date` date NOT NULL,
   `product_status` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_category` (`id_category`),
-  CONSTRAINT `inventory_products_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -240,7 +237,7 @@ CREATE TABLE `inventory_products` (
 
 LOCK TABLES `inventory_products` WRITE;
 /*!40000 ALTER TABLE `inventory_products` DISABLE KEYS */;
-INSERT INTO `inventory_products` VALUES (1,1,'Arroz Blanco 1kg','Distribuciones El Grano',1500,2500,96,' Arroz de grano largo, ideal para la preparación de platos familiares','2024-11-19','Activo'),(2,3,'Aceite de Girasol 1L','Aceites del Valle',3200,5000,58,'Aceite refinado de girasol, ideal para cocinar y freír.','2024-11-19','Activo'),(3,4,' Azúcar Blanca 500g',' Azúcar del Caribe',1000,1800,60,'Azúcar refinada, ideal para endulzar bebidas y postres.','2024-11-19','Activo');
+INSERT INTO `inventory_products` VALUES (1,1,'Canela','Proveedor a',100,200,0,'bueno','2024-11-21','Activo'),(2,2,'arroz pinillar','Proveedor a',2300,3000,60,'bueno','2024-11-21','Activo'),(3,1,'Panela','Proveedor a',1200,2900,60,'bueno','2024-11-21','Activo');
 /*!40000 ALTER TABLE `inventory_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +279,7 @@ CREATE TABLE `order_sales` (
   `total_amount` decimal(50,0) NOT NULL,
   `sale_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +288,7 @@ CREATE TABLE `order_sales` (
 
 LOCK TABLES `order_sales` WRITE;
 /*!40000 ALTER TABLE `order_sales` DISABLE KEYS */;
-INSERT INTO `order_sales` VALUES (1,36000,'2024-11-19'),(2,36000,'2024-11-19'),(3,18000,'2024-11-19');
+INSERT INTO `order_sales` VALUES (1,36000,'2024-11-19'),(2,36000,'2024-11-19'),(3,18000,'2024-11-19'),(4,54000,'2024-11-20'),(5,18000,'2024-11-21');
 /*!40000 ALTER TABLE `order_sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +309,7 @@ CREATE TABLE `order_sales_details` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sale_id` (`sale_id`),
   CONSTRAINT `order_sales_details_ibfk_1` FOREIGN KEY (`sale_id`) REFERENCES `order_sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +318,7 @@ CREATE TABLE `order_sales_details` (
 
 LOCK TABLES `order_sales_details` WRITE;
 /*!40000 ALTER TABLE `order_sales_details` DISABLE KEYS */;
-INSERT INTO `order_sales_details` VALUES (1,1,'Salchipapas',2,18000,36000),(2,2,'Salchipapas',2,18000,36000),(3,3,'Salchipapas',1,18000,18000);
+INSERT INTO `order_sales_details` VALUES (1,1,'Salchipapas',2,18000,36000),(2,2,'Salchipapas',2,18000,36000),(3,3,'Salchipapas',1,18000,18000),(4,4,'Salchipapas',3,18000,54000),(5,5,'Salchipapas',1,18000,18000);
 /*!40000 ALTER TABLE `order_sales_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +338,7 @@ CREATE TABLE `pending_order_details` (
   `personalization` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_id` (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +347,7 @@ CREATE TABLE `pending_order_details` (
 
 LOCK TABLES `pending_order_details` WRITE;
 /*!40000 ALTER TABLE `pending_order_details` DISABLE KEYS */;
-INSERT INTO `pending_order_details` VALUES (1,1,'Salchipapas',2,10,'Sin papas'),(2,2,'Salchipapas',1,10,'Sin papas'),(3,3,'Salchipapas',3,30,'normal');
+INSERT INTO `pending_order_details` VALUES (1,1,'Salchipapas',2,10,'Sin papas'),(2,2,'Salchipapas',1,10,'Sin papas'),(3,3,'Salchipapas',3,30,'normal'),(4,4,'Salchipapas',1,10,'Sin papas');
 /*!40000 ALTER TABLE `pending_order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,7 +367,7 @@ CREATE TABLE `pending_orders` (
   `type_service` varchar(100) NOT NULL,
   `transaction` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -379,7 +376,7 @@ CREATE TABLE `pending_orders` (
 
 LOCK TABLES `pending_orders` WRITE;
 /*!40000 ALTER TABLE `pending_orders` DISABLE KEYS */;
-INSERT INTO `pending_orders` VALUES (2,1,'Sofía Gómez','2024-11-19T13:25','Lista','Comer en el lugar','1'),(3,2,'Andrea perez','2024-11-19T15:16','Lista','Comer en el lugar','1'),(5,3,'Ana Perez','2024-11-19T23:24','Pendiente','A domicilio','0');
+INSERT INTO `pending_orders` VALUES (2,1,'Sofía Gómez','2024-11-19T13:25','Lista','Comer en el lugar','1'),(3,2,'Andrea perez','2024-11-19T15:16','Lista','Comer en el lugar','1'),(5,3,'Ana Perez','2024-11-19T23:24','Lista','A domicilio','1'),(6,4,'Carlos Mercado','2024-11-21T16:04','Lista','Comer en el lugar','1');
 /*!40000 ALTER TABLE `pending_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -426,7 +423,7 @@ CREATE TABLE `sale_details` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sale_id` (`sale_id`),
   CONSTRAINT `sale_details_ibfk_1` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -435,7 +432,7 @@ CREATE TABLE `sale_details` (
 
 LOCK TABLES `sale_details` WRITE;
 /*!40000 ALTER TABLE `sale_details` DISABLE KEYS */;
-INSERT INTO `sale_details` VALUES (1,1,'Aceite de Girasol 1L',2,5000,10000),(2,2,'Arroz Blanco 1kg',4,2500,10000);
+INSERT INTO `sale_details` VALUES (1,1,'Aceite de Girasol 1L',2,5000,10000),(2,2,'Arroz Blanco 1kg',4,2500,10000),(3,3,'Aceite de Girasol 1L',3,5000,15000),(4,4,' Azúcar Blanca 500g',3,1800,5400),(5,5,'Canela',5,200,1000);
 /*!40000 ALTER TABLE `sale_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,7 +448,7 @@ CREATE TABLE `sales` (
   `total_amount` int(11) NOT NULL,
   `sale_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -460,7 +457,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES (1,10000,'2024-11-19'),(2,10000,'2024-11-19');
+INSERT INTO `sales` VALUES (1,10000,'2024-11-19'),(2,10000,'2024-11-19'),(3,15000,'2024-11-20'),(4,5400,'2024-11-20'),(5,1000,'2024-11-21');
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -478,7 +475,7 @@ CREATE TABLE `sales_employees` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sale_id` (`sale_id`),
   CONSTRAINT `sales_employees_ibfk_1` FOREIGN KEY (`sale_id`) REFERENCES `order_sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -487,7 +484,7 @@ CREATE TABLE `sales_employees` (
 
 LOCK TABLES `sales_employees` WRITE;
 /*!40000 ALTER TABLE `sales_employees` DISABLE KEYS */;
-INSERT INTO `sales_employees` VALUES (1,1,'Ferney Barbosa'),(2,2,'Ferney Barbosa'),(3,3,'Ferney Barbosa');
+INSERT INTO `sales_employees` VALUES (1,1,'Ferney Barbosa'),(2,2,'Ferney Barbosa'),(3,3,'Ferney Barbosa'),(4,4,'Ferney Barbosa'),(5,5,'Ferney Barbosa');
 /*!40000 ALTER TABLE `sales_employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -534,7 +531,7 @@ CREATE TABLE `staff_costs` (
   `hours_worked` int(11) NOT NULL,
   `hourly_pay` decimal(50,0) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -543,6 +540,7 @@ CREATE TABLE `staff_costs` (
 
 LOCK TABLES `staff_costs` WRITE;
 /*!40000 ALTER TABLE `staff_costs` DISABLE KEYS */;
+INSERT INTO `staff_costs` VALUES (1,'Ferney Barbosa','Administrador',8,7500);
 /*!40000 ALTER TABLE `staff_costs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -583,4 +581,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-20 13:03:02
+-- Dump completed on 2024-11-22 14:00:02

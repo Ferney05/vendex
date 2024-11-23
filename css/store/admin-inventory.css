@@ -96,4 +96,14 @@ td:nth-child(10) a:last-child {
     margin-left: 1rem;
 }
 
+.active {
+    background-color: var(--color-amethyst);
+    border-radius: 10px;
+    padding: .2rem .8rem;
+}
 
+.exhausted {
+    background-color: var(--color-slate-gray);
+    border-radius: 10px;
+    padding: .2rem .8rem;
+}
