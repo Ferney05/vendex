@@ -1,0 +1,83 @@
+@import url('../fonts-colors.css');
+
+* {
+    color: #eee;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-dark-blue-gray);
+}
+
+.start-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-vendex {
+    width: 300px;
+}
+
+.title-date-week {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.date-week {
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+
+
+
+.sales-summary {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid var(--color-slate-gray);
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid var(--color-slate-gray);
+    padding: .5rem 1rem;
+    text-align: left;
+}
+
+th {
+    background-color: #1e8db3;
+}
+
+td {
+    font-size: .9rem;
+}
+
+.th-center {
+    text-align: center;
+    background-color: transparent;
+}
+
+.efficiency-analysis {
+    margin-top: 2rem;
+}
+
+.success {
+    background-color: var(--color-dark-green);
+}

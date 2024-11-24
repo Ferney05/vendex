@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte mensual - Vendex</title>
-    <link rel="stylesheet" href="prueba.css">
+    <link rel="stylesheet" href="../../../css/restaurant/report.css">
+    <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 </head>
 <body>
 
     <main class="main">
         <section class="content-grid">
             <div class="start-head">
-                <img src="svg/vendex-dash.png" class="logo-vendex" alt="">
+                <img src="../../../svg/vendex-dash.png" class="logo-vendex" alt="">
                 <div class="title-date-week">
                     <h1 class="title">Reporte mensual</h1>
                     <p class="date-week">Del 13 de Nov. al 19 de Nov.</p>
@@ -106,7 +107,7 @@
                         </tr>
 
                         <tr>
-                            <td colspan="3" class="th-center">Mesero más eficiente: Ferney Barbosa</td>
+                            <th colspan="3" class="th-center success">Mesero más eficiente: Ferney Barbosa</td>
                         </tr>
                     </table>
                 </div>
