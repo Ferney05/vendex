@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordenes pendientes - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/pending-orders.css">
-    <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
     <?php
         include("../../../conexion.php");
@@ -81,7 +81,7 @@
                             <p>Crear orden</p>
                         </a>
 
-                        <a href="add-orders-details.php" class="button-function bg-btn">
+                        <a href="functions/add-orders-details.php" class="button-function bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
                             <p>Agregar platos a la orden</p>
                         </a>

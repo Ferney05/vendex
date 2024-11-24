@@ -111,7 +111,7 @@
                             </a>
 
                             <form action="functions/generate-sale.php" method="POST" class="form-generate">
-                                <input type="text" class="input-generate" name="name-employee" id="name-employee" placeholder="Nombre del empleado" required>
+                                <input type="text" class="input-generate" name="name-employee" id="name-employee" placeholder="Nombre del mesero" required>
                                 <input type="submit" class="btn-generate" value="Generar venta">
                             </form>
 

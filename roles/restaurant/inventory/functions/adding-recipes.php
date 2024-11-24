@@ -22,7 +22,7 @@
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){
-                header("Refresh: 3; url=../add-recipes.php");
+                header("Refresh: 3; url= add-recipes.php");
 
                 echo "<div class='success'>
                         <div class='back'>

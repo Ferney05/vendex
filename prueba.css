@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;800;900&family=Sigmar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+
+@import url('base-btn-bd.css');
+
+:root {
+    --font-montserrat: 'Montserrat', sans-serif;
+    --font-playwrite: "Playwrite DE Grund";
+    --font-quicksand: "Quicksand";
+    --font-livvic: "Livvic";
+
+    --color-light-black: #121212;
+    --color-light-blue: #3289d1;
+    --color-light-green: #6bc04e;
+    --color-dark-green: #4CAF50;
+    --color-light-yellow: #d18f43;
+
+    --color-sky-blue: #04BEFA;
+    
+    --color-dark-sky-blue: #04b9f7;
+    --color-transparent-sky-blue: #04baf780;
+
+    --color-blue-stone: #647adb;
+    --color-transparent-blue-stone: #647adb80;
+    
+    --color-amethyst: #7b66d0;
+    --color-purple-pizzazz: #9554c9;
+
+    --color-dark-blue-gray: #161922;
+    --color-dark-charcoal: #121318;
+    --color-slate-gray: #1e212b;
+    --color-dark-charcoal-blue: #212433;
+    --color-dark-midnight-blue: #181e2a;
+    --color-dark-red: #911919;
+
+    --color-white: #ffffff;
+    --color-white-transparente:#ffffffaf;
+    --color-semi-transparente: #53535380;
+}
+
+* {
+    font-family: var(--font-livvic);
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+input, select {
+    cursor: pointer;
+}
+
+* {
+    color: #eee;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-dark-blue-gray);
+}
+
+.start-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-vendex {
+    width: 300px;
+}
+
+.title-date-week {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.date-week {
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+
+
+
+.sales-summary {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid var(--color-slate-gray);
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid var(--color-slate-gray);
+    padding: .5rem 1rem;
+    text-align: left;
+}
+
+th {
+    background-color: #1e8db3;
+}
+
+.th-center {
+    text-align: center;
+    background-color: #5568be;
+}
+
+.efficiency-analysis {
+    margin-top: 2rem;
+}
