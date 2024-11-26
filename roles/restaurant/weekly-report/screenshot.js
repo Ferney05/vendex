@@ -6,5 +6,5 @@ const puppeteer = require('puppeteer');
     await page.goto('http://localhost/vendex/roles/restaurant/weekly-report/report.php');
     await page.screenshot({ path: 'report.png' });
     await browser.close();
-    console.log('Captura tomada');
+    // console.log('Captura tomada');
 })();
