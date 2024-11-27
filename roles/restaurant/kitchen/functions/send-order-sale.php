@@ -6,7 +6,7 @@
     <title>Plato agregado - Vendex</title>
     <link rel="stylesheet" href="../../../../css/success.css">
     <link rel="stylesheet" href="../../../../css/warning.css">
-    <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
     <?php
         include("../../../../conexion.php");

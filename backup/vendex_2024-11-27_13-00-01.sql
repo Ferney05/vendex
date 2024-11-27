@@ -403,7 +403,7 @@ CREATE TABLE `pending_orders` (
 
 LOCK TABLES `pending_orders` WRITE;
 /*!40000 ALTER TABLE `pending_orders` DISABLE KEYS */;
-INSERT INTO `pending_orders` VALUES (3,2,'Andrea perez','2024-11-19T15:16','Lista','Comer en el lugar','1'),(5,3,'Ana Perez','2024-11-19T23:24','Lista','A domicilio','1'),(6,4,'Carlos Mercado','2024-11-21T16:04','Lista','Comer en el lugar','1'),(8,5,'Ferney Barbosa','2024-11-22T21:16','En preparación','Comer en el lugar','1');
+INSERT INTO `pending_orders` VALUES (3,2,'Andrea perez','2024-11-19T15:16','Lista','Comer en el lugar','1'),(5,3,'Ana Perez','2024-11-19T23:24','Lista','A domicilio','1'),(6,4,'Carlos Mercado','2024-11-21T16:04','Lista','Comer en el lugar','1'),(8,5,'Ferney Barbosa','2024-11-22T21:16','Lista','Comer en el lugar','1');
 /*!40000 ALTER TABLE `pending_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -608,4 +608,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-25 19:00:15
+-- Dump completed on 2024-11-27 13:00:02

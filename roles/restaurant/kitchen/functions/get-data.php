@@ -6,7 +6,7 @@
     <title>Actualizar ordenes - Vendex</title>
     <link rel="stylesheet" href="../../../../css/restaurant/add-orders.css">
     <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
-    <link rel="shortcut icon" href="../../../../svg/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

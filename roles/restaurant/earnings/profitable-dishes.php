@@ -6,7 +6,7 @@
     <title>Ganancias del día de hoy - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/profitable-dishes.css">
     <link rel="stylesheet" href="../../../css/base-premium.css">
-    <link rel="shortcut icon" href="../../../svg/icon-vendex.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
     <?php
         include("../../../conexion.php");
