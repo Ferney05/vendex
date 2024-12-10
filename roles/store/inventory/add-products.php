@@ -98,13 +98,20 @@
                                 </div>
 
                                 <div class="label-input">
-                                    <label for="purchase-price">Precio de compra</label>
-                                    <input type="number" name="purchase-price" class="input-form b-col-fcs-val" placeholder="Precio de compra" required>
+                                    <label for="quantity-stock">Cantidad disponible</label>
+                                    <input type="number" name="quantity-stock" class="input-form b-col-fcs-val" placeholder="Cantidad disponible" value="0" required>
                                 </div>
-                                
+                            </div>
+
+                            <div class="content-labels-inputs">
                                 <div class="label-input">
-                                    <label for="product-description">Descripción del producto</label>
-                                    <input type="text" name="product-description" class="input-form b-col-fcs-val" placeholder="Descripción" required>
+                                    <label for="purchase-price">Costo</label>
+                                    <input type="number" name="purchase-price" class="input-form b-col-fcs-val" placeholder="Precio de compra" value="0" required>
+                                </div>
+
+                                <div class="label-input">
+                                    <label for="sale-price">Precio</label>
+                                    <input type="number" name="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" value="0" required>
                                 </div>
                             </div>
 
@@ -113,6 +120,7 @@
                                     <label for="id-category">Categoría</label>
                                     <select name="id-category" class="select b-col-fcs-val" required>
                                         <option value="" disabled selected>Seleccione</option>
+                                        <option value="Sin categoría">Sin categoría</option>
                                         <?php
                                             $getCategory = "SELECT * FROM categories_store";
                                             $result = mysqli_query($conexion, $getCategory);
@@ -125,13 +133,8 @@
                                 </div>
 
                                 <div class="label-input">
-                                    <label for="sale-price">Precio de venta</label>
-                                    <input type="number" name="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" required>
-                                </div>
-                                
-                                <div class="label-input">
-                                    <label for="entry-date">Fecha de ingreso</label>
-                                    <input type="date" name="entry-date" class="input-form b-col-fcs-val" required>
+                                    <label for="product-description">Descripción</label>
+                                    <input type="text" name="product-description" class="input-form b-col-fcs-val" placeholder="Agrega una descripción" required>
                                 </div>
                             </div>
 
@@ -141,26 +144,11 @@
                                     <input type="text" name="supplier" class="input-form b-col-fcs-val" placeholder="Proveedor" required>
                                 </div>
 
-                                <div class="label-input">
-                                    <label for="quantity-stock">Cantidad en stock</label>
-                                    <input type="text" name="quantity-stock" class="input-form b-col-fcs-val" placeholder="Cantidad disponible" required>
-                                </div>
-                                
-                                <div class="label-input">
-                                    <label for="product-status">Estado del producto</label>
-                                    <select name="product-status" class="select b-col-fcs-val" required>
-                                        <option value="" disabled selected>Seleccione</option>
-                                        <option value="Activo">Activo</option>
-                                        <option value="Agotado">Agotado</option>
-                                    </select>
+                                <div class="button-submit">
+                                    <input type="submit" name="button-add-product" class="btn-form bg-btn" value="Agregar producto">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="button-submit">
-                            <input type="submit" name="button-add-product" class="btn-form bg-btn" value="Agregar">
-                        </div>
-
                     </form>
                 </div>
             </div>

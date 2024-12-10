@@ -55,6 +55,17 @@
     text-decoration: none;
 }
 
+.button-confirm {
+    background-color: var(--color-blue-stone);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 .content-table {
     margin-top: 3rem;
 }
@@ -119,8 +130,38 @@ td {
     font-weight: 300;
 }
 
+.hidden-info-sale {
+    /* display: none; */
+    width: 50%;
+    margin: auto auto 1rem auto;
+}
 
+.form-generate, .client-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
+.input {
+    outline: none;
+    padding: .2rem .3rem;
+    height: 27px;
+    /* border: 2px solid #fff; */
+    border: 2px solid var(--color-slate-gray);
+    background-color: transparent;
+    width: 200px;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.select {
+    outline: none;
+    border: 2px solid var(--color-white);
+    background-color: transparent;
+    padding: .5rem .3rem;
+    border-radius: 10px;
+    width: 200px;
+}
 
 
 

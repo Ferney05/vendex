@@ -28,10 +28,8 @@
             $sale_price = $_POST['sale-price'];
             $quantity_stock = $_POST['quantity-stock'];
             $product_description = $_POST['product-description'];
-            $entry_date = $_POST['entry-date'];
-            $product_status = $_POST['product-status'];
 
-            $insertData = "UPDATE inventory_products SET id_category = '$id_category', product_name = '$name_product', supplier = '$supplier', purchase_price = '$purchase_price', sale_price = '$sale_price', stock_quantity = '$quantity_stock', product_description = '$product_description', entry_date = '$entry_date', product_status = '$product_status' WHERE id = $id_product";
+            $insertData = "UPDATE inventory_products SET id_category = $id_category, product_name = '$name_product', supplier = '$supplier', purchase_price = $purchase_price, sale_price = $sale_price, stock_quantity = $quantity_stock, product_description = '$product_description', entry_date = CURDATE() WHERE id = $id_product";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){

@@ -112,21 +112,8 @@
                     </div>
                 </div>
 
-                <div class="content-table">
-                    <table>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Descripción</th>
-                            <th>Categoría</th>
-                            <th>Precio de compra</th>
-                            <th>Precio de venta</th>
-                            <th>Stock</th>
-                            <th>Proveedor</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-
+                <div class="all-products">
+                    <div class="content-cards">
                         <?php
                             if(isset($_POST['button-search'])){
                                 $search = $_POST['search'];
@@ -140,40 +127,37 @@
                                     while($row = mysqli_fetch_array($resultProducts)){
                                         $id = $row['id'];
                                         $id_category = $row['id_category'];
-
+    
                                         $queryCategory = "SELECT category FROM categories_store WHERE id = $id_category";
                                         $resultCat = mysqli_query($conexion, $queryCategory);
                                         $rowCat = mysqli_fetch_array($resultCat);
-        
-                                        echo "<tr>
-                                                <td>" . ucfirst($row['product_name']) . "</td>
-                                                <td>" . ucfirst($row['product_description']) . "</td>
-                                                <td>" . $rowCat['category'] . "</td>
-                                                <td>$" . number_format($row['purchase_price'], 0) . "</td>
-                                                <td>$" . number_format($row['sale_price'], 0) . "</td>
-                                                <td>" . $row['stock_quantity'] . "</td>
-                                                <td>" . ucfirst($row['supplier']) . "</td>
-                                                <td>" . $row['entry_date'] . "</td>
-                                                <td>" . $row['product_status'] . "</td>
-                                                <td>
+    
+                                        echo "<div class='card-product'>
+                                                <div class='info-product'>
+                                                    <p>$ " . number_format($row['sale_price'], 0) . "</p>
+                                                    <h3 class='product'>" . ucfirst($row['product_name']) . "</h3>
+                                                    <p>" . $row['stock_quantity'] . " disponibles</p>
+                                                </div>
+    
+                                                <div class='actions'>
                                                     <a href='delete.php?id=$id'>
                                                         <img src='../../../../svg/delete.svg' />
+                                                        Eliminar
                                                     </a>
-        
+    
                                                     <a href='get-data.php?id=$id'>
                                                         <img src='../../../../svg/edit.svg' />
+                                                        Editar
                                                     </a>
-                                                </td>
-                                            </tr>";
+                                                </div>
+                                            </div>";
                                     }
                                 } else {
-                                    echo "<tr>
-                                            <td colspan='10'>No se encontraron productos</td>
-                                        </tr>";
+                                    echo "<div class='not-product'><p>No tienes productos en tu inventario</p></div>";
                                 }
                             }
                         ?>
-                    </table>
+                    </div>
                 </div>
             </div>
         </section>

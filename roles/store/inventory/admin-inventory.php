@@ -78,7 +78,22 @@
         <section class="info-table-product" id="hidden-modal">
             <div class="table-products">
                 <div class="tlt-search-add">
-                    <h2 class="tlt-function">Administrar inventario</h2>
+                    <div class="tlt-cost">
+                        <h2 class="tlt-function">Inventario</h2>
+                        <div class="total-cost">
+                            <p>Costo total de inventario</p>
+                            <?php
+                                $query = "SELECT SUM(purchase_price * stock_quantity) AS total_cost FROM inventory_products";
+                                $result = mysqli_query($conexion, $query);
+                                $row = mysqli_fetch_array($result);
+                                if($row['total_cost'] === NULL){
+                                    echo "<p>$ 0</p>";
+                                } else {
+                                    echo "<p>$ " . number_format($row['total_cost'], 0) . "</p>";
+                                }
+                            ?>
+                        </div>
+                    </div>
                     
                     <div class="search-add">
                         <form action="functions/search-product.php" method="POST" class="form-search">
@@ -112,21 +127,8 @@
                     </div>
                 </div>
 
-                <div class="content-table">
-                    <table>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Descripción</th>
-                            <th>Categoría</th>
-                            <th>Precio de compra</th>
-                            <th>Precio de venta</th>
-                            <th>Stock</th>
-                            <th>Proveedor</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-
+                <div class="all-products">
+                    <div class="content-cards">
                         <?php
                             $getProducts = "SELECT * FROM inventory_products";
                             $resultProducts = mysqli_query($conexion, $getProducts);
@@ -140,34 +142,31 @@
                                     $resultCat = mysqli_query($conexion, $queryCategory);
                                     $rowCat = mysqli_fetch_array($resultCat);
 
-                                    echo "<tr>
-                                            <td>" . ucfirst($row['product_name']) . "</td>
-                                            <td>" . ucfirst($row['product_description']) . "</td>
-                                            <td>" . $rowCat['category'] . "</td>
-                                            <td>$" . number_format($row['purchase_price'], 0) . "</td>
-                                            <td>$" . number_format($row['sale_price'], 0) . "</td>
-                                            <td>" . $row['stock_quantity'] . "</td>
-                                            <td>" . ucfirst($row['supplier']) . "</td>
-                                            <td>" . $row['entry_date'] . "</td>
-                                            <td><span>" . ($row['stock_quantity'] > 0 ? $row['product_status'] : 'Agotado') . "</span></td>
-                                            <td>
+                                    echo "<div class='card-product'>
+                                            <div class='info-product'>
+                                                <p>$ " . number_format($row['sale_price'], 0) . "</p>
+                                                <h3 class='product'>" . ucfirst($row['product_name']) . "</h3>
+                                                <p>" . $row['stock_quantity'] . " disponibles</p>
+                                            </div>
+
+                                            <div class='actions'>
                                                 <a href='functions/delete.php?id=$id'>
                                                     <img src='../../../svg/delete.svg' />
+                                                    Eliminar
                                                 </a>
-    
+
                                                 <a href='functions/get-data.php?id=$id'>
                                                     <img src='../../../svg/edit.svg' />
+                                                    Editar
                                                 </a>
-                                            </td>
-                                          </tr>";
+                                            </div>
+                                        </div>";
                                 }
                             } else {
-                                echo "<tr>
-                                        <td colspan='10'>No hay productos</td>
-                                      </tr>";
+                                echo "<div class='not-product'><p>No tienes productos en tu inventario</p></div>";
                             }
                         ?>
-                    </table>
+                    </div>
                 </div>
             </div>
         </section>

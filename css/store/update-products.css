@@ -57,36 +57,41 @@
 }
 
 .content-form {
-    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
 }
 
 .form {
     padding: 2rem;
     box-sizing: border-box;
     border-radius: 10px;
-    width: 1000px;
+    width: 700px;
     margin: auto;
     border: 2px solid var(--color-slate-gray);
 }
 
 .form .alls {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: .8rem;
 }
 
 .content-labels-inputs {
     display: flex;
-    flex-direction: column;
-    gap: .4rem;
-    width: 400px;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
 }
 
 .label-input {
     display: flex;
-    flex-direction: column;
     gap: .2rem;
+    flex-direction: column;
+    width: 100%;
 }
 
 .label-input label {
@@ -107,6 +112,7 @@
     color: var(--color-light-black);
     padding: .4rem .3rem;
     border-radius: 10px;
+    width: 100%;
 }
 
 .button-submit {

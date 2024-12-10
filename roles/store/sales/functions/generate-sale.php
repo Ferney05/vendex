@@ -1,15 +1,30 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+echo "Inicio del script.<br>";
+
     include('../../../../conexion.php');
+
+    if (!$conexion) {
+        die("Error al conectar con la base de datos: " . mysqli_connect_error());
+    } else {
+        echo "Conexión a la base de datos exitosa.<br>";
+    }
+    
 
     function generarVenta($conexion) {
         mysqli_begin_transaction($conexion);
-        
+
         try {
             // 1. Verificamos si hay productos en el carrito
-            $check_cart = "SELECT COUNT(*) as count FROM cart_store";
+            $check_cart = "SELECT COUNT(*) AS count FROM cart_store";
             $result_check = mysqli_query($conexion, $check_cart);
             $row_check = mysqli_fetch_assoc($result_check);
-                
+
+            var_dump($row_check);
+
             if ($row_check['count'] == 0) {
                 throw new Exception("El carrito está vacío");
             }
@@ -44,11 +59,18 @@
                 $unit_price = $item['sale_price'];
                 $subtotal = $item['subtotal'];
 
+                $client = !empty($_POST['client']) ? $_POST['client'] : 'Cliente genérico';
+                $payment_method = $_POST['payment-method'];
+
+                echo "Cliente: $client<br>";
+                echo "Método de pago: $payment_method<br>";
+
                 $query_details = "INSERT INTO sale_details 
-                                (sale_id, product_name, quantity, unit_price, subtotal) 
+                                (sale_id, product_name, quantity, unit_price, client, payment_method, subtotal) 
                                 VALUES 
-                                ($sale_id, '$product_name', $quantity, $unit_price, $subtotal)";
-                
+                                ($sale_id, '$product_name', $quantity, $unit_price, $client, $payment_method, $subtotal)";
+                echo "Consulta a ejecutar: $query_details<br>";
+
                 if (!mysqli_query($conexion, $query_details)) {
                     throw new Exception("Error al insertar detalles de la venta");
                 }
@@ -82,10 +104,19 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (generarVenta($conexion)) {
-            header("Location: ../new-sale.php?message=Venta generada&message_type=success");
+            echo "Venta generada correctamente.<br>";
+            // header("Location: ../new-sale.php?message=Venta generada&message_type=success");
         } else {
-            header("Location: ../new-sale.php?message=El carrito está vacío&message_type=error");
+            echo "Error al generar la venta.<br>";
+            // header("Location: ../new-sale.php?message=El carrito está vacío&message_type=error");
         }
-        exit;
+        // exit;
+    }
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        echo "<p>";
+        print_r($_POST);
+        echo "</p>";
     }
 ?>

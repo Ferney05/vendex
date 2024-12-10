@@ -1,0 +1,111 @@
+@import url('../../fonts-colors.css');
+
+body {
+    background-color: #161922;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.main {
+    background-color: #161922;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bill {
+    border: 1px solid #eee;
+    padding: 1rem 2rem;
+    width: 700px;
+}
+
+.logo {
+    width: 300px;
+}
+
+* {
+    color: #eee;
+}
+
+.logo-bill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bill-date {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tlt-bill {
+    text-align: end;
+    font-size: 3rem;
+}
+
+.num-dates .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.personal-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    margin-top: 1rem;
+}
+
+.contact div {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.products {
+    margin-top: 2rem;
+}
+
+table, th, td {
+    border: 2px solid var(--color-slate-gray);
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: .3rem 0;
+    text-align: center;
+}
+
+.total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.total h3 {
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.thanks {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: .9rem;
+}
