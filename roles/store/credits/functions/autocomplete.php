@@ -4,7 +4,7 @@
     if (isset($_POST['query'])) {
         $search = mysqli_real_escape_string($conexion, $_POST['query']);
 
-        $query = "SELECT customer FROM credits WHERE customer LIKE '%$search%' LIMIT 5";
+        $query = "SELECT customer FROM credits WHERE customer LIKE '%$search%' GROUP BY customer LIMIT 5";
         $result = mysqli_query($conexion, $query);
 
         $productList = array(); // Array para almacenar los resultados

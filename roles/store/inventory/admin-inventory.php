@@ -143,10 +143,15 @@
                                     $rowCat = mysqli_fetch_array($resultCat);
 
                                     echo "<div class='card-product'>
-                                            <div class='info-product'>
-                                                <p>$ " . number_format($row['sale_price'], 0) . "</p>
-                                                <h3 class='product'>" . ucfirst($row['product_name']) . "</h3>
-                                                <p>" . $row['stock_quantity'] . " disponibles</p>
+                                            <div class='unit-info'>
+                                                <p class='unit'>" . $row['unit_measure'] . "</p>
+                                                <div class='info-product'>
+                                                    <h3 class='product'>" . ucfirst($row['product_name']) . "</h3>
+                                                    <div class='price-available'>
+                                                        <p>$ " . number_format($row['sale_price'], 0) . "</p>
+                                                        <p>" . $row['stock_quantity'] . " disponibles</p>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class='actions'>

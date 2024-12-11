@@ -140,14 +140,96 @@
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
+                                    <label for="unit-measure">Unidad de compra</label>
+                                    <select name="unit-measure" class="select b-col-fcs-val" required>
+                                        <option value="" disabled selected>Seleccione</option>
+                                        <?php
+                                            if($row['unit_measure'] == 'Sin unidad'){
+                                                echo "<option value='Sin unidad' selected>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Unidades'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades' selected>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Kilos'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos' selected>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Gramos'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos' selected>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Miligramos'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos' selected>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Onzas'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas' selected>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Libras'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras' selected>Libras</option>";
+                                                echo "<option value='Litros'>Litros</option>";
+                                            } else if($row['unit_measure'] == 'Litros'){
+                                                echo "<option value='Sin unidad'>Sin unidad</option>";
+                                                echo "<option value='Unidades'>Unidades</option>";
+                                                echo "<option value='Kilos'>Kilos</option>";
+                                                echo "<option value='Gramos'>Gramos</option>";
+                                                echo "<option value='Miligramos'>Miligramos</option>";
+                                                echo "<option value='Onzas'>Onzas</option>";
+                                                echo "<option value='Libras'>Libras</option>";
+                                                echo "<option value='Litros' selected>Litros</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="label-input">
                                     <label for="supplier">Proveedor</label>
                                     <input type="text" name="supplier" class="input-form b-col-fcs-val" placeholder="Proveedor" value="<?php echo $row['supplier'] ?>" required>
                                 </div>
-
-                                <div class="button-submit">
-                                    <input type="submit" name="button-update-product" class="btn-form bg-btn" value="Actualizar producto">
-                                </div>
                             </div>
+                        </div>
+
+                        <div class="button-submit">
+                            <input type="submit" name="button-update-product" class="btn-form bg-btn" value="Actualizar producto">
                         </div>
                     </form>
                 </div>

@@ -140,14 +140,29 @@
 
                             <div class="content-labels-inputs">
                                 <div class="label-input">
+                                    <label for="unit-measure">Unidad de compra</label>
+                                    <select name="unit-measure" class="select b-col-fcs-val" required>
+                                        <option value="" disabled selected>Seleccione</option>
+                                        <option value="Sin unidad">Sin unidad</option>
+                                        <option value="Unidades">Unidades</option>
+                                        <option value="Kilos">Kilos</option>
+                                        <option value="Gramos">Gramos</option>
+                                        <option value="Miligramos">Miligramos</option>
+                                        <option value="Onzas">Onzas</option>
+                                        <option value="Libras">Libras</option>
+                                        <option value="Litros">Litros</option>
+                                    </select>
+                                </div>
+
+                                <div class="label-input">
                                     <label for="supplier">Proveedor</label>
                                     <input type="text" name="supplier" class="input-form b-col-fcs-val" placeholder="Proveedor" required>
                                 </div>
-
-                                <div class="button-submit">
-                                    <input type="submit" name="button-add-product" class="btn-form bg-btn" value="Agregar producto">
-                                </div>
                             </div>
+                        </div>
+
+                        <div class="button-submit">
+                            <input type="submit" name="button-add-product" class="btn-form bg-btn" value="Agregar producto">
                         </div>
                     </form>
                 </div>

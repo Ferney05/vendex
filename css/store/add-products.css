@@ -114,6 +114,22 @@
     width: 100%;
 }
 
+.label-check {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.label-check label {
+    font-size: .9rem;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
 .button-submit {
     display: flex;
     margin-top: 1rem;

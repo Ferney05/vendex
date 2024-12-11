@@ -132,20 +132,25 @@
                                         $resultCat = mysqli_query($conexion, $queryCategory);
                                         $rowCat = mysqli_fetch_array($resultCat);
     
-                                        echo "<div class='card-product'>
-                                                <div class='info-product'>
-                                                    <p>$ " . number_format($row['sale_price'], 0) . "</p>
-                                                    <h3 class='product'>" . ucfirst($row['product_name']) . "</h3>
-                                                    <p>" . $row['stock_quantity'] . " disponibles</p>
+                                        echo  "<div class='card-product'>
+                                                <div class='unit-info'>
+                                                    <p class='unit'>" . $row['unit_measure'] . "</p>
+                                                    <div class='info-product'>
+                                                        <h3 class='product'>" . ucfirst($row['product_name']) . "</h3>
+                                                        <div class='price-available'>
+                                                            <p>$ " . number_format($row['sale_price'], 0) . "</p>
+                                                            <p>" . $row['stock_quantity'] . " disponibles</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-    
+
                                                 <div class='actions'>
-                                                    <a href='delete.php?id=$id'>
+                                                    <a href='functions/delete.php?id=$id'>
                                                         <img src='../../../../svg/delete.svg' />
                                                         Eliminar
                                                     </a>
-    
-                                                    <a href='get-data.php?id=$id'>
+
+                                                    <a href='functions/get-data.php?id=$id'>
                                                         <img src='../../../../svg/edit.svg' />
                                                         Editar
                                                     </a>

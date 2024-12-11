@@ -77,11 +77,6 @@
                     <h2 class="tlt-function">Control de créditos</h2>
                     
                     <div class="content-buttons">
-                        <a href="create-credits.php" class="btn-new-sale bg-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z"/></svg>
-                            <p>Crear crédito</p>
-                        </a>
-
                         <a href="fertilizers.php" class="btn-new-sale bg-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M12.005 22.003c-5.523 0-10-4.477-10-10s4.477-10 10-10s10 4.477 10 10s-4.477 10-10 10m-3.5-8v2h2.5v2h2v-2h1a2.5 2.5 0 1 0 0-5h-4a.5.5 0 1 1 0-1h5.5v-2h-2.5v-2h-2v2h-1a2.5 2.5 0 1 0 0 5h4a.5.5 0 0 1 0 1z"/></svg>
                             <p>Abonar</p>
@@ -94,7 +89,6 @@
                         <tr>
                             <th>Cliente</th>
                             <th>Fecha de creación</th>
-                            <th>Fecha de vencimiento</th>
                             <th>Saldo total</th>
                             <th>Abonos realizados</th>
                             <th>Saldo actual</th>
@@ -103,13 +97,13 @@
                         </tr>
 
                         <?php
-                            $queryCredits = "SELECT * FROM credits";
+                            $queryCredits = "SELECT *, SUM(amount_borrowed) AS current_balance FROM credits GROUP BY customer;";
                             $resultCredits = mysqli_query($conexion, $queryCredits);
 
                             if($resultCredits -> num_rows > 0) {
                                 while ($row = mysqli_fetch_assoc($resultCredits)){
                                     $id = $row['id'];
-                                    $current_balance = $row['amount_borrowed'] - $row['fertilizers'];
+                                    $current_balance = $row['current_balance'] - $row['fertilizers'];
 
                                     $status_class = '';
                                     switch ($row['credit_status']) {
@@ -130,8 +124,7 @@
                                     echo "<tr>
                                             <td>" . $row['customer'] . "</td>
                                             <td>" . $row['creation_date'] . "</td>
-                                            <td>" . $row['expiration_date'] . "</td>
-                                            <td>$" . number_format($row['amount_borrowed'], 0) . "</td>
+                                            <td>$" . number_format($row['current_balance'], 0) . "</td>
                                             <td>$" . number_format($row['fertilizers'], 0) . "</td>
                                             <td>$" . number_format($current_balance, 0) . "</td>
                                             <td><span class='" . $status_class . "'>" . $row['credit_status'] . "</span></td>
@@ -157,14 +150,14 @@
             </div>
         </section>
 
-        <section class="premium">
+        <!-- <section class="premium">
             <div class="content">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#eee" d="M12 13a1.49 1.49 0 0 0-1 2.61V17a1 1 0 0 0 2 0v-1.39A1.49 1.49 0 0 0 12 13m5-4V7A5 5 0 0 0 7 7v2a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-7a3 3 0 0 0-3-3M9 7a3 3 0 0 1 6 0v2H9Zm9 12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1Z"/></svg>
                     <p>Solo disponible para la versión premium.</p>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 
     <script src="show-modal-add.js"></script>

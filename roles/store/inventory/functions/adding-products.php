@@ -21,8 +21,9 @@
             $sale_price = $_POST['sale-price'];
             $quantity_stock = $_POST['quantity-stock'];
             $product_description = $_POST['product-description'];
+            $unit_measure = $_POST['unit-measure'];
 
-            $insertData = "INSERT INTO inventory_products VALUES(null, $id_category, '$name_product', '$supplier', '$purchase_price', '$sale_price', '$quantity_stock', '$product_description', CURDATE())";
+            $insertData = "INSERT INTO inventory_products VALUES(null, $id_category, '$name_product', '$supplier', '$purchase_price', '$sale_price', '$quantity_stock', '$product_description', '$unit_measure', CURDATE())";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){

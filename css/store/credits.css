@@ -118,22 +118,22 @@ td {
     font-weight: 300;
 }
 
-td:nth-child(8) a {
+td:nth-child(7) a {
     text-decoration: none;
 } 
 
-td:nth-child(8) a:last-child {
+td:nth-child(7) a:last-child {
     margin-left: 1rem;
 }
 
 .pending {
-    background-color: #fda21a;
+    background-color: var(--color-dark-red);
     padding: .2rem .8rem;
     border-radius: 10px;
 }
 
 .paid {
-    background-color: #4CAF50;
+    background-color: var(--color-dark-green);
     padding: .2rem .8rem;
     border-radius: 10px;
 }

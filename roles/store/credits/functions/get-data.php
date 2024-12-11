@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar créditos - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/store/create-credits.css">
+    <link rel="stylesheet" href="../../../../css/store/edit-credits.css">
     <link rel="stylesheet" href="../../../../css/store/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
@@ -109,28 +109,6 @@
                                     <label for="creation-date">Fecha de creación</label>
                                     <input type="date" name="creation-date" class="input-form b-col-fcs-val" value="<?php echo $row['creation_date'] ?>" required>
                                 </div>
-                                
-                                <div class="label-input">
-                                    <label for="status">Estado</label>
-                                    <select name="status" class="select b-col-fcs-val" required>
-                                        <option value="" disabled selected>Seleccione</option>
-                                        <?php
-                                            if($row['credit_status'] == 'Pendiente') {
-                                                echo "<option value='Pendiente' selected>Pendiente</option>";
-                                                echo "<option value='Pagado'>Pagado</option>";
-                                                echo "<option value='Vencido'>Vencido</option>";
-                                            } else if($row['credit_status'] == 'Pagado') {
-                                                echo "<option value='Pendiente'>Pendiente</option>";
-                                                echo "<option value='Pagado' selected>Pagado</option>";
-                                                echo "<option value='Vencido'>Vencido</option>";
-                                            } else if($row['credit_status'] == 'Vencido') {
-                                                echo "<option value='Pendiente'>Pendiente</option>";
-                                                echo "<option value='Pagado'>Pagado</option>";
-                                                echo "<option value='Vencido' selected>Vencido</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
                             </div>
 
                             <div class="content-labels-inputs">
@@ -140,14 +118,25 @@
                                 </div>
                                 
                                 <div class="label-input">
-                                    <label for="expiration-date">Fecha de vencimiento</label>
-                                    <input type="date" name="expiration-date" class="input-form b-col-fcs-val" value="<?php echo $row['expiration_date'] ?>" required>
-                                </div>
-
-                                <div class="button-submit">
-                                    <input type="submit" name="button-update-credit" class="btn-form bg-btn" value="Actualizar">
+                                    <label for="status">Estado</label>
+                                    <select name="status" class="select b-col-fcs-val" required>
+                                        <option value="" disabled selected>Seleccione</option>
+                                        <?php
+                                            if($row['credit_status'] == 'Pendiente') {
+                                                echo "<option value='Pendiente' selected>Pendiente</option>";
+                                                echo "<option value='Pagado'>Pagado</option>";
+                                            } else if($row['credit_status'] == 'Pagado') {
+                                                echo "<option value='Pendiente'>Pendiente</option>";
+                                                echo "<option value='Pagado' selected>Pagado</option>";
+                                            } 
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="button-submit">
+                            <input type="submit" name="button-update-credit" class="btn-form bg-btn" value="Actualizar">
                         </div>
                     </form>
                 </div>

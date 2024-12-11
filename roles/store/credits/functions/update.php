@@ -21,10 +21,9 @@
             $customer = $_POST['customer'];
             $amount_borrowed = $_POST['amount-borrowed'];
             $creation_date = $_POST['creation-date'];
-            $expiration_date = $_POST['expiration-date'];
             $status = $_POST['status'];
 
-            $insertData = "UPDATE credits SET customer = '$customer', amount_borrowed = '$amount_borrowed', creation_date = '$creation_date', expiration_date = '$expiration_date', credit_status = '$status' WHERE id = $id_credit";
+            $insertData = "UPDATE credits SET customer = '$customer', amount_borrowed = '$amount_borrowed', creation_date = '$creation_date', credit_status = '$status' WHERE id = $id_credit";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){

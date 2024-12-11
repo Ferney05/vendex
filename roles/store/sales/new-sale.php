@@ -106,26 +106,57 @@
                         </div>
 
                         <div class="cancel-generate-buttons">
+                            <div class="options-pay-credit">
+                                <button type="button" class="btn-options btn-pay">Pagada</button>
+                                <button type="button" class="btn-options btn-credit">A crédito</button>
+                            </div>
+
                             <a href="functions/cancel-sale.php">
                                 <p>Cancelar venta</p>
                             </a>
 
-                            <button type="button" class="button-confirm">Confirmar productos</button>
+                            <?php
+                                $query = "SELECT COUNT(*) AS total FROM cart_store";
+                                $result = mysqli_query($conexion, $query);
+                                $row = mysqli_fetch_assoc($result);
+
+                                if ($row['total'] > 0): 
+                            ?>
+                                <button type="button" class="button-confirm">Confirmar productos</button>
+                            <?php 
+                                endif; 
+                            ?>
                         </div>
+
+                        <script>
+                            const totalProductos = <?php echo $row['total']; ?>;
+
+                            const updateCancelButtonTitle = () => {
+                                const cancelGenerateButton = document.querySelector('.cancel-generate-buttons');
+                                const confirmButton = document.querySelector('.button-confirm');
+
+                                if (totalProductos > 0) {
+                                    cancelGenerateButton.title = 'Cambia la opción';  // Cambiar el título del botón de cancelación
+                                } else {
+                                    cancelGenerateButton.title = 'Agrega productos a la venta';  // Establecer el título de cancelación por defecto
+                                }
+                            };
+
+                            // Ejecutamos la función para actualizar el estado de los botones
+                            updateCancelButtonTitle();
+                        </script>
                     </div>
 
                     <div class="hidden-info-sale">
                         <form action="functions/generate-sale.php" method="POST" class="form-generate">
-                            <div class="client-method">
+                            <div class="text">
                                 <input type="text" name="client" id="client" placeholder="Nombre del cliente" class="input">
-                                
-                                <select name="payment-method" class="select b-col-fcs-val" required>
-                                    <option value="" disabled selected>Seleccione</option>
+                                <select name="payment-method" class="select payment-method b-col-fcs-val" required>
+                                    <option value="" disabled selected>Método de pago</option>
                                     <option value="Efectivo">Efectivo</option>
                                     <option value="Nequi">Nequi</option>
                                 </select>
                             </div>
-
                             <input type="submit" class="btn-generate" value="Generar venta">
                         </form>
                     </div>
@@ -164,7 +195,7 @@
             <div class="flex-modal">
                 <div class="tlt-form">
                     <div class="tlt-close">
-                        <h2 class="tlt">Agregar producto a la venta</h2>
+                        <h2 class="tlt">Agregar producto</h2>
                         <svg class="close-modal" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 304 384"><path fill="#ffffff" d="M299 73L179 192l120 119l-30 30l-120-119L30 341L0 311l119-119L0 73l30-30l119 119L269 43z"/></svg>
                     </div>
 
@@ -172,26 +203,50 @@
                         <div class="content-inputs">
                             <div class="label-input">
                                 <label for="name-product">Nombre del producto</label>
-                                <input type="text" name="name-product" id="name-product" class="input-form b-col-fcs-val" placeholder="Nombre del producto" required>
+                                <input type="text" name="name-product" id="name-product" class="input-form b-col-fcs-val" placeholder="Nombre del producto" onkeyup="searchProduct(this.value)" required>
                             </div>
 
                             <div class="label-input">
                                 <label for="cart-stock">Cantidad</label>
-                                <input type="number" name="cart-stock" class="input-form b-col-fcs-val" placeholder="Cantidad" required>
+                                <input type="number" name="cart-stock" id="quantity" class="input-form b-col-fcs-val" placeholder="Cantidad" required>
                             </div>
                         </div>
 
                         <div class="content-inputs">
                             <div class="label-input">
-                                <label for="sale-price">Precio de venta</label>
+                                <label for="sale-price">Precio</label>
                                 <input type="number" name="sale-price" id="sale-price" class="input-form b-col-fcs-val" placeholder="Precio de venta" required>
                             </div>
 
                             <div class="label-input">
-                                <input type="submit" name="button-add-product-sale" class="btn-form-modal bg-btn" value="Agregar">
+                                <input type="submit" name="button-add-product-sale" class="btn-form-modal bg-btn" value="Agregar producto">
                             </div>
                         </div>
                     </form>
+
+                    <h2 class="tlt-product">Productos</h2>
+                    <script>
+                        function searchProduct(keyword) {
+                            if (keyword.length > 0) {
+                                const xhr = new XMLHttpRequest();
+                                xhr.open("POST", "functions/search.php", true);
+                                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        document.getElementById("products").innerHTML = xhr.responseText;
+                                    }
+                                };
+
+                                xhr.send("name-product=" + encodeURIComponent(keyword));
+                            } else {
+                                document.getElementById("products").innerHTML = ""; // Limpia los resultados si no hay texto
+                            }
+                        }
+                    </script>
+                    <div class="products" id="products">
+                        <p class="info">El producto que estás buscando se mostrará en este espacio.</p>
+                    </div>
                 </div>
             </div>
         </section>
