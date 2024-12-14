@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizar nueva venta - Vendex</title>
     <link rel="stylesheet" href="../../../css/store/new-sale.css">
+    <link rel="stylesheet" href="../../../css/base-premium.css">
     <link rel="stylesheet" href="../../../css/store/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
@@ -108,7 +109,7 @@
                         <div class="cancel-generate-buttons">
                             <div class="options-pay-credit">
                                 <button type="button" class="btn-options btn-pay">Pagada</button>
-                                <button type="button" class="btn-options btn-credit">A crédito</button>
+                                <button type="button" class="btn-options btn-credit locked-button">A crédito</button>
                             </div>
 
                             <a href="functions/cancel-sale.php">
@@ -136,9 +137,9 @@
                                 const confirmButton = document.querySelector('.button-confirm');
 
                                 if (totalProductos > 0) {
-                                    cancelGenerateButton.title = 'Cambia la opción';  // Cambiar el título del botón de cancelación
+                                    cancelGenerateButton.title = '';  
                                 } else {
-                                    cancelGenerateButton.title = 'Agrega productos a la venta';  // Establecer el título de cancelación por defecto
+                                    cancelGenerateButton.title = 'Agrega productos a la venta';  
                                 }
                             };
 
@@ -150,7 +151,9 @@
                     <div class="hidden-info-sale">
                         <form action="functions/generate-sale.php" method="POST" class="form-generate">
                             <div class="text">
-                                <input type="text" name="client" id="client" placeholder="Nombre del cliente" class="input">
+                                <input type="text" name="client" id="client" placeholder="Nombre del cliente" class="input client input-blocked">
+                                <input type="email" name="client-email" id="client-email" placeholder="Correo del cliente" class="input client-email input-blocked">
+                                <input type="text" name="client-phone" id="client-phone" placeholder="Celular del cliente" class="input client-phone input-blocked">
                                 <select name="payment-method" class="select payment-method b-col-fcs-val" required>
                                     <option value="" disabled selected>Método de pago</option>
                                     <option value="Efectivo">Efectivo</option>
@@ -264,7 +267,7 @@
                             }
                         });
                     },
-                    minLength: 3,
+                    minLength: 1,
                     // Agregamos el evento select para cuando se selecciona un producto
                     select: function(event, ui) {
                         // Asumiendo que tienes un input con id="price-product" para el precio
@@ -275,8 +278,9 @@
         </script>
     </main>
 
-    <script src="show-modal-add.js"></script>
+    <script src="show-modal.js"></script>
     <script src="sale.js"></script>
+    <script src="bill/click.js"></script>
     <script src="../../../js/base-nav-dash.js"></script>
 
 </body>

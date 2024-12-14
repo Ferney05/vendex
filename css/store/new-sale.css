@@ -169,7 +169,7 @@ td {
 .hidden-info-sale {
     display: none;
     width: 50%;
-    margin: auto auto 1rem auto;
+    margin: 2rem auto 1rem auto;
 }
 
 .form-generate {
@@ -179,16 +179,22 @@ td {
     gap: 1rem;
 }
 
+.text {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 61%;
+    gap: .5rem;
+}
+
 .input {
     outline: none;
     padding: .2rem .3rem;
     height: 27px;
-    /* border: 2px solid #fff; */
-    border: 2px solid var(--color-slate-gray);
+    border: 2px solid var(--color-white);
     background-color: transparent;
-    width: 200px;
+    width: 260px;
     border-radius: 10px;
-    pointer-events: none;
 }
 
 .select {
@@ -197,7 +203,7 @@ td {
     background-color: transparent;
     padding: .5rem .3rem;
     border-radius: 10px;
-    width: 200px;
+    width: 270px;
 }
 
 .payment-method {

@@ -93,6 +93,23 @@
 
                 <div class="accordion">
                     <div class="accordion-btn">
+                        <span>Clientes</span>
+                        <img src="../svg/down-arrow.svg" class="down-arrow" alt="">
+                        <img src="../svg/up-arrow.svg" class="up-arrow" alt="">
+                    </div>
+
+                    <div class="accordion-content">
+                        <div>
+                            <a href="store/credits/clients.php">
+                                <img src="../svg/clients.svg" alt="">
+                                <p>Lista de clientes</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-btn">
                         <span>Control de créditos</span>
                         <img src="../svg/down-arrow.svg" class="down-arrow" alt="">
                         <img src="../svg/up-arrow.svg" class="up-arrow" alt="">
@@ -109,27 +126,22 @@
                     </div>
                 </div>
 
-                <!-- <div class="accordion">
+                <div class="accordion">
                     <div class="accordion-btn">
-                        <span>Reportes generados</span>
+                        <span>Empleados</span>
                         <img src="../svg/down-arrow.svg" class="down-arrow" alt="">
                         <img src="../svg/up-arrow.svg" class="up-arrow" alt="">
                     </div>
 
                     <div class="accordion-content">
                         <div>
-                            <a href="store/earnings/today-earnings.php">
-                                <img src="../svg/eyes.svg" alt="">
-                                <p>Ver ganancias de ventas</p>
-                            </a> 
-
-                            <a href="#" class="premium">
-                                <img src="../svg/secure.svg" alt="">
-                                <p>Versión premium</p>
+                            <a href="store/credits/employees.php">
+                                <img src="../svg/employee.svg" alt="">
+                                <p>Lista de empleados</p>
                             </a>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </section>
 

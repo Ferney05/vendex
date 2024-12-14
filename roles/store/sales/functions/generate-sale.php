@@ -48,13 +48,15 @@
                 $unit_price = $item['sale_price'];
                 $subtotal = $item['subtotal'];
     
-                $client = isset($_POST['client']) ? mysqli_real_escape_string($conexion, $_POST['client']) : 'Cliente genérico';
+                $client = isset($_POST['client']) ? mysqli_real_escape_string($conexion, $_POST['client']) : '';
+                $client_email = isset($_POST['client-email']) ? mysqli_real_escape_string($conexion, $_POST['client-email']) : '';
+                $client_phone = isset($_POST['client-phone']) ? mysqli_real_escape_string($conexion, $_POST['client-phone']) : '';
                 $payment_method = isset($_POST['payment-method']) ? mysqli_real_escape_string($conexion, $_POST['payment-method']) : 'A crédito';
     
                 $query_details = "INSERT INTO sale_details 
-                                (sale_id, product_name, quantity, unit_price, client, payment_method, subtotal) 
+                                (sale_id, invoice_number, product_name, quantity, unit_price, client, client_email, client_phone, payment_method, subtotal) 
                                 VALUES 
-                                ($sale_id, '$product_name', $quantity, $unit_price, '$client', '$payment_method', $subtotal)";
+                                ($sale_id, 'VX-ST-$sale_id', '$product_name', $quantity, $unit_price, '$client', '$client_email', '$client_phone', '$payment_method', $subtotal)";
     
                 if (!mysqli_query($conexion, $query_details)) {
                     throw new Exception("Error al insertar detalles de la venta");
@@ -102,6 +104,9 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (generarVenta($conexion)) {
+            $url_screenshot = 'http://localhost/vendex/roles/store/sales/bill/execute-all.php';
+            file_get_contents($url_screenshot);
+
             header("Location: ../new-sale.php?message=Venta generada&message_type=success");
         } else {
             header("Location: ../new-sale.php?message=El carrito está vacío&message_type=error");

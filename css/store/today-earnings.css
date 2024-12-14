@@ -28,14 +28,14 @@
     justify-content: space-between;
 }
 
-.date {
+.search {
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
-    gap: .3rem;
-}
-
-.date p {
-    font-size: .9rem;
+    gap: .5rem;
+    cursor: pointer;
+    padding: .4rem 1.5rem;
+    border-radius: 10px;
 }
 
 .button-function {
@@ -50,7 +50,11 @@
 }
 
 .content-table {
-    margin-top: 3rem;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .tlt-buttons-sale {
@@ -117,6 +121,71 @@ td {
 .view-details a:hover {
     background-color: var(--color-slate-gray);
 }
+
+
+
+/* MODAL SEARCH */
+
+.modal-search {
+    display: none;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: #00000000;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.content-search {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+}
+
+.is {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.input-search {
+    outline: none;
+    border: 2px solid var(--color-white);
+    width: 350px;
+    background-color: transparent;
+    color: var(--color-white);
+    padding: .7rem .8rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #d18c32; /* Cambia el color del ícono */
+    background-color: #f3f3f3; /* Fondo del ícono */
+    padding: .3rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-search {
+    outline: none;
+    width: 100px;
+    height: auto;
+    padding: .79rem 0;
+    border: 2px solid transparent;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+
 
 
 @media (max-width: 1400px){

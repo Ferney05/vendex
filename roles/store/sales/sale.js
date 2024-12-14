@@ -32,20 +32,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToggleListenerTwo = (triggerElement, targetElement) => {
         triggerElement.addEventListener('click', () => {
             toggleVisibility(targetElement);
-
-            if (triggerElement.classList.contains('btn-credit')) {
-                targetElement.removeAttribute('required');
-            }
     
-            // Si el botón es "btn-pay", agregar "required"
-            if (triggerElement.classList.contains('btn-pay')) {
-                targetElement.setAttribute('required', 'required');
+            // Verificar la propiedad `pointer-events` del targetElement
+            const styles = window.getComputedStyle(targetElement);
+            const isBlocked = styles.pointerEvents === 'none';
+    
+            if (isBlocked) {
+                targetElement.removeAttribute('required'); // Si está bloqueado, quitar required
+            } else {
+                targetElement.setAttribute('required', 'required'); // Si no está bloqueado, agregar required
             }
         });
     };
     
-    // Seleccionar los elementos y agregar los listeners
-    addToggleListenerTwo(getElement('.btn-pay'), getElement('.payment-method'));
-    addToggleListenerTwo(getElement('.btn-credit'), getElement('.payment-method'));
-
+    // Función para inicializar los atributos required según el estado inicial
+    const initializeRequiredFields = (triggerSelector, targetSelector) => {
+        const targetElement = getElement(targetSelector);
+        const styles = window.getComputedStyle(targetElement);
+        const isBlocked = styles.pointerEvents === 'none';
+    
+        if (isBlocked) {
+            targetElement.removeAttribute('required'); // Quitar required si está bloqueado
+        } else {
+            targetElement.setAttribute('required', 'required'); // Agregar required si no está bloqueado
+        }
+    };
+    
+    // Configuración de elementos
+    const mappings = [
+        { trigger: '.btn-pay', target: '.client' },
+        { trigger: '.btn-credit', target: '.client' },
+        { trigger: '.btn-pay', target: '.payment-method' },
+        { trigger: '.btn-credit', target: '.payment-method' },
+        { trigger: '.btn-pay', target: '.client-email' },
+        { trigger: '.btn-credit', target: '.client-email' },
+        { trigger: '.btn-pay', target: '.client-phone' },
+        { trigger: '.btn-credit', target: '.client-phone' },
+    ];
+    
+    // Inicializar campos según el estado de btn-pay (por defecto)
+    mappings.forEach(({ trigger, target }) => {
+        if (trigger === '.btn-pay') {
+            initializeRequiredFields(trigger, target);
+        }
+    });
+    
+    // Iterar sobre las configuraciones para agregar los listeners
+    mappings.forEach(({ trigger, target }) => {
+        addToggleListenerTwo(getElement(trigger), getElement(target));
+    });
+    
 })

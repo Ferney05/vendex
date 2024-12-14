@@ -50,7 +50,15 @@
 }
 
 .content-table {
-    margin-top: 3rem;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-table {
+    width: 100%;
 }
 
 table, th, td {
@@ -75,7 +83,7 @@ td {
 
 .tlt-info {
     width: 50%;
-    margin: auto auto .4rem auto;
+    margin: auto;
 }
 
 .tlt-info h3 {

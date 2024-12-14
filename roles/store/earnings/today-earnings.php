@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganancias del día de hoy - Vendex</title>
     <link rel="stylesheet" href="../../../css/store/today-earnings.css">
+    <link rel="stylesheet" href="../../../css/base-btn-bd.css">
+    <link rel="stylesheet" href="../../../css/base-premium.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
     <?php
         include("../../../conexion.php");
@@ -73,11 +75,10 @@
             <div class="earn-content">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Ganancias del día de hoy</h2>
-                    <div class="date">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6zm7 6q-.425 0-.712-.288T11 13t.288-.712T12 12t.713.288T13 13t-.288.713T12 14m-4 0q-.425 0-.712-.288T7 13t.288-.712T8 12t.713.288T9 13t-.288.713T8 14m8 0q-.425 0-.712-.288T15 13t.288-.712T16 12t.713.288T17 13t-.288.713T16 14m-4 4q-.425 0-.712-.288T11 17t.288-.712T12 16t.713.288T13 17t-.288.713T12 18m-4 0q-.425 0-.712-.288T7 17t.288-.712T8 16t.713.288T9 17t-.288.713T8 18m8 0q-.425 0-.712-.288T15 17t.288-.712T16 16t.713.288T17 17t-.288.713T16 18"/></svg>
-                        <?php
-                            echo "<p>" . date('Y-m-d') . "</p>";
-                        ?>
+
+                    <div class="search bg-btn locked-button" disabled>
+                        <p>Historial de ventas</p>
+                        <img src="../../../svg/search.svg" alt="">
                     </div>
                 </div>
 
@@ -120,9 +121,18 @@
                 </div>
             </div>
         </section>
+
+        <section class="modal-search">
+            <div class="content-search">
+                <form action="functions/search-sales-history.php" method="POST" class="is">
+                    <input type="date" name="date-earnings" class="input-search b-col-fcs-val" required>
+                    <input type="submit" name="button-search-history" class="btn-search bg-btn" value="Consultar">
+                </form>
+            </div>
+        </section>
     </main>
 
-    <script src="show-modal.js"></script>
+    <script src="show-search.js"></script>
     <script src="../../../js/base-nav-dash.js"></script>
 
 </body>

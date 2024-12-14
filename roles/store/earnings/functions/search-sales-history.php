@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dellates de las ventas de hoy - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/store/details-today-sales.css">
+    <title>Ganancias del día de hoy - Vendex</title>
+    <link rel="stylesheet" href="../../../../css/store/today-earnings.css">
+    <link rel="stylesheet" href="../../../../css/base-btn-bd.css">
+    <link rel="stylesheet" href="../../../../css/base-premium.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
-
     <?php
         include("../../../../conexion.php");
 
@@ -17,11 +18,6 @@
         } else {
             header("Location: ../../../../index.php");
             exit(); 
-        }
-
-
-        if(isset($_GET['id'])){
-            $id_sale = $_GET['id'];
         }
     ?>
 </head>
@@ -76,64 +72,70 @@
         </nav>
 
         <section class="earnings-today" id="hidden-modal">
-            <div class="earnings-content">
+            <div class="earn-content">
                 <div class="tlt-button">
-                    <h2 class="tlt-function">Detalles de las ventas de hoy</h2>
-                    
-                    <a href="../today-earnings.php" class="btn-today-earnings bg-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#eee" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36"/></svg>
-                        <p>Ver ganancias</p>
-                    </a>
+                    <h2 class="tlt-function">Ganancias del día | <?php echo $date = $_POST['date-earnings']; ?></h2>
+
+                    <div class="search bg-btn locked-button">
+                        <p>Historial de ventas</p>
+                        <img src="../../../../svg/search.svg" alt="">
+                    </div>
                 </div>
 
                 <div class="content-table">
-                    <div class="text-table">
-                        <div class="tlt-info">
-                            <?php
-                                echo "<h3>Productos vendidos hoy " . date('Y-m-d') . "</h3>";
-                            ?>
-                        </div>
+                    <table>
+                        <tr>
+                            <th>Número de ventas</th>
+                            <th>Fecha de venta</th>
+                            <th>Total</th>
+                            <th>Detalles</th>
+                        </tr>
 
-                        <table>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Precio de venta</th>
-                                <th>Subtotal</th>
-                            </tr>
+                        <?php
+                            if(isset($_POST['button-search-history'])){
+                                $date = $_POST['date-earnings'];
+                                $getEarnings = "SELECT id, COUNT(*) AS total_sales, SUM(total_amount) AS total_earnings, sale_date
+                                            FROM sales 
+                                            WHERE sale_date = '$date'
+                                            GROUP BY sale_date";
+                                            
+                                $resultEarnings = mysqli_query($conexion, $getEarnings);
 
-                            <?php
-                                $queryDetails = "SELECT s.id, s.sale_date, sd.product_name, sd.quantity, sd.unit_price, sd.subtotal
-                                                FROM sales s
-                                                INNER JOIN sale_details sd ON s.id = sd.sale_id
-                                                WHERE s.sale_date = CURDATE()
-                                                ORDER BY s.id DESC";
-
-                                $resultDetails = mysqli_query($conexion, $queryDetails);
-
-                                if($resultDetails -> num_rows > 0) {
-                                    while ($row = mysqli_fetch_assoc($resultDetails)){
+                                if($resultEarnings -> num_rows > 0) {
+                                    while($row = mysqli_fetch_assoc($resultEarnings)){
+                                        $id_sale_total = $row['id'];
                                         echo "<tr>
-                                                <td>" . ucfirst($row['product_name']) . "</td>
-                                                <td>" . $row['quantity'] . "</td>
-                                                <td>$" . number_format($row['unit_price'], 0) . "</td>
-                                                <td>$" . number_format($row['subtotal'], 0) . "</td>
+                                                <td>" . $row['total_sales'] . "</td>
+                                                <td>" . $row['sale_date'] . "</td>
+                                                <td>$" . number_format($row['total_earnings'], 0) . "</td>
+                                                <td class='view-details'>
+                                                    <a href='sales-history-details.php?id=<?= $id_sale_total ?>&date=$date'>Ver</a>
+                                                </td>
                                             </tr>";
                                     }
                                 } else {
                                     echo "<tr>
-                                            <td colspan='4'>No se encontraron detalles de productos.</td>
+                                            <td colspan='4'>No se han registrado ganancias para el día especificado.</td>
                                         </tr>";
                                 }
-                            ?>
-                        </table>
-                    </div>
+                            }
+                        ?>
+                    </table>
                 </div>
+            </div>
+        </section>
+
+        <section class="modal-search">
+            <div class="content-search">
+                <form action="search-sales-history.php" method="POST" class="is">
+                    <input type="date" name="date-earnings" class="input-search b-col-fcs-val" required>
+                    <input type="submit" name="button-search-history" class="btn-search bg-btn" value="Consultar">
+                </form>
             </div>
         </section>
     </main>
 
-    <script src="show-modal-add.js"></script>
+    <script src="../show-search.js"></script>
     <script src="../../../../js/base-nav-dash.js"></script>
 
 </body>

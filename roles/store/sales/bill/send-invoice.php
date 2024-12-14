@@ -17,11 +17,12 @@ if (isset($_SESSION['user_id'])) {
     $smtpEmail = $config['SMTP_EMAIL'];
     $smtpPassword = $config['SMTP_PASSWORD'];
 
-    // Consulta parametrizada para evitar inyección SQL
-    $query = $conexion->prepare("SELECT name, lastname, email FROM users WHERE id = ?");
-    $query->bind_param('i', $id_user);
-    $query->execute();
-    $result = $query->get_result();
+    $query = "SELECT sd.client_email
+            FROM sales AS s
+            INNER JOIN sale_details AS sd ON s.id = sd.sale_id
+            ORDER BY s.id DESC
+            LIMIT 1";
+    $result = mysqli_query($conexion, $query);
 
     if ($row = $result->fetch_assoc()) {
         // Verifica que el archivo existe antes de adjuntarlo
@@ -46,7 +47,7 @@ if (isset($_SESSION['user_id'])) {
 
             // Configuración del remitente y destinatario
             $mail->setFrom($smtpEmail, 'Vendex Store'); // Remitente
-            $mail->addAddress($row['email'], $row['name'] . ' ' . $row['lastname']); // Destinatario dinámico
+            $mail->addAddress($row['client_email']); // Destinatario dinámico
 
             // Adjuntar la imagen como contenido embebido
             $mail->addEmbeddedImage($imgPath, 'factura');
@@ -62,12 +63,10 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             ';
 
-            // No es necesario el cuerpo alternativo en este caso, ya que solo se envía la imagen
             $mail->AltBody = '';
 
             // Enviar el correo
             $mail->send();
-            echo 'El correo ha sido enviado con éxito.';
         } catch (Exception $e) {
             echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
         }
@@ -75,8 +74,6 @@ if (isset($_SESSION['user_id'])) {
         echo 'No se encontraron datos del usuario.';
     }
 
-    // Cierra la consulta
-    $query->close();
 } else {
     echo 'El usuario no está logueado.';
 }
