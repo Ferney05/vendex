@@ -8,6 +8,7 @@
 
     <?php
         include('../../../../conexion.php');
+
         $query = "SELECT * FROM sales ORDER BY id DESC LIMIT 1";
         $result_query = mysqli_query($conexion, $query);
         $row = mysqli_fetch_array($result_query);
@@ -47,7 +48,7 @@
                                   <div class='flex'>
                                         <p>Vencimiento:</p>
                                         <p>" . $row_num_dates['sale_date'] . "</p>
-                                  </div>"
+                                  </div>";
                         ?>
                     </div>
                 </div>            
@@ -56,19 +57,35 @@
             <div class="personal-data">
                 <div class="data">
                     <h2>De</h2>
-                    <p class="top">Tienda la misericordia de Dios</p>
 
-                    <div class="contact">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="m20 8l-8 5l-8-5V6l8 5l8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
-                            <p>juanmendex12@gmail.com</p>
-                        </div>
+                    <?php
+                        $query_users = "SELECT name_business, user_email, phone_number FROM sales ORDER BY id DESC LIMIT 1";
+                        $users = mysqli_query($conexion, $query_users);
+                        $row_user = mysqli_fetch_array($users);
 
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#eee" d="M4.05 21q-.45 0-.75-.3t-.3-.75V15.9q0-.325.225-.587t.575-.363l3.45-.7q.35-.05.713.063t.587.337L10.9 17q.95-.55 1.8-1.213t1.625-1.437q.825-.8 1.513-1.662t1.187-1.788L14.6 8.45q-.2-.2-.275-.475T14.3 7.3l.65-3.5q.05-.325.325-.562T15.9 3h4.05q.45 0 .75.3t.3.75q0 3.125-1.362 6.175t-3.863 5.55t-5.55 3.863T4.05 21"/></svg>
-                            <p>3123459203</p>
-                        </div>
-                    </div>
+                        $name_business = ucwords($row_user['name_business']);
+                        $email = $row_user['user_email'];
+                        $phone_number = $row_user['phone_number'];
+
+                        echo "<div id='sale_details'>
+                                <p class='top'>" . $name_business . "</p>
+                                <div class='contact'>
+                                    <div>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'>
+                                            <path fill='#eee' d='m20 8l-8 5l-8-5V6l8 5l8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2'/>
+                                        </svg>
+                                        <p>" . $email . "</p>
+                                    </div>
+                                    <div>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'>
+                                            <path fill='#eee' d='M4.05 21q-.45 0-.75-.3t-.3-.75V15.9q0-.325.225-.587t.575-.363l3.45-.7q.35-.05.713.063t.587.337L10.9 17q.95-.55 1.8-1.213t1.625-1.437q.825-.8 1.513-1.662t1.187-1.788L14.6 8.45q-.2-.2-.275-.475T14.3 7.3l.65-3.5q.05-.325.325-.562T15.9 3h4.05q.45 0 .75.3t.3.75q0 3.125-1.362 6.175t-3.863 5.55t-5.55 3.863T4.05 21'/>
+                                        </svg>
+                                        <p>" . $phone_number . "</p>
+                                    </div>
+                                </div>
+                            </div>";
+                    ?>
+
                 </div>
 
                 <div class="data">
@@ -77,7 +94,7 @@
                         $query_clients = "SELECT sd.client, sd.client_email, sd.client_phone
                                             FROM sales AS s
                                             INNER JOIN sale_details AS sd ON s.id = sd.sale_id
-                                            WHERE s.id = 37
+                                            WHERE s.id = $sale_id
                                             LIMIT 1";
                         $clients = mysqli_query($conexion, $query_clients);
                         $row_client = mysqli_fetch_array($clients);

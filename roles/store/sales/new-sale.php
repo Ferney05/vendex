@@ -280,7 +280,8 @@
 
     <script src="show-modal.js"></script>
     <script src="sale.js"></script>
-    <script src="bill/click.js"></script>
+    <script src="bill/capture.js"></script>
+    <script src="bill/send.js"></script>
     <script src="../../../js/base-nav-dash.js"></script>
 
 </body>

@@ -85,12 +85,16 @@
                             </div>
 
                             <div class="content-inputs">
+                                <input type="text" name="phone-number" class="input b-col-fcs-val" placeholder="Tu celular" required>
                                 <input type="password" name="password" class="input b-col-fcs-val" placeholder="Contraseña" required>
+                            </div>
+
+                            <div class="content-inputs">
+                                <input type="text" name="name-business" class="input b-col-fcs-val" placeholder="Nombre de tu negocio" required>
                                 <select name="role" id="" class="select b-col-fcs-val" required>
                                     <option value="" disabled selected>Rol</option>
                                     <option value="Tienda">Tienda</option>
                                     <option value="Restaurante">Restaurante</option>
-                                    <option value="Piscina">Piscina</option>
                                 </select>
                             </div>
 

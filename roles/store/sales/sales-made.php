@@ -90,7 +90,7 @@
                         </tr>
 
                         <?php
-                            $querySales = "SELECT * FROM sales ORDER BY id DESC";
+                            $querySales = "SELECT * FROM sales ORDER BY id DESC LIMIT 15";
                             $resultSales = mysqli_query($conexion, $querySales);
 
                             if($resultSales -> num_rows > 0) {

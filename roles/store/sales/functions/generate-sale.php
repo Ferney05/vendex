@@ -34,7 +34,14 @@
             $total_sale = $row_total['total'];
     
             // 4. Insertamos la venta principal
-            $query_sale = "INSERT INTO sales (total_amount, sale_date) VALUES ($total_sale, CURDATE())";
+            $query_user = "SELECT email, phone_number, name_business FROM users WHERE role = 'Tienda' LIMIT 1";
+            $result_user = mysqli_query($conexion, $query_user);
+            $row_user = mysqli_fetch_array($result_user);
+            $email_user = $row_user['email'];
+            $user_business = $row_user['name_business'];
+            $user_phone = $row_user['phone_number'];
+
+            $query_sale = "INSERT INTO sales (total_amount, sale_date, user_email, name_business, phone_number) VALUES ($total_sale, CURDATE(), '$email_user', '$user_business', '$user_phone')";
             if (!mysqli_query($conexion, $query_sale)) {
                 throw new Exception("Error al crear la venta");
             }
@@ -71,11 +78,36 @@
                 foreach ($result_payment AS $item){
                     $customer = $item['client'];
                     $amount_borrowed = $item['total_credit'];
-
-                    $insertDataCredits = "INSERT INTO credits VALUES(null, '$customer', '$amount_borrowed', CURDATE(), 0, 'Pendiente')";
-                    $execute = mysqli_query($conexion, $insertDataCredits);
+            
+                    $verifyClient = "SELECT * FROM credits WHERE customer = '$customer'";
+                    $result_verify = mysqli_query($conexion, $verifyClient);
+            
+                    if (mysqli_num_rows($result_verify) > 0) {
+                        // Si existe, actualizar el monto
+                        $updateCredits = "UPDATE credits 
+                                        SET amount_borrowed = $amount_borrowed, 
+                                            creation_date = CURDATE() 
+                                        WHERE customer = '$customer'";
+                        $execute_update = mysqli_query($conexion, $updateCredits);
+            
+                        // Verificar si el monto abonado es mayor o igual al monto prestado
+                        $query_status = "SELECT amount_borrowed, fertilizers FROM credits WHERE customer = '$customer'";
+                        $result_status = mysqli_query($conexion, $query_status);
+                        $row = mysqli_fetch_assoc($result_status);
+            
+                        // Actualizar el estado basado en el abono
+                        $status = ($row['fertilizers'] >= $row['amount_borrowed']) ? 'Pagado' : 'Pendiente';
+                        $updateStatus = "UPDATE credits SET credit_status = '$status' WHERE customer = '$customer'";
+                        mysqli_query($conexion, $updateStatus);
+            
+                    } else {
+                        // Si no existe, insertar un nuevo registro
+                        $insertDataCredits = "INSERT INTO credits 
+                                            VALUES (null, $sale_id, '$customer', '$amount_borrowed', CURDATE(), 0, 'Pendiente')";
+                        $execute_insert = mysqli_query($conexion, $insertDataCredits);
+                    }
                 }
-            } 
+            }
 
             // 7. Actualizamos el inventario
             $query_update_inventory = "UPDATE inventory_products ip
@@ -104,9 +136,8 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (generarVenta($conexion)) {
-            $url_screenshot = 'http://localhost/vendex/roles/store/sales/bill/execute-all.php';
-            file_get_contents($url_screenshot);
-
+            // $url_screenshot = 'http://localhost/vendex/roles/store/sales/bill/execute-all.php';
+            // file_get_contents($url_screenshot);
             header("Location: ../new-sale.php?message=Venta generada&message_type=success");
         } else {
             header("Location: ../new-sale.php?message=El carrito está vacío&message_type=error");

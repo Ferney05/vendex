@@ -122,11 +122,11 @@
                                     }
 
                                     echo "<tr>
-                                            <td>" . $row['customer'] . "</td>
+                                            <td>" . ucwords($row['customer']) . "</td>
                                             <td>" . $row['creation_date'] . "</td>
-                                            <td>$" . number_format($row['current_balance'], 0) . "</td>
-                                            <td>$" . number_format($row['fertilizers'], 0) . "</td>
-                                            <td>$" . number_format($current_balance, 0) . "</td>
+                                            <td>$ " . number_format($row['current_balance'], 0) . "</td>
+                                            <td>$ " . number_format($row['fertilizers'], 0) . "</td>
+                                            <td>$ " . number_format($current_balance, 0) . "</td>
                                             <td><span class='" . $status_class . "'>" . $row['credit_status'] . "</span></td>
                                             <td>
                                                 <a href='functions/delete.php?id=$id'>

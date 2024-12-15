@@ -17,10 +17,12 @@
             $name = $_POST['name'];
             $lastname = $_POST['lastname'];
             $email = $_POST['email'];
+            $phone_number = $_POST['phone-number'];
             $password = $_POST['password'];
+            $name_business = $_POST['name-business'];
             $role = $_POST['role'];
 
-            $insertData = "INSERT INTO users VALUES(null, '$name', '$lastname', '$email', '$password', '$role')";
+            $insertData = "INSERT INTO users VALUES(null, '$name', '$lastname', '$email', '$phone_number', '$password', '$name_business', '$role')";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){
