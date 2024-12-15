@@ -100,7 +100,7 @@
 
                     <div class="accordion-content">
                         <div>
-                            <a href="store/credits/clients.php">
+                            <a href="store/clients/see-clients.php">
                                 <img src="../svg/clients.svg" alt="">
                                 <p>Lista de clientes</p>
                             </a>

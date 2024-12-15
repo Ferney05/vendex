@@ -1,6 +1,6 @@
 
 .premium {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 0;
     left: 0;
@@ -25,11 +25,11 @@
 }
 
 .locked-button {
-    pointer-events: auto;
+    pointer-events: none;
     background: transparent;
 }
 
 .input-blocked {
-    pointer-events: auto;
-    /* border-color: #1e212b; */
+    pointer-events: none;
+    border-color: #1e212b;
 }

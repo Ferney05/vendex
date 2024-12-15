@@ -151,9 +151,9 @@
                     <div class="hidden-info-sale">
                         <form action="functions/generate-sale.php" method="POST" class="form-generate">
                             <div class="text">
-                                <input type="text" name="client" id="client" placeholder="Nombre del cliente" class="input client input-blocked">
-                                <input type="email" name="client-email" id="client-email" placeholder="Correo del cliente" class="input client-email input-blocked">
-                                <input type="text" name="client-phone" id="client-phone" placeholder="Celular del cliente" class="input client-phone input-blocked">
+                                <input type="text" name="client" id="client" placeholder="Nombre del cliente" class="input client b-col-fcs-val input-blocked">
+                                <input type="email" name="client-email" id="client-email" placeholder="Correo del cliente" class="input client-email b-col-fcs-val input-blocked">
+                                <input type="text" name="client-phone" id="client-phone" placeholder="Celular del cliente" class="input client-phone b-col-fcs-val input-blocked">
                                 <select name="payment-method" class="select payment-method b-col-fcs-val" required>
                                     <option value="" disabled selected>Método de pago</option>
                                     <option value="Efectivo">Efectivo</option>
@@ -163,6 +163,28 @@
                             <input type="submit" class="btn-generate" value="Generar venta">
                         </form>
                     </div>
+
+                    <script>
+                        $(document).ready(function(){
+                            $('#client').autocomplete({
+                                source: function(request, response) {
+                                    $.ajax({
+                                        url: "functions/autocomplete-clients.php",
+                                        type: "POST",
+                                        data: { query: request.term },
+                                        success: function(data) {
+                                            response($.parseJSON(data));
+                                        }
+                                    });
+                                },
+                                minLength: 1,
+                                select: function(event, ui) {
+                                    $('#client-email').val(ui.item.email);
+                                    $('#client-phone').val(ui.item.phone);
+                                }
+                            });
+                        });
+                    </script>
 
                     <table>
                         <tr>
