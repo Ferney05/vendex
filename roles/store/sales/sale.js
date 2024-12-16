@@ -73,7 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar campos según el estado de btn-pay (por defecto)
     mappings.forEach(({ trigger, target }) => {
         if (trigger === '.btn-pay') {
-            initializeRequiredFields(trigger, target);
+            if(!toggleVisibility(getElement('.payment-method'))){
+               return 
+            } else {
+                initializeRequiredFields(trigger, target);
+            }
         }
     });
     
@@ -81,5 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     mappings.forEach(({ trigger, target }) => {
         addToggleListenerTwo(getElement(trigger), getElement(target));
     });
-    
+
+    //? MODAL GENERAR VENTA
+    getElement('.btn-sale-confirm').addEventListener('click', () => {
+        getElement('.modal-generate-sale').style.display = 'block'
+    })
+
+    getElement('.close-modal-sale').addEventListener('click', () => {
+        getElement('.modal-generate-sale').style.display = 'none'
+    })
 })

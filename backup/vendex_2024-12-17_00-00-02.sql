@@ -64,7 +64,7 @@ CREATE TABLE `cart_store` (
 
 LOCK TABLES `cart_store` WRITE;
 /*!40000 ALTER TABLE `cart_store` DISABLE KEYS */;
-INSERT INTO `cart_store` VALUES (1,' Azúcar Blanca',1,2000);
+INSERT INTO `cart_store` VALUES (1,'Colcafé',1,200);
 /*!40000 ALTER TABLE `cart_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,13 +125,14 @@ DROP TABLE IF EXISTS `credits`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `credits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sale_id` int(11) NOT NULL,
   `customer` varchar(100) NOT NULL,
   `amount_borrowed` decimal(50,0) NOT NULL,
   `creation_date` date NOT NULL,
   `fertilizers` decimal(50,0) NOT NULL,
   `credit_status` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +141,7 @@ CREATE TABLE `credits` (
 
 LOCK TABLES `credits` WRITE;
 /*!40000 ALTER TABLE `credits` DISABLE KEYS */;
-INSERT INTO `credits` VALUES (3,'Andrés',3000,'2024-12-11',2000,'Pendiente'),(4,'Juan',7500,'2024-12-11',0,'Pendiente'),(7,'Andrés',3000,'2024-12-11',2000,'Pendiente'),(8,'Juan',7500,'2024-12-11',0,'Pendiente'),(9,'Nombre del cliente',3500,'2024-12-11',0,'Pendiente'),(11,'Andrés',3000,'2024-12-11',0,'Pendiente'),(12,'ferney',3500,'2024-12-11',0,'Pendiente'),(13,'Juan',7500,'2024-12-11',0,'Pendiente'),(14,'Nombre del cliente',3500,'2024-12-11',0,'Pendiente'),(15,'',4700,'2024-12-11',0,'Pendiente'),(16,'Andrés',3000,'2024-12-11',0,'Pendiente'),(17,'ferney',3500,'2024-12-11',0,'Pendiente'),(18,'Juan',7500,'2024-12-11',0,'Pendiente'),(19,'Nombre del cliente',3500,'2024-12-11',0,'Pendiente'),(20,'',4700,'2024-12-14',0,'Pendiente'),(21,'Andrés',3000,'2024-12-14',0,'Pendiente'),(22,'ferney',3500,'2024-12-14',0,'Pendiente'),(23,'Juan',7500,'2024-12-14',0,'Pendiente'),(24,'Nombre del cliente',3500,'2024-12-14',0,'Pendiente'),(25,'',14700,'2024-12-14',0,'Pendiente'),(26,'Andrés',3000,'2024-12-14',0,'Pendiente'),(27,'ferney',3500,'2024-12-14',0,'Pendiente'),(28,'Juan',7500,'2024-12-14',0,'Pendiente'),(29,'Nombre del cliente',3500,'2024-12-14',0,'Pendiente'),(30,'',14900,'2024-12-14',0,'Pendiente'),(31,'Andrés',3000,'2024-12-14',0,'Pendiente'),(32,'ferney',3500,'2024-12-14',0,'Pendiente'),(33,'Juan',7500,'2024-12-14',0,'Pendiente'),(34,'Nombre del cliente',3500,'2024-12-14',0,'Pendiente'),(35,'',14900,'2024-12-14',0,'Pendiente'),(36,'Andrés',3000,'2024-12-14',0,'Pendiente'),(37,'ferney',5500,'2024-12-14',0,'Pendiente'),(38,'Juan',7500,'2024-12-14',0,'Pendiente'),(39,'Nombre del cliente',3500,'2024-12-14',0,'Pendiente'),(40,'',14900,'2024-12-14',0,'Pendiente'),(41,'Andrés',3000,'2024-12-14',0,'Pendiente'),(42,'ferney',5500,'2024-12-14',0,'Pendiente'),(43,'Juan',7500,'2024-12-14',0,'Pendiente'),(44,'Nombre del cliente',3500,'2024-12-14',0,'Pendiente');
+INSERT INTO `credits` VALUES (1,2,'ferney barbosa',10600,'2024-12-16',1600,'Pendiente'),(2,3,'sheila reyes',10000,'2024-12-16',0,'Pendiente');
 /*!40000 ALTER TABLE `credits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +266,7 @@ CREATE TABLE `inventory_products` (
 
 LOCK TABLES `inventory_products` WRITE;
 /*!40000 ALTER TABLE `inventory_products` DISABLE KEYS */;
-INSERT INTO `inventory_products` VALUES (19,1,'manzana verde','Proveedor a',1500,3000,45,'fruta deliciosa','Unidades','2024-12-11'),(20,1,'Colcafé','Proveedor a',100,200,99,'bueno','Unidades','2024-12-12'),(21,1,'Pan','Proveedor a',400,500,497,'bueno','Unidades','2024-12-12'),(22,4,' Azúcar Blanca','Proveedor a',1000,2000,99,'bueno','Gramos','2024-12-12'),(23,3,'Aceite de Girasol','Proveedor a',2500,5000,118,'bueno','Litros','2024-12-12');
+INSERT INTO `inventory_products` VALUES (19,1,'manzana verde','Proveedor a',1500,3000,495,'fruta deliciosa','Unidades','2024-12-15'),(20,1,'Colcafé','Proveedor a',100,200,496,'bueno','Unidades','2024-12-15'),(21,1,'Pan','Proveedor a',400,500,481,'bueno','Unidades','2024-12-15'),(22,4,' Azúcar Blanca','Proveedor a',1000,2000,496,'bueno','Gramos','2024-12-15'),(23,3,'Aceite de Girasol','Proveedor a',2500,5000,495,'bueno','Litros','2024-12-15');
 /*!40000 ALTER TABLE `inventory_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,6 +445,7 @@ DROP TABLE IF EXISTS `sale_details`;
 CREATE TABLE `sale_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sale_id` int(11) NOT NULL,
+  `invoice_number` varchar(100) NOT NULL,
   `product_name` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
   `unit_price` decimal(50,0) NOT NULL,
@@ -453,7 +455,7 @@ CREATE TABLE `sale_details` (
   `payment_method` varchar(100) NOT NULL,
   `subtotal` decimal(50,0) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +464,7 @@ CREATE TABLE `sale_details` (
 
 LOCK TABLES `sale_details` WRITE;
 /*!40000 ALTER TABLE `sale_details` DISABLE KEYS */;
-INSERT INTO `sale_details` VALUES (2,1,'Panela',1,3000,'Nombre del cliente','','','Efectivo',3000),(3,2,'arroz pinillar',1,3500,'Nombre del cliente','','','Efectivo',3500),(4,3,'arroz pinillar',3,3500,'Nombre del cliente','','','',10500),(5,4,'arroz pinillar',1,3500,'Nombre del cliente','','','A crédito',3500),(6,5,'Panela',1,3000,'Andrés','','','A crédito',3000),(9,7,'arroz pinillar',1,3500,'Juan','','','A crédito',3500),(10,7,' Azúcar Blanca 500g',2,2000,'Juan','','','A crédito',4000),(13,9,'arroz pinillar',1,3500,'','','','A crédito',3500),(14,9,'Pan',2,600,'','','','A crédito',1200),(15,10,'arroz pinillar',1,3500,'','','','Efectivo',3500),(16,11,'arroz pinillar',1,3500,'ferney','','','A crédito',3500),(17,12,'Pan',3,600,'','','','Nequi',1800),(18,13,'Pan',1,500,'','','','Efectivo',500),(19,27,'Aceite de Girasol',2,5000,'','','','A crédito',10000),(20,28,'Colcafé',1,200,'','','','A crédito',200),(21,29,' Azúcar Blanca',1,2000,'ferney','ferneybarbosa05@gmail.com','3008557349','A crédito',2000),(22,30,'Pan',2,500,'','','','Nequi',1000);
+INSERT INTO `sale_details` VALUES (1,1,'VX-ST-1','manzana verde',1,3000,'','','','Efectivo',3000),(2,1,'VX-ST-1','Aceite de Girasol',2,5000,'','','','Efectivo',10000),(3,2,'VX-ST-2','Aceite de Girasol',1,5000,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',5000),(4,2,'VX-ST-2','Pan',3,500,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',1500),(5,2,'VX-ST-2','Colcafé',3,200,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',600),(6,3,'VX-ST-3','Aceite de Girasol',2,5000,'sheila reyes','sheila@gmail.com','3008557349','A crédito',10000),(7,4,'VX-ST-4','Pan',7,500,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',3500);
 /*!40000 ALTER TABLE `sale_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,8 +479,11 @@ CREATE TABLE `sales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `total_amount` int(11) NOT NULL,
   `sale_date` date NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `name_business` varchar(100) NOT NULL,
+  `phone_number` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -487,7 +492,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES (1,6500,'2024-12-10'),(2,3500,'2024-12-10'),(3,10500,'2024-12-11'),(4,3500,'2024-12-11'),(5,3000,'2024-12-11'),(7,7500,'2024-12-11'),(9,4700,'2024-12-11'),(10,3500,'2024-12-11'),(11,3500,'2024-12-11'),(12,1800,'2024-12-11'),(13,500,'2024-12-14'),(27,10000,'2024-12-14'),(28,200,'2024-12-14'),(29,2000,'2024-12-14'),(30,1000,'2024-12-14');
+INSERT INTO `sales` VALUES (1,13000,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(2,7100,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(3,10000,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(4,3500,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349');
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -586,10 +591,12 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `phone_number` varchar(100) NOT NULL,
   `pass` varchar(100) NOT NULL,
+  `name_business` varchar(100) NOT NULL,
   `role` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -598,7 +605,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Ferney','Barbosa','barbosaferney05@gmail.com','ferstore','Tienda'),(2,'Ferney','Barbosa','ferneybarbosa05@gmail.com','ferrest','Restaurante');
+INSERT INTO `users` VALUES (1,'Ferney','Barbosa','barbosaferney05@gmail.com','3008557349','ferstore','Tienda la misericordia','Tienda'),(2,'Ferney','Barbosa','ferneybarbosa05@gmail.com','','ferrest','','Restaurante');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -611,4 +618,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-14 12:40:03
+-- Dump completed on 2024-12-16 18:00:02

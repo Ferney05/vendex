@@ -160,7 +160,60 @@
                                     <option value="Nequi">Nequi</option>
                                 </select>
                             </div>
-                            <input type="submit" class="btn-generate" value="Generar venta">
+                            <button type="button" class="button-confirm btn-sale-confirm">Confirmar venta</button>
+
+                            <div class="modal-generate-sale">
+                                <div class="generate-sale">
+                                    <div class="card-modal">
+                                        <div class="tlt-close">
+                                            <h2 class="tlt-calc">Calcula el cambio de tu venta</h2>
+                                            <svg class="close-modal-sale" xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 304 384"><path fill="#333" d="M299 73L179 192l120 119l-30 30l-120-119L30 341L0 311l119-119L0 73l30-30l119 119L269 43z"/></svg>
+                                        </div>
+
+                                        <div class="content-inputs">
+                                            <div class="label-input">
+                                                <label for="sale-value" class="label-sale">Valor de la venta</label>
+                                                <?php
+                                                    $total_value = "SELECT SUM(cart_stock * sale_price) AS total_sale FROM cart_store";
+                                                    $result_total = mysqli_query($conexion, $total_value);
+                                                    $row_total = mysqli_fetch_array($result_total);
+                                                    
+                                                    echo "<input type='text' class='input-form' value='$ " . number_format($row_total['total_sale'], 0) . "' disabled>";
+                                                ?>
+                                            </div>
+
+                                            <div class="label-input">
+                                                <label for="client-pay" class="label-sale">¿Con cuánto paga tu cliente?</label>
+                                                <input type="number" class="input-form" placeholder="$ 0" id="client-pay" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="calc-value">
+                                            <p>Valor a devolver</p>
+                                            <p class='value-return'>$ 0</p>
+                                        </div>
+
+                                        <!-- VALOR A DEVOLVER -->
+                                        <script>
+                                            const total_sale = <?php echo $row_total['total_sale']; ?>;
+                                            const client_value = document.getElementById('client-pay');
+                                            const value_return = document.querySelector('.value-return');
+
+                                            client_value.addEventListener('keyup', () => {
+                                                const client_value_num = parseFloat(client_value.value) || 0;
+                                                if(client_value_num > total_sale) {
+                                                    let calc_result = client_value_num - total_sale; 
+                                                    value_return.innerHTML = `$ ${calc_result.toFixed(0)}`; 
+                                                } else {
+                                                    value_return.innerHTML = '$ 0'; 
+                                                }
+                                            });
+                                        </script>
+
+                                        <input type="submit" class="btn-generate" value="Generar venta">
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
 

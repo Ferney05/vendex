@@ -115,7 +115,7 @@
                                             }
                                         });
                                     },
-                                    minLength: 3 // Comienza a buscar desde el segundo carácter
+                                    minLength: 2 // Comienza a buscar desde el segundo carácter
                                 });
                             });
                         </script>

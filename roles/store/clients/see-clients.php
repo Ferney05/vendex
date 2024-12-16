@@ -100,6 +100,7 @@
                                                 COUNT(DISTINCT sd.sale_id) AS total_purchases
                                             FROM sales AS s
                                             INNER JOIN sale_details AS sd ON s.id = sd.sale_id
+                                            WHERE client != ''
                                             GROUP BY sd.client, sd.client_email, sd.client_phone";
                             $resultClient = mysqli_query($conexion, $queryClient);
 
