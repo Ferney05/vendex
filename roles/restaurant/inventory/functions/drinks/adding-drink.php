@@ -27,7 +27,7 @@
             $sale_price = $_POST['sale-price'];
             $stock = $_POST['stock'];
 
-            $insertData = "INSERT INTO beverage_inventory VALUES(null, '$name_drink', $purchase_price, $sale_price, $stock)";
+            $insertData = "INSERT INTO beverage_inventory VALUES(null, '$name_drink', $purchase_price, $sale_price, $stock, CURDATE())";
             $execute = mysqli_query($conexion, $insertData);
 
             if($execute){

@@ -809,6 +809,93 @@
                         </div>
                     </div>
 
+                    <div class="content-four-five">
+                    <div class="grid-four">
+                            <div class="group-cards-auto">
+                                <h3 class="tlt-group">Bebidas con bajo stock</h3>
+
+                                <div class="content-cards-auto">
+                                    <div class="card-union">
+                                        <div class="padd">
+                                            <div class="icon-name-slogan">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 14 14"><path fill="none" stroke="#eee" stroke-linecap="round" stroke-linejoin="round" d="M12.25 1.81V.5M11 5.31c0 .66.53.88 1.25.88s1.25 0 1.25-.88C13.5 4 11 4 11 2.69c0-.88.53-.88 1.25-.88s1.25.33 1.25.88m-1.25 3.5V7.5m-9.75-4h-1a1 1 0 0 0-1 1V9a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V4.5a1 1 0 0 0-1-1M2 10v1.5m0-8v-3m6 7H7a1 1 0 0 0-1 1V10a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8.5a1 1 0 0 0-1-1M7.5 11v2.5m0-6V4"/></svg>
+                                                <div class="name-slogan">
+                                                    <p class="name-card">Bebidas con menor stock</p>
+                                                    <p class="slogan-card">Última oportunidad para gestionar el inventario.</p>
+                                                </div>
+                                            </div>
+
+                                            <?php
+                                                $getDrink = "SELECT drink_name, available_stock FROM beverage_inventory WHERE available_stock <= 10";
+                                                $resultDrink = mysqli_query($conexion, $getDrink);
+
+                                                if($resultDrink -> num_rows > 0){
+                                                    echo "<div class='product-stock'>";
+
+                                                        while ( $rowDrink = mysqli_fetch_assoc($resultDrink)){
+                                                            echo "<div class='bp-stock'>
+                                                                    <p class='name-product'>" . ucfirst($rowDrink['drink_name']) . "</p>
+                                                                    <p class='available'>Disponibles: " . $rowDrink['available_stock'] . "</p>
+                                                                </div>";
+                                                        }
+                                            
+                                                    echo "</div>";
+
+                                                    echo "<div class='low-stock'>
+                                                                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='#911919' d='M19.511 17.98L10.604 1.348a.697.697 0 0 0-1.208 0L.49 17.98a.68.68 0 0 0 .005.68c.125.211.352.34.598.34h17.814a.7.7 0 0 0 .598-.34a.68.68 0 0 0 .006-.68M11 17H9v-2h2zm0-3.5H9V7h2z'/></svg>
+                                                                <p>Stock muy bajo, reponer pronto</p>
+                                                            </div>";
+                                                } else {
+                                                    echo "<div class='not-products'>
+                                                            <p>No hay bebidas con bajo stock.</p>
+                                                        </div>";
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-union">
+                                        <div class="padd">
+                                            <div class="icon-name-slogan">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#eee" d="M22 2.25h-3.25V.75a.75.75 0 0 0-1.5-.001V2.25h-4.5V.75a.75.75 0 0 0-1.5-.001V2.25h-4.5V.75a.75.75 0 0 0-1.5-.001V2.25H2a2 2 0 0 0-2 1.999v17.75a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V4.249a2 2 0 0 0-2-1.999M22.5 22a.5.5 0 0 1-.499.5H2a.5.5 0 0 1-.5-.5V4.25a.5.5 0 0 1 .5-.499h3.25v1.5a.75.75 0 0 0 1.5.001V3.751h4.5v1.5a.75.75 0 0 0 1.5.001V3.751h4.5v1.5a.75.75 0 0 0 1.5.001V3.751H22a.5.5 0 0 1 .499.499z"/><path fill="#eee" d="M5.25 9h3v2.25h-3zm0 3.75h3V15h-3zm0 3.75h3v2.25h-3zm5.25 0h3v2.25h-3zm0-3.75h3V15h-3zm0-3.75h3v2.25h-3zm5.25 7.5h3v2.25h-3zm0-3.75h3V15h-3zm0-3.75h3v2.25h-3z"/></svg>
+                                                <div class="name-slogan">
+                                                    <p class="name-card">Fecha de última reposición</p>
+                                                    <p class="slogan-card">Mantente al día, revisa la última reposición.</p>
+                                                </div>
+                                            </div>
+
+                                            <?php
+                                                $getDrink = "SELECT drink_name, entry_date, DATEDIFF(CURDATE(), entry_date) AS days_gone FROM beverage_inventory WHERE available_stock <= 10";
+                                                $resultDrink = mysqli_query($conexion, $getDrink);
+
+                                                if($resultDrink -> num_rows > 0){
+                                                    echo "<div class='product-stock'>";
+
+                                                        while ( $rowDrink = mysqli_fetch_assoc($resultDrink)){
+                                                            echo "<div class='bp-stock'>
+                                                                        <p class='name-product'>" . ucfirst($rowDrink['drink_name']) . "</p>
+                                                                        <div class='news'>
+                                                                            <p>" . $rowDrink['entry_date'] . "</p>
+                                                                            <p>Reposición días: " . $rowDrink['days_gone'] . "</p>
+                                                                        </div>
+                                                                    </div>";
+                                                        }
+                                                    
+                                                    echo "</div>";
+                                                
+                                                } else {
+                                                    echo "<div class='not-products'>
+                                                            <p>No hay insumos con bajo stock</p>
+                                                        </div>";
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </section>
             </section>
         </section>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar productos - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/store/update-products.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
     <?php
@@ -79,8 +79,8 @@
             </div>
         </nav>
 
-        <section class="update-products-form" id="hidden-modal">
-            <div class="update-form">
+        <section class="content-add-form" id="hidden-modal">
+            <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar producto</h2>
                     
@@ -237,8 +237,6 @@
         </section>
     </main>
 
-    <script src="../show-category.js"></script>
     <script src="../../../../js/base-nav-dash.js"></script>
-
 </body>
 </html>

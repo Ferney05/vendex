@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar ordenes - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/add-orders.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
@@ -75,7 +75,7 @@
             </div>
         </nav>
 
-        <section class="add-orders-form" id="hidden-modal">
+        <section class="content-add-form" id="hidden-modal">
             <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Agregar platos a la orden</h2>
@@ -89,9 +89,9 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="adding-dish-order.php" method="POST" class="form">
-                        <div class="alls">
-                            <div class="content-labels-inputs">
+                    <form action="adding-dish-order.php" method="POST" class="form-flex">
+                        <div class="alls-t">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="order-number">Número de orden</label>
                                     <input type="number" name="order-number" class="input-form b-col-fcs-val" id="order-number" placeholder="Número de orden" required>
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="saucer">Platillo</label>
                                     <input type="text" name="saucer" class="input-form b-col-fcs-val" id="saucer" placeholder="Platillo" required>
@@ -151,7 +151,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="quantity">Cantidad</label>
                                     <input type="number" name="quantity" class="input-form b-col-fcs-val" placeholder="Cantidad" required>

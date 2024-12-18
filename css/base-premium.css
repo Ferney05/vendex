@@ -25,13 +25,11 @@
 }
 
 .locked-button {
-    /* pointer-events: none; */
-    /* background: transparent; */
-    /* cursor: not-allowed; */
+    pointer-events: none;
+    background: transparent;
 }
 
 .input-blocked {
-    /* pointer-events: none; */
-    /* border-color: #1e212b !important; */
-    /* cursor: not-allowed; */
+    pointer-events: none;
+    border-color: #1e212b !important;
 }

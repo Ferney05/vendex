@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar insumos al inventario - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/assign-schedule.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
@@ -75,8 +75,8 @@
             </div>
         </nav>
 
-        <section class="design-form" id="hidden-modal">
-            <div class="content-all-form">
+        <section class="content-add-form" id="hidden-modal">
+            <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Asignar horario a empleados</h2>
                     
@@ -89,9 +89,9 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="assigning-schedules.php" method="POST" class="form">
-                        <div class="alls">
-                            <div class="content-labels-inputs">
+                    <form action="assigning-schedules.php" method="POST" class="form-flex">
+                        <div class="alls-t">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="name-employee">Empleado</label>
                                     <input type="text" name="name-employee" id="name-employee" class="input-form b-col-fcs-val" placeholder="Nombre del empleado" required>
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="entry-time">Hora de entrada</label>
                                     <input type="time" name="entry-time" class="input-form b-col-fcs-val" required>
@@ -141,7 +141,7 @@
                                 </div>   
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="departure-time">Hora de salida</label>
                                     <input type="time" name="departure-time" class="input-form b-col-fcs-val" placeholder="" required>

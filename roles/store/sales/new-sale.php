@@ -108,7 +108,7 @@
 
                         <div class="cancel-generate-buttons">
                             <div class="options-pay-credit">
-                                <button type="button" class="btn-options btn-pay">Pagada</button>
+                                <button type="button" class="btn-options btn-pay locked-button">Pagada</button>
                                 <button type="button" class="btn-options btn-credit locked-button">A crédito</button>
                             </div>
 
@@ -184,7 +184,7 @@
 
                                             <div class="label-input">
                                                 <label for="client-pay" class="label-sale">¿Con cuánto paga tu cliente?</label>
-                                                <input type="number" class="input-form" placeholder="$ 0" id="client-pay" required>
+                                                <input type="number" class="input-form" placeholder="$ 0" id="client-pay">
                                             </div>
                                         </div>
 

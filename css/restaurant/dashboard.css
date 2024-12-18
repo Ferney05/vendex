@@ -154,7 +154,7 @@
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
 
     overflow-y: scroll;
     overflow-x: hidden;
@@ -327,12 +327,29 @@
     gap: 1rem;
 }
 
+.content-four-five {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    align-self: self-start;
+    padding: 1rem 0;
+}
+
 .grid-two {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 }
 
 .grid-three {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.grid-four {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
 }

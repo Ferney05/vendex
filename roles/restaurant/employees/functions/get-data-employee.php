@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar empleados - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/add-employees.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
     <?php
@@ -78,7 +78,7 @@
             </div>
         </nav>
 
-        <section class="add-employee-form" id="hidden-modal">
+        <section class="content-add-form" id="hidden-modal">
             <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar empleados</h2>
@@ -90,9 +90,9 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="update-employee.php?id=<?php echo $id_employee ?>" method="POST" class="form">
-                        <div class="alls">
-                            <div class="content-labels-inputs">
+                    <form action="update-employee.php?id=<?php echo $id_employee ?>" method="POST" class="form-flex">
+                        <div class="alls-t">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="name-employee">Nombre completo</label>
                                     <input type="text" name="name-employee" class="input-form b-col-fcs-val" placeholder="Nombre del empleado" value="<?php echo $row['name_employee'] ?>" required>
@@ -150,7 +150,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="email">Correo</label>
                                     <input type="email" name="email" class="input-form b-col-fcs-val" placeholder="Correo del empleado" value="<?php echo $row['email'] ?>" required>
@@ -172,7 +172,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="address">Dirección</label>
                                     <input type="text" name="address" class="input-form b-col-fcs-val" placeholder="Dirreción de residencia" value="<?php echo $row['address'] ?>" required>

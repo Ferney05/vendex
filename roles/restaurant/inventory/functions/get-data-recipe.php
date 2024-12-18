@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar recetas - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/update-recipe.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
     <?php
@@ -78,8 +78,8 @@
             </div>
         </nav>
 
-        <section class="update-recipes-form" id="hidden-modal">
-            <div class="update-form">
+        <section class="content-add-form" id="hidden-modal">
+            <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar recetas</h2>
                     
@@ -90,8 +90,8 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="update-recipes.php?id=<?php echo $id_recipe ?>" method="POST" class="form">
-                        <div class="alls">
+                    <form action="update-recipes.php?id=<?php echo $id_recipe ?>" method="POST" class="form-flex">
+                        <div class="alls-t">
                         <div class="content-labels-inputs">
                                 <div class="label-input">
                                     <label for="name-dish">Nombre del plato</label>

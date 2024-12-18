@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar ordenes - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/add-orders.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
@@ -83,7 +83,7 @@
             </div>
         </nav>
 
-        <section class="add-orders-form" id="hidden-modal">
+        <section class="content-add-form" id="hidden-modal">
             <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Actualizar ordenes</h2>
@@ -97,9 +97,9 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="update.php?id=<?php echo $id_order ?>" method="POST" class="form">
-                        <div class="alls">
-                            <div class="content-labels-inputs">
+                    <form action="update.php?id=<?php echo $id_order ?>" method="POST" class="form-flex">
+                        <div class="alls-t">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="order-number">Número de orden</label>
                                     <input type="number" name="order-number" class="input-form b-col-fcs-val" placeholder="Número de orden" value="<?php echo $row['order_number'] ?>" required>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="customer">Cliente</label>
                                     <input type="text" name="customer" class="input-form b-col-fcs-val" placeholder="Cliente" value="<?php echo $row['customer'] ?>" required>
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
 
-                            <div class="content-labels-inputs">
+                            <div class="content-labels-inputs-t">
                                 <div class="label-input">
                                     <label for="date">Fecha</label>
                                     <input type="datetime-local" name="date" class="input-form b-col-fcs-val" placeholder="Fecha" value="<?php echo $row['order_date'] ?>" required>

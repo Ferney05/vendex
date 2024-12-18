@@ -28,8 +28,9 @@ CREATE TABLE `beverage_inventory` (
   `purchase_price` decimal(50,0) NOT NULL,
   `sale_price` decimal(50,0) NOT NULL,
   `available_stock` int(11) NOT NULL,
+  `entry_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +39,7 @@ CREATE TABLE `beverage_inventory` (
 
 LOCK TABLES `beverage_inventory` WRITE;
 /*!40000 ALTER TABLE `beverage_inventory` DISABLE KEYS */;
-INSERT INTO `beverage_inventory` VALUES (2,'cocacola',2200,3600,450);
+INSERT INTO `beverage_inventory` VALUES (5,'Pepsi',2300,3000,8,'2024-12-18'),(6,'cocacola',1500,2700,6,'2024-12-18');
 /*!40000 ALTER TABLE `beverage_inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +132,7 @@ CREATE TABLE `credits` (
   `fertilizers` decimal(50,0) NOT NULL,
   `credit_status` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +141,7 @@ CREATE TABLE `credits` (
 
 LOCK TABLES `credits` WRITE;
 /*!40000 ALTER TABLE `credits` DISABLE KEYS */;
-INSERT INTO `credits` VALUES (25,1,'ferney barbosa',3000,'2024-12-15',500,'Pendiente');
+INSERT INTO `credits` VALUES (1,2,'ferney barbosa',10600,'2024-12-16',1600,'Pendiente'),(2,3,'sheila reyes',10000,'2024-12-16',0,'Pendiente');
 /*!40000 ALTER TABLE `credits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +266,7 @@ CREATE TABLE `inventory_products` (
 
 LOCK TABLES `inventory_products` WRITE;
 /*!40000 ALTER TABLE `inventory_products` DISABLE KEYS */;
-INSERT INTO `inventory_products` VALUES (19,1,'manzana verde','Proveedor a',1500,3000,500,'fruta deliciosa','Unidades','2024-12-15'),(20,1,'Colcafé','Proveedor a',100,200,500,'bueno','Unidades','2024-12-15'),(21,1,'Pan','Proveedor a',400,500,496,'bueno','Unidades','2024-12-15'),(22,4,' Azúcar Blanca','Proveedor a',1000,2000,498,'bueno','Gramos','2024-12-15'),(23,3,'Aceite de Girasol','Proveedor a',2500,5000,500,'bueno','Litros','2024-12-15');
+INSERT INTO `inventory_products` VALUES (19,1,'manzana verde','Proveedor a',1500,3000,495,'fruta deliciosa','Unidades','2024-12-15'),(20,1,'Colcafé','Proveedor a',100,200,496,'bueno','Unidades','2024-12-15'),(21,1,'Pan','Proveedor a',400,500,481,'bueno','Unidades','2024-12-15'),(22,4,' Azúcar Blanca','Proveedor a',1000,2000,496,'bueno','Gramos','2024-12-15'),(23,3,'Aceite de Girasol','Proveedor a',2500,5000,495,'bueno','Litros','2024-12-15');
 /*!40000 ALTER TABLE `inventory_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -454,7 +455,7 @@ CREATE TABLE `sale_details` (
   `payment_method` varchar(100) NOT NULL,
   `subtotal` decimal(50,0) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -463,7 +464,7 @@ CREATE TABLE `sale_details` (
 
 LOCK TABLES `sale_details` WRITE;
 /*!40000 ALTER TABLE `sale_details` DISABLE KEYS */;
-INSERT INTO `sale_details` VALUES (1,1,'VX-ST-1','Pan',4,500,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',2000),(2,2,'VX-ST-2',' Azúcar Blanca',2,2000,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','Efectivo',4000);
+INSERT INTO `sale_details` VALUES (1,1,'VX-ST-1','manzana verde',1,3000,'','','','Efectivo',3000),(2,1,'VX-ST-1','Aceite de Girasol',2,5000,'','','','Efectivo',10000),(3,2,'VX-ST-2','Aceite de Girasol',1,5000,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',5000),(4,2,'VX-ST-2','Pan',3,500,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',1500),(5,2,'VX-ST-2','Colcafé',3,200,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',600),(6,3,'VX-ST-3','Aceite de Girasol',2,5000,'sheila reyes','sheila@gmail.com','3008557349','A crédito',10000),(7,4,'VX-ST-4','Pan',7,500,'ferney barbosa','ferneybarbosa05@gmail.com','3008557349','A crédito',3500);
 /*!40000 ALTER TABLE `sale_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -482,7 +483,7 @@ CREATE TABLE `sales` (
   `name_business` varchar(100) NOT NULL,
   `phone_number` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -491,7 +492,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES (1,2000,'2024-12-15','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(2,4000,'2024-12-15','barbosaferney05@gmail.com','Tienda la misericordia','3008557349');
+INSERT INTO `sales` VALUES (1,13000,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(2,7100,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(3,10000,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349'),(4,3500,'2024-12-16','barbosaferney05@gmail.com','Tienda la misericordia','3008557349');
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -617,4 +618,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-15 15:40:03
+-- Dump completed on 2024-12-18 10:00:02
