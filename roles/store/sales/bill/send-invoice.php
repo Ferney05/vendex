@@ -2,80 +2,122 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Carga automática de Composer
 require '../../../../vendor/autoload.php';
 include('../../../../conexion.php');
 
-session_start();
+class InvoiceMailer {
+    private $mailer;
+    private $config;
+    private $conexion;
+    private $logger;
 
-// Verifica si el usuario está logueado
-if (isset($_SESSION['user_id'])) {
-    $id_user = $_SESSION['user_id'];
+    public function __construct($config, $conexion) {
+        $this->config = $config;
+        $this->conexion = $conexion;
+        $this->initializeMailer();
+    }
 
-    // Carga las credenciales del archivo de configuración
-    $config = include('../../../../app/public-html/config.php');
-    $smtpEmail = $config['SMTP_EMAIL'];
-    $smtpPassword = $config['SMTP_PASSWORD'];
-
-    $query = "SELECT sd.client_email
-            FROM sales AS s
-            INNER JOIN sale_details AS sd ON s.id = sd.sale_id
-            ORDER BY s.id DESC
-            LIMIT 1";
-    $result = mysqli_query($conexion, $query);
-
-    if ($row = $result->fetch_assoc()) {
-        // Verifica que el archivo existe antes de adjuntarlo
-        $imgPath = 'C:/xampp/htdocs/vendex/roles/store/sales/bill/factura.png';
-        if (!file_exists($imgPath)) {
-            die('El archivo .PNG no existe.');
-        }
-
-        // Configuración de PHPMailer
-        $mail = new PHPMailer(true);
-
+    private function initializeMailer() {
         try {
-            // Configuración del servidor SMTP
-            $mail->SMTPDebug = 0; // Cambia a 0 en producción
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = $smtpEmail;
-            $mail->Password = $smtpPassword;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $this->mailer = new PHPMailer(true);
+            $this->mailer->SMTPDebug = 0;
+            $this->mailer->isSMTP();
+            $this->mailer->Host = 'smtp.gmail.com';
+            $this->mailer->SMTPAuth = true;
+            $this->mailer->Username = $this->config['SMTP_EMAIL'];
+            $this->mailer->Password = $this->config['SMTP_PASSWORD'];
+            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $this->mailer->Port = 587;
+            $this->mailer->setFrom($this->config['SMTP_EMAIL'], 'Vendex Store');
+            $this->mailer->isHTML(true);
+        } catch (Exception $e) {
+            error_log("Error inicializando mailer: " . $e->getMessage());
+            throw $e;
+        }
+    }
 
-            // Configuración del remitente y destinatario
-            $mail->setFrom($smtpEmail, 'Vendex Store'); // Remitente
-            $mail->addAddress($row['client_email']); // Destinatario dinámico
+    private function getClientEmail() {
+        $query = "SELECT sd.client_email
+                FROM sales AS s
+                INNER JOIN sale_details AS sd ON s.id = sd.sale_id
+                ORDER BY s.id DESC
+                LIMIT 1";
+        $result = mysqli_query($this->conexion, $query);
+        
+        if (!$result) {
+            throw new Exception("Error en la consulta de base de datos");
+        }
+        
+        $row = $result->fetch_assoc();
+        if (!$row || !isset($row['client_email'])) {
+            throw new Exception("No se encontró el email del cliente");
+        }
+        
+        return $row['client_email'];
+    }
 
-            // Adjuntar la imagen como contenido embebido
-            $mail->addEmbeddedImage($imgPath, 'factura');
+    public function sendInvoice($invoicePath) {
+        try {
+            // Obtener email del cliente
+            $clientEmail = $this->getClientEmail();
+            
+            // Verificar existencia del archivo
+            if (!file_exists($invoicePath)) {
+                throw new Exception('El archivo de factura no existe');
+            }
 
-            // Contenido del correo
-            $mail->isHTML(true);
-            $mail->Subject = 'Factura de tu compra en nuestra tienda';
+            // Configurar destinatario
+            $this->mailer->addAddress($clientEmail);
 
-            // HTML para mostrar solo la imagen en el correo
-            $mail->Body = '
+            // Adjuntar la imagen
+            $this->mailer->addEmbeddedImage($invoicePath, 'factura');
+
+            // Configurar el contenido del correo
+            $this->mailer->Subject = 'Factura de tu compra en nuestra tienda';
+            $this->mailer->Body = '
                 <div style="margin: 0; padding: 0; text-align: center;">
                     <img src="cid:factura" alt="Factura" style="width: 100%; max-width: 800px; height: auto;">
                 </div>
             ';
-
-            $mail->AltBody = '';
+            $this->mailer->AltBody = 'Se adjunta tu factura de compra.';
 
             // Enviar el correo
-            $mail->send();
+            $this->mailer->send();
+            error_log("Factura enviada exitosamente a: " . $clientEmail);
+            return true;
+
         } catch (Exception $e) {
-            echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
+            error_log("Error enviando factura: " . $e->getMessage());
+            throw $e;
         }
-    } else {
-        echo 'No se encontraron datos del usuario.';
+    }
+}
+
+// Inicialización y ejecución
+try {
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        throw new Exception('El usuario no está logueado.');
     }
 
-} else {
-    echo 'El usuario no está logueado.';
+    $config = include('../../../../app/public-html/config.php');
+    $invoiceMailer = new InvoiceMailer($config, $conexion);
+    
+    // Usar una constante o configuración para la ruta base
+    $invoicePath = dirname(__FILE__) . '/factura.png';
+    
+    if ($invoiceMailer->sendInvoice($invoicePath)) {
+        http_response_code(200);
+        echo json_encode(['success' => true, 'message' => 'Factura enviada correctamente']);
+    }
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al enviar la factura: ' . $e->getMessage()
+    ]);
 }
 ?>
 

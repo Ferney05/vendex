@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar insumos al inventario - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/restaurant/add-ingredients.css">
+    <link rel="stylesheet" href="../../../../css/base-form.css">
     <link rel="stylesheet" href="../../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 
@@ -79,7 +79,7 @@
             </div>
         </nav>
 
-        <section class="add-products-form" id="hidden-modal">
+        <section class="content-add-form" id="hidden-modal">
             <div class="add-form">
                 <div class="tlt-button">
                     <h2 class="tlt-function">Agregar ingredientes al plato</h2>

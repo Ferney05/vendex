@@ -1,97 +1,102 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const getElement = (classs) => document.querySelector(classs)
+    const getElement = (classs) => document.querySelector(classs);
 
-    const toggleDisplay = (e) => {
-        e.style.display = (e.style.display === 'none' || !e.style.display) ? 'block' : 'none';
-    };
+    // MODAL DE CONFIRMACIÓN
+    const buttonConfirm = getElement('.button-confirm');
+    const hiddenInfoSale = getElement('.hidden-info-sale');
 
-    const addToggleListener = (triggerElement, targetElement) => {
-        triggerElement.addEventListener('click', () => {
-            toggleDisplay(targetElement);
-            triggerElement.style.display = 'none'
+    if (buttonConfirm) {
+        buttonConfirm.addEventListener('click', () => {
+            hiddenInfoSale.style.display = 'block';
         });
-    };
+    }
 
-    addToggleListener(getElement('.button-confirm'), getElement('.hidden-info-sale'))
+    // MODAL DE GENERAR VENTA
+    const btnSaleConfirm = getElement('.btn-sale-confirm');
+    const modalGenerateSale = getElement('.modal-generate-sale');
+    const closeModalSale = getElement('.close-modal-sale');
+    
+    if (btnSaleConfirm) {
+        btnSaleConfirm.addEventListener('click', () => {
+            modalGenerateSale.style.display = 'block';
+        });
+    }
+
+    // Cerrar modal con el botón de cierre
+    if (closeModalSale) {
+        closeModalSale.addEventListener('click', () => {
+            modalGenerateSale.style.display = 'none';
+        });
+    }
+
+    // Cerrar modal al hacer clic fuera
+    window.addEventListener('click', (e) => {
+        if (e.target === modalGenerateSale) {
+            modalGenerateSale.style.display = 'none';
+        }
+    });
 
     // OPCIONES DE PAGO
+    const btnPay = getElement('.btn-pay');
+    const btnCredit = getElement('.btn-credit');
+    const paymentMethod = getElement('.payment-method');
+    const clientInputs = document.querySelectorAll('.client, .client-email, .client-phone');
 
-    const buttons = document.querySelectorAll('.btn-options'); 
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            buttons.forEach(btn => btn.style.backgroundColor = 'transparent');
-            button.style.backgroundColor = '#4CAF50';
-        });
-    });
-
-    const toggleVisibility = (e) => {
-        e.classList.toggle('hidden');
+    // Función para manejar el estado de los botones
+    const handlePaymentButtons = (activeBtn, inactiveBtn) => {
+        // Activar botón seleccionado
+        activeBtn.style.backgroundColor = '#4CAF50';
+        // Desactivar el otro botón
+        inactiveBtn.style.backgroundColor = 'transparent';
     };
-    
-    const addToggleListenerTwo = (triggerElement, targetElement) => {
-        triggerElement.addEventListener('click', () => {
-            toggleVisibility(targetElement);
-    
-            // Verificar la propiedad `pointer-events` del targetElement
-            const styles = window.getComputedStyle(targetElement);
-            const isBlocked = styles.pointerEvents === 'none';
-    
-            if (isBlocked) {
-                targetElement.removeAttribute('required'); // Si está bloqueado, quitar required
-            } else {
-                targetElement.setAttribute('required', 'required'); // Si no está bloqueado, agregar required
-            }
+
+    // Función para manejar la visibilidad del método de pago
+    const handlePaymentMethod = (showPaymentMethod) => {
+        paymentMethod.style.display = showPaymentMethod ? 'block' : 'none';
+        paymentMethod.required = showPaymentMethod;
+
+        // Manejar campos de cliente
+        clientInputs.forEach(input => {
+            input.style.pointerEvents = 'auto';
+            input.required = true;
+            input.classList.remove('input-blocked');
         });
     };
-    
-    // Función para inicializar los atributos required según el estado inicial
-    const initializeRequiredFields = (triggerSelector, targetSelector) => {
-        const targetElement = getElement(targetSelector);
-        const styles = window.getComputedStyle(targetElement);
-        const isBlocked = styles.pointerEvents === 'none';
-    
-        if (isBlocked) {
-            targetElement.removeAttribute('required'); // Quitar required si está bloqueado
-        } else {
-            targetElement.setAttribute('required', 'required'); // Agregar required si no está bloqueado
+
+    // Event listener para el botón "Pagada"
+    btnPay.addEventListener('click', () => {
+        handlePaymentButtons(btnPay, btnCredit);
+        handlePaymentMethod(true); // Mostrar método de pago
+    });
+
+    // Event listener para el botón "A crédito"
+    btnCredit.addEventListener('click', () => {
+        handlePaymentButtons(btnCredit, btnPay);
+        handlePaymentMethod(false); // Ocultar método de pago
+    });
+
+    // Inicializar el estado de los campos required
+    const initializeRequiredFields = () => {
+        const paymentMethodStyle = window.getComputedStyle(paymentMethod);
+        const isVisible = paymentMethodStyle.display !== 'none';
+        paymentMethod.required = isVisible;
+
+        clientInputs.forEach(input => {
+            input.required = true;
+        });
+    };
+
+    // Inicializar campos
+    initializeRequiredFields();
+
+    // Desbloquear botones cuando hay productos en el carrito
+    const unlockPaymentButtons = () => {
+        const cartHasProducts = document.querySelector('table tr:nth-child(2)') !== null;
+        if (cartHasProducts) {
+            btnPay.classList.remove('locked-button');
+            btnCredit.classList.remove('locked-button');
         }
     };
-    
-    // Configuración de elementos
-    const mappings = [
-        { trigger: '.btn-pay', target: '.client' },
-        { trigger: '.btn-credit', target: '.client' },
-        { trigger: '.btn-pay', target: '.payment-method' },
-        { trigger: '.btn-credit', target: '.payment-method' },
-        { trigger: '.btn-pay', target: '.client-email' },
-        { trigger: '.btn-credit', target: '.client-email' },
-        { trigger: '.btn-pay', target: '.client-phone' },
-        { trigger: '.btn-credit', target: '.client-phone' },
-    ];
-    
-    // Inicializar campos según el estado de btn-pay (por defecto)
-    mappings.forEach(({ trigger, target }) => {
-        if (trigger === '.btn-pay') {
-            if(!toggleVisibility(getElement('.payment-method'))){
-               return 
-            } else {
-                initializeRequiredFields(trigger, target);
-            }
-        }
-    });
-    
-    // Iterar sobre las configuraciones para agregar los listeners
-    mappings.forEach(({ trigger, target }) => {
-        addToggleListenerTwo(getElement(trigger), getElement(target));
-    });
 
-    //? MODAL GENERAR VENTA
-    getElement('.btn-sale-confirm').addEventListener('click', () => {
-        getElement('.modal-generate-sale').style.display = 'block'
-    })
-
-    getElement('.close-modal-sale').addEventListener('click', () => {
-        getElement('.modal-generate-sale').style.display = 'none'
-    })
-})
+    unlockPaymentButtons();
+});
