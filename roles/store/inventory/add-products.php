@@ -6,6 +6,8 @@
     <title>Agregar productos al inventario - Vendex</title>
     <link rel="stylesheet" href="../../../css/base-form.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <?php
         include("../../../conexion.php");
@@ -89,7 +91,7 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="functions/adding-products.php" method="POST" class="form">
+                    <form id="add-product-form" action="functions/adding-products.php" method="POST" class="form">
                         <div class="alls">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
@@ -162,7 +164,7 @@
                         </div>
 
                         <div class="button-submit">
-                            <input type="submit" name="button-add-product" class="btn-form bg-btn" value="Agregar producto">
+                            <button type="button" name="button-add-product" class="btn-form bg-btn" id="add-product-button">Agregar producto</button>
                         </div>
                     </form>
                 </div>
@@ -194,6 +196,76 @@
 
     <script src="show-category.js"></script>
     <script src="../../../js/base-nav-dash.js"></script>
+
+    <script>
+        document.getElementById('add-product-button').addEventListener('click', function() {
+            const idCategory = document.querySelector('select[name="id-category"]').value;
+            const productName = document.querySelector('input[name="name-product"]').value;
+            const supplier = document.querySelector('input[name="supplier"]').value;
+            const purchasePrice = document.querySelector('input[name="purchase-price"]').value;
+            const salePrice = document.querySelector('input[name="sale-price"]').value;
+            const quantityStock = document.querySelector('input[name="quantity-stock"]').value;
+            const productDescription = document.querySelector('input[name="product-description"]').value;
+            const unitMeasure = document.querySelector('select[name="unit-measure"]').value;
+
+            // Enviar datos al servidor usando AJAX
+            fetch('functions/adding-products.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'id-category': idCategory,
+                    'name-product': productName,
+                    'supplier': supplier,
+                    'purchase-price': purchasePrice,
+                    'sale-price': salePrice,
+                    'quantity-stock': quantityStock,
+                    'product-description': productDescription,
+                    'unit-measure': unitMeasure,
+                    'button-add-product': true // Asegúrate de que este campo esté presente
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Almacenar el mensaje en localStorage basado en la respuesta del servidor
+                if (data.includes('Producto agregado')) {
+                    localStorage.setItem('toastMessage', 'Producto añadido al inventario.');
+                    localStorage.setItem('toastType', 'success');
+                } else {
+                    localStorage.setItem('toastMessage', 'Error al agregar el producto: ' + data);
+                    localStorage.setItem('toastType', 'error');
+                }
+                // Recargar la página
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                localStorage.setItem('toastMessage', 'Ocurrió un error al agregar el producto.');
+                localStorage.setItem('toastType', 'error');
+                location.reload();
+            });
+        });
+
+        // Mostrar el mensaje de Toastify al cargar la página
+        window.onload = function() {
+            const message = localStorage.getItem('toastMessage');
+            const type = localStorage.getItem('toastType');
+            if (message) {
+                Toastify({
+                    text: message,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: 'center',
+                    backgroundColor: type === 'success' ? "linear-gradient(to right, #4CAF50, #81C784)" : "linear-gradient(to right, #FF5F6D, #FFC371)",
+                }).showToast();
+                // Limpiar el mensaje después de mostrarlo
+                localStorage.removeItem('toastMessage');
+                localStorage.removeItem('toastType');
+            }
+        };
+    </script>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
             }
     
             $query = "TRUNCATE TABLE cart_store";
-            $stmt = mysqli_query($conexion, $query);
+            return mysqli_query($conexion, $query);
             
         } catch (Exception $e){
             mysqli_rollback($conexion);
@@ -21,15 +21,30 @@
         }
     }
     
-    if (True) {
+    if (true) {
         try {
             if (cancelarVenta($conexion)) {
-                header("Location: ../new-sale.php?message=El carrito está vacio&message_type=error");
+                // Almacenar el mensaje en localStorage antes de redirigir
+                echo "<script>
+                        localStorage.setItem('toastMessage', 'Venta cancelada');
+                        localStorage.setItem('toastType', 'error');
+                        window.location.href = '../new-sale.php';
+                      </script>";
             } else {
-                header("Location: ../new-sale.php?message=Venta cancelada&message_type=error");
+                // Almacenar el mensaje en localStorage antes de redirigir
+                echo "<script>
+                        localStorage.setItem('toastMessage', 'El carrito está vacío');
+                        localStorage.setItem('toastType', 'error');
+                        window.location.href = '../new-sale.php';
+                      </script>";
             }
         } catch (Exception $e) {
-            header("Location: ../new-sale.php?message=" . urlencode($e->getMessage()) . "&message_type=error");
+            // Almacenar el mensaje en localStorage antes de redirigir
+            echo "<script>
+                    localStorage.setItem('toastMessage', '" . addslashes($e->getMessage()) . "');
+                    localStorage.setItem('toastType', 'error');
+                    window.location.href = '../new-sale.php';
+                  </script>";
         }
         exit;
     }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar inventario de bebidas - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/admin-inventory.css">
+    <link rel="stylesheet" href="../../../css/base-inventory.css">
     <link rel="stylesheet" href="../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
@@ -88,16 +89,8 @@
                     </div>
                 </div>
 
-                <div class="content-table">
-                    <table>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio de compra</th>
-                            <th>Precio de venta</th>
-                            <th>Stock disponible</th>
-                            <th>Acciones</th>
-                        </tr>
-
+                <div class="all-products">
+                    <div class="content-cards">
                         <?php
                             $getDrinks = "SELECT * FROM beverage_inventory";
                             $resultDrinks = mysqli_query($conexion, $getDrinks);
@@ -106,29 +99,38 @@
                                 while($row = mysqli_fetch_array($resultDrinks)){
                                     $id = $row['id'];
     
-                                    echo "<tr>
-                                            <td>" . ucfirst($row['drink_name']) . "</td>
-                                            <td>$" . number_format($row['purchase_price'], 0) . "</td>
-                                            <td>" . number_format($row['sale_price'], 0) . "</td>
-                                            <td>" . $row['available_stock'] . "</td>
-                                            <td>
+                                    echo  "<div class='card-product' style='padding: 1rem 0 0 0;'>
+                                            <div class='unit-info'>
+                                                <div class='info-product'>
+                                                    <h3 class='product'>" . ucfirst($row['drink_name']) . "</h3>
+                                                    <div class='stock-unit'>
+                                                        <p>" . $row['available_stock'] . " disponibles</p>
+                                                        <p>Precio de compra: $" . number_format($row['purchase_price'], 0) . "</p>
+                                                        <p>Precio de venta: $" . number_format($row['sale_price'], 0) . "</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='actions'>
                                                 <a href='functions/drinks/delete-drink.php?id=$id'>
-                                                    <img src='../../../svg/delete.svg' title='Eliminar' />
+                                                    <img src='../../../svg/delete.svg' />
+                                                    Eliminar
                                                 </a>
-    
+
                                                 <a href='functions/drinks/get-data-drink.php?id=$id'>
-                                                    <img src='../../../svg/edit.svg' title='Editar' />
+                                                    <img src='../../../svg/edit.svg' />
+                                                    Editar
                                                 </a>
-                                            </td>
-                                          </tr>";
+                                            </div>
+                                        </div>";
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='10'>No hay bebidas aún.</td>
+                                        <td colspan='10'>No hay recetas aún.</td>
                                       </tr>";
                             }
                         ?>
-                    </table>
+                    </div>
                 </div>
             </div>
         </section>

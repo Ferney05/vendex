@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar inventario de ingredientes - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/admin-inventory.css">
+    <link rel="stylesheet" href="../../../css/base-inventory.css">
     <link rel="stylesheet" href="../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
@@ -112,16 +113,8 @@
                     </div>
                 </div>
 
-                <div class="content-table">
-                    <table>
-                        <tr>
-                            <th>Nombre del ingrediente</th>
-                            <th>Stock disponible</th>
-                            <th>Unidad de medida</th>
-                            <th>Stock mínimo</th>
-                            <th>Acciones</th>
-                        </tr>
-
+                <div class="all-products">
+                    <div class="content-cards">
                         <?php
                             $getIngredient = "SELECT * FROM ingredients";
                             $resultIngredient = mysqli_query($conexion, $getIngredient);
@@ -130,29 +123,38 @@
                                 while($row = mysqli_fetch_array($resultIngredient)){
                                     $id = $row['id'];
     
-                                    echo "<tr>
-                                            <td>" . ucfirst($row['name_ingredient']) . "</td>
-                                            <td>" . $row['quantity_stock'] . "</td>
-                                            <td>" . $row['unit'] . "</td>
-                                            <td>" . $row['minimum_stock'] . "</td>
-                                            <td>
-                                                <a href='functions/delete-ingredient.php?id=$id'>
-                                                    <img src='../../../svg/delete.svg' title='Eliminar' />
-                                                </a>
-    
-                                                <a href='functions/get-data-ingredients.php?id=$id'>
-                                                    <img src='../../../svg/edit.svg' title='Editar' />
-                                                </a>
-                                            </td>
-                                          </tr>";
+                                        echo  "<div class='card-product' style='padding: 1rem 0 0 0;'>
+                                                <div class='unit-info'>
+                                                    <div class='info-product'>
+                                                        <h3 class='product'>" . ucfirst($row['name_ingredient']) . "</h3>
+                                                        <div class='stock-unit'>
+                                                            <p>" . $row['quantity_stock'] . " disponibles</p>
+                                                            <p>Medida: " . ucfirst($row['unit']) . "</p>
+                                                            <p>Stock mínimo: " . $row['minimum_stock'] . "</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='actions'>
+                                                    <a href='functions/delete-ingredient.php?id=$id'>
+                                                        <img src='../../../svg/delete.svg' />
+                                                        Eliminar
+                                                    </a>
+
+                                                    <a href='functions/get-data-ingredients.php?id=$id'>
+                                                        <img src='../../../svg/edit.svg' />
+                                                        Editar
+                                                    </a>
+                                                </div>
+                                            </div>";
                                 }
                             } else {
                                 echo "<tr>
-                                        <td colspan='10'>No hay ingredientes.</td>
+                                        <td colspan='10'>No hay recetas aún.</td>
                                       </tr>";
                             }
                         ?>
-                    </table>
+                    </div>
                 </div>
             </div>
         </section>

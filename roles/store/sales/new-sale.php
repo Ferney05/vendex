@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../../../css/store/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -98,12 +101,25 @@
                     <div class="tlt-buttons-sale">
                         <div class="list-message">
                             <h3 class="tlt">Productos listados</h3>
-                            <?php
-                                $message = isset($_GET['message']) ? $_GET['message'] : '';
-                                $message_type = isset($_GET['message_type']) ? $_GET['message_type'] : '';
-
-                                echo "<p class='" . $message_type . "'>" . $message . "</p>";
-                            ?>
+                            <script>
+                                window.onload = function() {
+                                    const message = localStorage.getItem('toastMessage');
+                                    const type = localStorage.getItem('toastType');
+                                    if (message) {
+                                        Toastify({
+                                            text: message,
+                                            duration: 3000,
+                                            close: true,
+                                            gravity: "top",
+                                            position: 'center',
+                                            backgroundColor: type === 'success' ? "#4caf50" : "#911919",
+                                        }).showToast();
+                                        // Limpiar el mensaje después de mostrarlo
+                                        localStorage.removeItem('toastMessage');
+                                        localStorage.removeItem('toastType');
+                                    }
+                                };
+                            </script>
                         </div>
 
                         <div class="cancel-generate-buttons">
@@ -160,7 +176,8 @@
                                     <option value="Nequi">Nequi</option>
                                 </select>
                             </div>
-                            <button type="button" class="button-confirm btn-sale-confirm">Confirmar venta</button>
+                            
+                            <button type="button" class="button-confirm btn-sale-confirm" id="confirm-sale">Confirmar venta</button>
 
                             <div class="modal-generate-sale">
                                 <div class="generate-sale">
@@ -297,7 +314,7 @@
                             </div>
 
                             <div class="label-input">
-                                <input type="submit" name="button-add-product-sale" class="btn-form-modal bg-btn" value="Agregar producto">
+                                <button type="button" name="button-add-product-sale" class="btn-form-modal bg-btn" id="add-product-button">Agregar producto</button>
                             </div>
                         </div>
                     </form>
@@ -350,6 +367,66 @@
                     }
                 });
             });
+        </script>
+
+        <script>
+            document.getElementById('add-product-button').addEventListener('click', function() {
+                const productName = document.querySelector('input[name="name-product"]').value;
+                const cartStock = document.querySelector('input[name="cart-stock"]').value;
+                const salePrice = document.querySelector('input[name="sale-price"]').value;
+
+                // Enviar datos al servidor usando AJAX
+                fetch('functions/add-product-sale.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'name-product': productName,
+                        'cart-stock': cartStock,
+                        'sale-price': salePrice,
+                        'button-add-product-sale': true
+                    })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Almacenar el mensaje en localStorage
+                    if (data.includes('Producto agregado')) {
+                        localStorage.setItem('toastMessage', "El producto se agregó correctamente al carrito de compra");
+                        localStorage.setItem('toastType', 'success');
+                    } else {
+                        localStorage.setItem('toastMessage', "La cantidad ingresada supera la disponibilidad actual");
+                        localStorage.setItem('toastType', 'error');
+                    }
+                    // Recargar la página
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    localStorage.setItem('toastMessage', "Ocurrió un error al agregar el producto.");
+                    localStorage.setItem('toastType', 'error');
+                    location.reload();
+                });
+            });
+
+            // Mostrar el mensaje de Toastify al cargar la página
+            window.onload = function() {
+                const message = localStorage.getItem('toastMessage');
+                const type = localStorage.getItem('toastType');
+                if (message) {
+                    Toastify({
+                        text: message,
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: 'center',
+                        backgroundColor: type === 'success' ? "#4caf50" : "#911919",
+                    }).showToast();
+                    // Limpiar el mensaje después de mostrarlo
+                    localStorage.removeItem('toastMessage');
+                    localStorage.removeItem('toastType');
+                }
+            };
         </script>
     </main>
 

@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se abonó - Vendex</title>
-    <link rel="stylesheet" href="../../../../css/success.css">
-    <link rel="stylesheet" href="../../../../css/warning.css">
     <link rel="shortcut icon" href="../../../../svg/icon.png" type="image/x-icon">
 </head>
 <body>
@@ -14,7 +12,7 @@
     include("../../../../conexion.php");
 
     // Función para mostrar mensajes
-    function showMessage($type, $title, $message, $redirect) {
+    function showMessage($type, $title, $message) {
         $iconColor = $type === 'success' ? '#6bc04e' : '#911919';
         $iconPath = $type === 'success'
             ? 'M4 24l5-5l10 10L39 9l5 5l-25 25z'
@@ -32,7 +30,6 @@
                 <p class='info-text'>$message</p>
             </div>
         </div>";
-        header("Refresh: 3; url=$redirect");
         exit;
     }
 
@@ -42,7 +39,7 @@
         $customer = mysqli_real_escape_string($conexion, $_POST['customer']);
 
         if (!$pay || !$customer || $pay <= 0) {
-            showMessage('warning', 'Error', 'Datos inválidos o monto no válido.', '../see-credits.php');
+            showMessage('warning', 'Error', 'Datos inválidos o monto no válido');
         }
 
         // Consultar datos del cliente
@@ -54,9 +51,13 @@
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
+            if($row['amount_borrowed'] === $row['fertilizers']) {
+                showMessage('warning', 'Error', 'El crédito ya está pagado. No se puede abonar');
+            }
+
             // Verificar que el monto a abonar no sea mayor al monto prestado
             if ($pay > $row['amount_borrowed']) {
-                showMessage('warning', 'Abono no procesado', 'El monto a abonar no puede ser mayor al monto total prestado.', '../see-credits.php');
+                showMessage('warning', 'Abono no procesado', 'El monto a abonar no puede ser mayor al monto total prestado');
             } else {
                 // Actualizar abono y estado del crédito
                 $newFertilizers = $row['fertilizers'] + $pay;
@@ -68,13 +69,13 @@
                 $execute = $update->execute();
 
                 if ($execute) {
-                    showMessage('success', 'Se ha abonado', 'Se abonó correctamente.', '../see-credits.php');
+                    showMessage('success', 'Se ha abonado', 'Se abonó correctamente');
                 } else {
-                    showMessage('warning', 'Error', 'No se pudo procesar el abono.', '../see-credits.php');
+                    showMessage('warning', 'Error', 'No se pudo procesar el abono');
                 }
             }
         } else {
-            showMessage('warning', 'Error', 'Cliente no encontrado.', '../see-credits.php');
+            showMessage('warning', 'Error', 'Cliente no encontrado');
         }
     }
 ?>

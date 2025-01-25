@@ -14,7 +14,6 @@
     grid-row: 2 / 3;
     padding: 2rem;
     box-sizing: border-box;
-    background-color: var(--color-dark-blue-gray);
 }
 
 .earn-content {
@@ -50,7 +49,10 @@
 }
 
 .content-table {
-    margin-top: 3rem;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tlt-buttons-sale {

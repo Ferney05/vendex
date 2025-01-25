@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar inventario de recetas - Vendex</title>
     <link rel="stylesheet" href="../../../css/restaurant/admin-inventory.css">
+    <link rel="stylesheet" href="../../../css/base-inventory.css">
     <link rel="stylesheet" href="../../../css/restaurant/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
@@ -112,16 +113,8 @@
                     </div>
                 </div>
 
-                <div class="content-table">
-                    <table>
-                        <tr>
-                            <th>Nombre del plato</th>
-                            <th>Precio de venta</th>
-                            <th>Tiempo de preparación</th>
-                            <th>Ingredientes</th>
-                            <th>Acciones</th>
-                        </tr>
-
+                <div class="all-products">
+                    <div class="content-cards">
                         <?php
                             $getProducts = "SELECT * FROM recipes";
                             $resultProducts = mysqli_query($conexion, $getProducts);
@@ -130,24 +123,41 @@
                                 while($row = mysqli_fetch_array($resultProducts)){
                                     $id = $row['id'];
     
-                                    echo "<tr>
-                                            <td>" . ucfirst($row['name_dish']) . "</td>
-                                            <td>$" . number_format($row['sale_price'], 0) . "</td>
-                                            <td>" . $row['prepared_time'] . "</td>
-                                            <td class='view-details'>
-                                                <a href='functions/add-ingredients-dish.php?id=$id'>Agregar</a>
-                                                <a href='functions/ingredients-details.php?id=$id'>Ver</a>
-                                            </td>
-                                            <td>
-                                                <a href='functions/delete-recipe.php?id=$id'>
-                                                    <img src='../../../svg/delete.svg' title='Eliminar' />
-                                                </a>
-    
-                                                <a href='functions/get-data-recipe.php?id=$id'>
-                                                    <img src='../../../svg/edit.svg' title='Editar' />
-                                                </a>
-                                            </td>
-                                          </tr>";
+                                        echo  "<div class='card-product' style='padding: 1rem 0 0 0;'>
+                                                <div class='unit-info'>
+                                                    <div class='info-product'>
+                                                        <h3 class='product'>" . ucfirst($row['name_dish']) . "</h3>
+                                                        <div class='price-available'>
+                                                            <p>$ " . number_format($row['sale_price'], 0) . "</p>
+                                                            <p>" . $row['prepared_time'] . "</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='buttons-add-view'>
+                                                    <a href='functions/add-ingredients-dish.php?id=$id'>
+                                                        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path fill='#eee' d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2m5 11h-4v4h-2v-4H7v-2h4V7h2v4h4z'/></svg>
+                                                        Agregar ingredientes
+                                                    </a>
+
+                                                    <a href='functions/ingredients-details.php?id=$id'>
+                                                        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 2048 2048'><path fill='#eee' d='M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30m0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20m0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36'/></svg>
+                                                        Ver receta
+                                                    </a>
+                                                </div>
+
+                                                <div class='actions'>
+                                                    <a href='functions/delete.php?id=$id'>
+                                                        <img src='../../../svg/delete.svg' />
+                                                        Eliminar
+                                                    </a>
+
+                                                    <a href='functions/get-data.php?id=$id'>
+                                                        <img src='../../../svg/edit.svg' />
+                                                        Editar
+                                                    </a>
+                                                </div>
+                                            </div>";
                                 }
                             } else {
                                 echo "<tr>
@@ -155,7 +165,7 @@
                                       </tr>";
                             }
                         ?>
-                    </table>
+                    </div>
                 </div>
             </div>
         </section>

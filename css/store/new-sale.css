@@ -371,6 +371,7 @@ td {
     height: 150px;
     width: 210px;
     border: 1px groove var(--color-light-gray);
+    border-radius: 10px;
 }
 
 .unit-info{
@@ -388,6 +389,7 @@ td {
     background-color: var(--color-amethyst);
     font-size: .8rem;
     align-self: baseline;
+    border-top-left-radius: 10px;
 }
 
 .price-available {

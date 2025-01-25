@@ -136,11 +136,19 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (generarVenta($conexion)) {
-            // $url_screenshot = 'http://localhost/vendex/roles/store/sales/bill/execute-all.php';
-            // file_get_contents($url_screenshot);
-            header("Location: ../new-sale.php?message=Venta generada&message_type=success");
+            // Almacenar el mensaje en localStorage antes de redirigir
+            echo "<script>
+                    localStorage.setItem('toastMessage', 'Venta generada');
+                    localStorage.setItem('toastType', 'success');
+                    window.location.href = '../new-sale.php';
+                  </script>";
         } else {
-            header("Location: ../new-sale.php?message=El carrito está vacío&message_type=error");
+            // Almacenar el mensaje en localStorage antes de redirigir
+            echo "<script>
+                    localStorage.setItem('toastMessage', 'El carrito está vacío');
+                    localStorage.setItem('toastType', 'error');
+                    window.location.href = '../new-sale.php';
+                  </script>";
         }
         exit;
     }

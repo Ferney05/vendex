@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../../../css/store/base-autocomplete.css">
     <link rel="shortcut icon" href="../../../svg/icon.png" type="image/x-icon">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -90,7 +92,7 @@
                 </div>
 
                 <div class="content-form">
-                    <form action="functions/pay.php" method="POST" class="form-flex">
+                    <form action="functions/pay.php" method="POST" id="pay-form" class="form-flex">
                         <div class="alls-t">
                             <div class="content-labels-inputs">
                                 <div class="label-input">
@@ -126,7 +128,7 @@
 
                             <div class="content-labels-inputs">
                                 <div class="button-submit">
-                                    <input type="submit" name="button-pay-credit" class="btn-form bg-btn" value="Abonar">
+                                    <input type="button" name="button-pay-credit" id="submit-pay" class="btn-form bg-btn" value="Abonar">
                                 </div>
                             </div>
                         </div>
@@ -137,5 +139,80 @@
     </main>
 
     <script src="../../../js/base-nav-dash.js"></script>
+
+
+    <script>
+        document.getElementById('submit-pay').addEventListener('click', function () {
+            const customer = document.querySelector('input[name="customer"]').value;
+            const pay = document.querySelector('input[name="pay"]').value;
+
+            if (!customer || !pay || pay <= 0) {
+                Toastify({
+                    text: "Por favor, complete todos los campos con valores válidos.",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: 'center',
+                    backgroundColor: "linear-gradient(to right, #FF5F6D, #FFC371)",
+                }).showToast();
+                return;
+            }
+
+            // Enviar datos al servidor usando AJAX
+            fetch('functions/pay.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'customer': customer,
+                    'pay': pay,
+                    'button-pay-credit': true
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Mostrar mensaje basado en la respuesta del servidor
+                if (data.includes('correctamente')) {
+                    localStorage.setItem('toastMessage', 'Se abonó correctamente.');
+                    localStorage.setItem('toastType', 'success');
+                } else if (data.includes('no válido') || data.includes('Error')) {
+                    localStorage.setItem('toastMessage', 'El crédito ya está pagado. No se puede abonar');
+                    localStorage.setItem('toastType', 'error');
+                } else {
+                    localStorage.setItem('toastMessage', 'El monto a abonar no puede ser mayor al monto total prestado');
+                    localStorage.setItem('toastType', 'error');
+                }
+                // Recargar la página
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                localStorage.setItem('toastMessage', 'Ocurrió un error al procesar el abono.');
+                localStorage.setItem('toastType', 'error');
+                location.reload();
+            });
+        });
+
+        // Mostrar mensaje de Toastify al cargar la página
+        window.onload = function () {
+            const message = localStorage.getItem('toastMessage');
+            const type = localStorage.getItem('toastType');
+            if (message) {
+                Toastify({
+                    text: message,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: 'center',
+                    backgroundColor: type === 'success' ? "#4caf50" : "#911919",
+                }).showToast();
+                // Limpiar el mensaje después de mostrarlo
+                localStorage.removeItem('toastMessage');
+                localStorage.removeItem('toastType');
+            }
+        };
+    </script>
+
 </body>
 </html>

@@ -15,10 +15,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSaleConfirm = getElement('.btn-sale-confirm');
     const modalGenerateSale = getElement('.modal-generate-sale');
     const closeModalSale = getElement('.close-modal-sale');
-    
+
     if (btnSaleConfirm) {
         btnSaleConfirm.addEventListener('click', () => {
-            modalGenerateSale.style.display = 'block';
+            const client = getElement('#client').value.trim();
+            const clientEmail = getElement('#client-email').value.trim();
+            const clientPhone = getElement('#client-phone').value.trim();
+            const paymentMethod = getElement('.payment-method').value ? getElement('.payment-method').value : "A crédito";
+
+            if (!client || !clientEmail || !clientPhone || paymentMethod === "") {
+                Toastify({
+                    text: "Por favor, completa todos los campos requeridos.",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", 
+                    position: 'center',
+                    backgroundColor: "#911919",
+                }).showToast();
+            } else {
+                modalGenerateSale.style.display = 'block'; 
+            }
         });
     }
 
